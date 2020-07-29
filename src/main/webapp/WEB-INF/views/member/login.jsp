@@ -33,12 +33,14 @@
                             <input type="text" placeholder="비밀번호">
                         </div>
                         <div class="col-lg-12 text-center">
-                            <button type="submit">Submit</button>
+                            <button type="submit">Login</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </section>
+    <!-- 로그인 하단 빈공간 영역 -->
+    <div class="login-margin"></div>
     <!-- Appoinment Section End -->
 <%@ include file="/WEB-INF/views/include/footer.jsp" %>
