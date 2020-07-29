@@ -123,13 +123,13 @@
                         </div>
                     </div>
                 </div>
-                <form action="#" class="appointment__form">
+                <form action="/member/login" method="post" class="appointment__form">
                     <div class="row">
                         <div class="col-lg-12 text-center" >
-                            <input type="text" placeholder="이름">
+                            <input type="text" name="id" id="id" placeholder="ID">
                         </div>
                         <div class="col-lg-12 text-center">
-                            <input type="text" placeholder="비밀번호">
+                            <input type="password" name="password" id="password" placeholder="비밀번호">
                         </div>
                         <div class="col-lg-12 text-center">
                             <button type="submit">Login</button>

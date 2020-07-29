@@ -34,7 +34,7 @@
     <div class="offcanvas-menu-overlay"></div>
     <div class="offcanvas-menu">
         <div class="offcanvas__logo">
-            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+            <a href="/"><img src="img/logo.png" alt=""></a>
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__widget">
@@ -47,7 +47,7 @@
         </div>
         <nav class="header__menu">
             <ul class="mobile-menu">
-                <li class="active"><a href="./index.html">Home</a></li>
+                <li class="active"><a href="/">Home</a></li>
                 <li><a href="./about-us.html">About</a></li>
                 <li><a href="./classes.html">Classes</a></li>
                 <li><a href="#">Pages</a>
@@ -102,19 +102,19 @@
                     <div class="col-lg-9 col-md-9">
                         <nav class="header__menu">
                             <ul>
-                                <li class="active"><a href="./index.html">Home</a></li>
-                                <li><a href="./about-us.html">About</a></li>
-                                <li><a href="./classes.html">Classes</a></li>
-                                <li><a href="#">Pages</a>
+                                <li class="active"><a href="/menu/notice">공지사항</a></li>
+                                <li><a href="/menu/video">동영상</a></li>
+                                <li><a href="/menu/know-how">노하우</a></li>
+                                <li><a href="/menu/review">후기</a></li>
+                                <li><a href="/menu/hotplace">장소추천</a></li>
+                                <li><a href="/menu/shop">SHOP</a>
                                     <ul class="dropdown">
                                         <li><a href="./classes-details.html">Classes Details</a></li>
                                         <li><a href="./blog-details.html">Blog Details</a></li>
-                                        <li><a href="./pricing.html">Pricing</a></li>
+                                        <li><a href="/menu/pricing">Pricing</a></li>
                                         <li><a href="./faq.html">Faq</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="./blog.html">Blog</a></li>
-                                <li><a href="./contact.html">Contact</a></li>
                             </ul>
                         </nav>
                     </div>

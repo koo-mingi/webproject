@@ -307,9 +307,11 @@ ol {
 }
 
 .header__nav {
+	background-color : #263246;
 	position: relative;
 	z-index: 9;
-	padding-top: 15px;
+	padding-top: 10px;
+	padding-bottom: 5px;
 }
 
 .header__menu {
@@ -416,6 +418,7 @@ ol {
 	font-size: 14px;
 	color: #ffffff;
 	margin-right: 25px;
+	margin-top: 5px;
 }
 
 .header__social a:last-child {
