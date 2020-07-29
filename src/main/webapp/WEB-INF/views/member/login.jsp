@@ -118,7 +118,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-title">
-                            <img src="img/icon-white.png" alt="">
+                     		<img src="/resources/img/icon-white.png" alt="">
                             <h2>로그인</h2>
                         </div>
                     </div>
