@@ -14,14 +14,14 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/barfiller.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/barfiller.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/style.css" type="text/css">
 </head>
 
 <body>
@@ -78,17 +78,16 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-3">
                         <div class="header__logo">
-                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                            <a href="/"><img src="/resources/img/logo.png" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-9">
                         <div class="header__top__widget">
-                            <ul>
-                                <li>CALL US: + 1 800-567-8990</li>
-                                <li>WRITE US: OFFICE@EXAMPLE.COM</li>
-                                <li>OPENING TIMES: MON - FRI: 9:00 - 19:00</li>
+                        	 <ul>
+                                <li>Phone : 123-4567-7899</li>
                             </ul>
-                            <a href="#" class="primary-btn">JOIN US</a>
+                        	<a href="/member/login" class="primary-btn">LOGIN</a>
+                            <a href="#" class="primary-btn">JOIN US</a>	
                         </div>
                     </div>
                 </div>

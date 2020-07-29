@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <!-- 합쳐지고 최소화된 최신 CSS -->
+<%@ include file="/WEB-INF/views/include/header.jsp" %>
 
 <%--
 	custom Login page 작성 규칙
@@ -10,22 +11,7 @@
 	4. 비밀번호를 입력받는 부분의 이름은 반드시 password로 하기
 	
  --%>
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="/resources/css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="/resources/css/elegant-icons.css" type="text/css">
-<link rel="stylesheet" href="/resources/css/nice-select.css" type="text/css">
-<link rel="stylesheet" href="/resources/css/barfiller.css" type="text/css">
-<link rel="stylesheet" href="/resources/css/owl.carousel.min.css" type="text/css">
-<link rel="stylesheet" href="/resources/css/slicknav.min.css" type="text/css">
-<link rel="stylesheet" href="/resources/css/style.css" type="text/css">
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
 	<!-- Appoinment Section Begin -->
     <section class="appointment">
         <div class="container">
@@ -55,5 +41,4 @@
         </div>
     </section>
     <!-- Appoinment Section End -->
-</body>
-</html>
+<%@ include file="/WEB-INF/views/include/footer.jsp" %>

@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%@ include file="/WEB-INF/views/include/header.jsp" %>
+
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="hero__sliders owl-carousel">
-            <div class="hero__items set-bg" data-setbg="img/hero/hero-1.jpg">
+            <div class="hero__items set-bg" data-setbg="/resources/img/hero/hero-1.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8">
@@ -17,7 +19,7 @@
                     </div>
                 </div>
             </div>
-            <div class="hero__items set-bg" data-setbg="img/hero/hero-1.jpg">
+            <div class="hero__items set-bg" data-setbg="/resources/img/hero/hero-1.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8">
@@ -40,17 +42,17 @@
             <div class="row">
                 <div class="col-lg-7">
                     <div class="home__about__pic">
-                        <div class="home__about__pic__item large-item set-bg" data-setbg="img/about/about-1.jpg"></div>
+                        <div class="home__about__pic__item large-item set-bg" data-setbg="/resources/img/about/about-1.jpg"></div>
                         <div class="home__about__pic__item">
-                            <div class="home__about__pic__item__inner set-bg" data-setbg="img/about/about-2.jpg"></div>
-                            <div class="home__about__pic__item__inner set-bg" data-setbg="img/about/about-3.jpg"></div>
+                            <div class="home__about__pic__item__inner set-bg" data-setbg="/resources/img/about/about-2.jpg"></div>
+                            <div class="home__about__pic__item__inner set-bg" data-setbg="/resources/img/about/about-3.jpg"></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-5">
                     <div class="home__about__text">
                         <div class="section-title">
-                            <img src="img/icon.png" alt="">
+                            <img src="/resources/img/icon.png" alt="">
                             <h2>Welcome to Zogin</h2>
                         </div>
                         <span>âWhat hurts today makes you stronger tomorrow.â</span>
@@ -75,7 +77,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <img src="img/icon.png" alt="">
+                        <img src="/resources/img/icon.png" alt="">
                         <h2>Enjoy All Aspects Of Yoga</h2>
                     </div>
                 </div>
@@ -86,7 +88,7 @@
                 <div class="row">
                     <div class="col-xl-2 col-md-4 col-sm-6">
                         <div class="services__item">
-                            <img src="img/services/services-1.png" alt="">
+                            <img src="/resources/img/services/services-1.png" alt="">
                             <h5>Asana</h5>
                             <p>Grab the opportunity to deepen your own yoga practice, relax, restore and experience
                                 india!</p>
@@ -94,7 +96,7 @@
                     </div>
                     <div class="col-xl-2 col-md-4 col-sm-6">
                         <div class="services__item">
-                            <img src="img/services/services-2.png" alt="">
+                            <img src="/resources/img/services/services-2.png" alt="">
                             <h5>Meditation</h5>
                             <p>Grab the opportunity to deepen your own yoga practice, relax, restore and experience
                                 india!</p>
@@ -102,7 +104,7 @@
                     </div>
                     <div class="col-xl-2 col-md-4 col-sm-6">
                         <div class="services__item">
-                            <img src="img/services/services-3.png" alt="">
+                            <img src="/resources/img/services/services-3.png" alt="">
                             <h5>Mudra</h5>
                             <p>Grab the opportunity to deepen your own yoga practice, relax, restore and experience
                                 india!</p>
@@ -110,7 +112,7 @@
                     </div>
                     <div class="col-xl-2 col-md-4 col-sm-6">
                         <div class="services__item">
-                            <img src="img/services/services-4.png" alt="">
+                            <img src="/resources/img/services/services-4.png" alt="">
                             <h5>Bandhas</h5>
                             <p>Grab the opportunity to deepen your own yoga practice, relax, restore and experience
                                 india!</p>
@@ -118,7 +120,7 @@
                     </div>
                     <div class="col-xl-2 col-md-4 col-sm-6">
                         <div class="services__item">
-                            <img src="img/services/services-5.png" alt="">
+                            <img src="/resources/img/services/services-5.png" alt="">
                             <h5>Philosophy</h5>
                             <p>Grab the opportunity to deepen your own yoga practice, relax, restore and experience
                                 india!</p>
@@ -126,7 +128,7 @@
                     </div>
                     <div class="col-xl-2 col-md-4 col-sm-6">
                         <div class="services__item">
-                            <img src="img/services/services-6.png" alt="">
+                            <img src="/resources/img/services/services-6.png" alt="">
                             <h5>Pranayama</h5>
                             <p>Grab the opportunity to deepen your own yoga practice, relax, restore and experience
                                 india!</p>
@@ -151,7 +153,7 @@
                     </div>
                     <div class="chooseus__item">
                         <div class="chooseus__item__icon">
-                            <img src="img/chooseus/choose-1.png" alt="">
+                            <img src="/resources/img/chooseus/choose-1.png" alt="">
                         </div>
                         <div class="chooseus__item__text">
                             <h2 class="choose-counter">2146</h2>
@@ -160,7 +162,7 @@
                     </div>
                     <div class="chooseus__item">
                         <div class="chooseus__item__icon">
-                            <img src="img/chooseus/choose-2.png" alt="">
+                            <img src="/resources/img/chooseus/choose-2.png" alt="">
                         </div>
                         <div class="chooseus__item__text">
                             <h2 class="choose-counter">15</h2>
@@ -169,7 +171,7 @@
                     </div>
                     <div class="chooseus__item">
                         <div class="chooseus__item__icon">
-                            <img src="img/chooseus/choose-3.png" alt="">
+                            <img src="/resources/img/chooseus/choose-3.png" alt="">
                         </div>
                         <div class="chooseus__item__text">
                             <h2 class="choose-counter">48</h2>
@@ -178,7 +180,7 @@
                     </div>
                     <div class="chooseus__item">
                         <div class="chooseus__item__icon">
-                            <img src="img/chooseus/choose-4.png" alt="">
+                            <img src="/resources/img/chooseus/choose-4.png" alt="">
                         </div>
                         <div class="chooseus__item__text">
                             <h2 class="choose-counter">234</h2>
@@ -188,7 +190,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="chooseus__pic">
-                        <img src="img/chooseus/choose-pic.jpg" alt="">
+                        <img src="/resources/img/chooseus/choose-pic.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -211,7 +213,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="classes__item">
-                        <div class="classes__item__pic set-bg" data-setbg="img/classes/classes-1.jpg">
+                        <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-1.jpg">
                             <span>20 Jun 2019</span>
                         </div>
                         <div class="classes__item__text">
@@ -224,7 +226,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="classes__item">
-                        <div class="classes__item__pic set-bg" data-setbg="img/classes/classes-2.jpg">
+                        <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-2.jpg">
                             <span>20 Jun 2019</span>
                         </div>
                         <div class="classes__item__text">
@@ -237,7 +239,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="classes__item">
-                        <div class="classes__item__pic set-bg" data-setbg="img/classes/classes-3.jpg">
+                        <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-3.jpg">
                             <span>20 Jun 2019</span>
                         </div>
                         <div class="classes__item__text">
@@ -270,42 +272,42 @@
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-6 p-0">
                     <div class="gallery__pic">
-                        <img src="img/gallery/gallery-1.jpg" alt="">
+                        <img src="/resources/img/gallery/gallery-1.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-6 p-0">
                     <div class="gallery__pic">
-                        <img src="img/gallery/gallery-2.jpg" alt="">
+                        <img src="/resources/img/gallery/gallery-2.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-6 p-0">
                     <div class="gallery__pic">
-                        <img src="img/gallery/gallery-3.jpg" alt="">
+                        <img src="/resources/img/gallery/gallery-3.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-6 p-0">
                     <div class="gallery__pic">
-                        <img src="img/gallery/gallery-4.jpg" alt="">
+                        <img src="/resources/mg/gallery/gallery-4.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-6 p-0">
                     <div class="gallery__pic">
-                        <img src="img/gallery/gallery-5.jpg" alt="">
+                        <img src="/resources/img/gallery/gallery-5.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-6 p-0">
                     <div class="gallery__pic">
-                        <img src="img/gallery/gallery-6.jpg" alt="">
+                        <img src="/resources/img/gallery/gallery-6.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-6 p-0">
                     <div class="gallery__pic">
-                        <img src="img/gallery/gallery-7.jpg" alt="">
+                        <img src="/resources/img/gallery/gallery-7.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-6 p-0">
                     <div class="gallery__pic">
-                        <img src="img/gallery/gallery-8.jpg" alt="">
+                        <img src="/resources/img/gallery/gallery-8.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -329,7 +331,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="instructor__item">
                         <div class="instructor__item__pic">
-                            <img src="img/instructor/instructor-1.jpg" alt="">
+                            <img src="/resources/img/instructor/instructor-1.jpg" alt="">
                         </div>
                         <div class="instructor__item__text">
                             <h5>Emma Hale</h5>
@@ -340,7 +342,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="instructor__item">
                         <div class="instructor__item__pic">
-                            <img src="img/instructor/instructor-2.jpg" alt="">
+                            <img src="/resources/img/instructor/instructor-2.jpg" alt="">
                         </div>
                         <div class="instructor__item__text">
                             <h5>Rebecca James</h5>
@@ -351,7 +353,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="instructor__item">
                         <div class="instructor__item__pic">
-                            <img src="img/instructor/instructor-3.jpg" alt="">
+                            <img src="/resources/img/instructor/instructor-3.jpg" alt="">
                         </div>
                         <div class="instructor__item__text">
                             <h5>Melissa Smith</h5>
@@ -362,7 +364,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="instructor__item">
                         <div class="instructor__item__pic">
-                            <img src="img/instructor/instructor-4.jpg" alt="">
+                            <img src="/resources/img/instructor/instructor-4.jpg" alt="">
                         </div>
                         <div class="instructor__item__text">
                             <h5>Emily Walker</h5>
@@ -382,7 +384,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-title">
-                            <img src="img/icon-white.png" alt="">
+                            <img src="/resources/img/icon-white.png" alt="">
                             <h2>Make An Appointment</h2>
                         </div>
                     </div>
@@ -424,7 +426,7 @@
                             <div class="testimonial__text">
                                 <p>This is my second time completing a 200 hr TTC from Zogin and I loved the experiences
                                     even more than the first time that I had done in 2014.</p>
-                                <img src="img/testimonial/testimonial-1.png" alt="">
+                                <img src="/resources/img/testimonial/testimonial-1.png" alt="">
                                 <h5>Linnie Walton <span>- Trainer</span></h5>
                             </div>
                         </div>
@@ -436,7 +438,7 @@
                             <div class="testimonial__text">
                                 <p>This is my second time completing a 200 hr TTC from Zogin and I loved the experiences
                                     even more than the first time that I had done in 2015.</p>
-                                <img src="img/testimonial/testimonial-1.png" alt="">
+                                <img src="/resources/img/testimonial/testimonial-1.png" alt="">
                                 <h5>Linnie Walton <span>- Trainer</span></h5>
                             </div>
                         </div>
@@ -448,7 +450,7 @@
                             <div class="testimonial__text">
                                 <p>This is my second time completing a 200 hr TTC from Zogin and I loved the experiences
                                     even more than the first time that I had done in 2016.</p>
-                                <img src="img/testimonial/testimonial-1.png" alt="">
+                                <img src="/resources/img/testimonial/testimonial-1.png" alt="">
                                 <h5>Linnie Walton <span>- Trainer</span></h5>
                             </div>
                         </div>
@@ -460,7 +462,7 @@
                             <div class="testimonial__text">
                                 <p>This is my second time completing a 200 hr TTC from Zogin and I loved the experiences
                                     even more than the first time that I had done in 2017.</p>
-                                <img src="img/testimonial/testimonial-1.png" alt="">
+                                <img src="/resources/img/testimonial/testimonial-1.png" alt="">
                                 <h5>Linnie Walton <span>- Trainer</span></h5>
                             </div>
                         </div>
@@ -471,88 +473,6 @@
     </section>
     <!-- Testimonial Section End -->
 
-    <!-- Footer Section Begin -->
-    <section class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="footer__about">
-                        <img src="img/footer-logo.png" alt="">
-                        <ul>
-                            <li><i class="fa fa-clock-o"></i> Mon - Fri: 6:30am - 07:45pm</li>
-                            <li><i class="fa fa-clock-o"></i> Sat - Sun: 8:30am - 05:45pm</li>
-                        </ul>
-                        <form action="#" class="subscribe-form">
-                            <input type="text" placeholder="Your Email">
-                            <button type="submit"><i class="fa fa-send"></i></button>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
-                    <div class="footer__widget">
-                        <h5>Inspiration</h5>
-                        <ul>
-                            <li><a href="#">Online Pilates</a></li>
-                            <li><a href="#">Yoga for Beginners</a></li>
-                            <li><a href="#">Online Pilates</a></li>
-                            <li><a href="#">Online Yoga</a></li>
-                            <li><a href="#">Conditioning</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="footer__widget">
-                        <h5>About Us</h5>
-                        <ul>
-                            <li><a href="#">Our Vision</a></li>
-                            <li><a href="#">Our Mission</a></li>
-                            <li><a href="#">Meet The Team</a></li>
-                            <li><a href="#">Introduce</a></li>
-                            <li><a href="#">Customer Service</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer__widget">
-                        <h5>Contact Us</h5>
-                        <ul class="footer-address">
-                            <li><i class="fa fa-phone"></i> (01) 436 8888</li>
-                            <li><i class="fa fa-envelope"></i> hello@zogin.com</li>
-                            <li><i class="fa fa-location-arrow"></i> 828 Granville Lights Suite 466</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="footer__copyright">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        <div class="footer__copyright__text">
-                            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
-                        </div>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="footer__copyright__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Footer Section End -->
-
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.barfiller.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
-</body>
-</html>
+ <%@ include file="/WEB-INF/views/include/footer.jsp" %>
+ 
+ 
