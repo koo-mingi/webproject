@@ -677,7 +677,9 @@ ol {
 }
 
 .appointment__text {
+	margin:0 auto;
 	background: #5768AD;
+	width: 700px;
 	padding: 60px 100px;
 }
 
