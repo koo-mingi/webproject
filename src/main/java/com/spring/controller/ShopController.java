@@ -15,4 +15,9 @@ public class ShopController {
 	public void categoryGet() {
 		log.info("상품 페이지");
 	}
+	
+	@GetMapping("/cart")
+	public void cart() {
+		log.info("장바구니 페이지");
+	}
 }

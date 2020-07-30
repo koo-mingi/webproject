@@ -329,6 +329,17 @@ h1, h2, h3, h4, h5, h6 {
       background: #263246;
       border: 1px solid #transparent; }
       
+    .genric-btn.cart {
+   	font-weight: 600;
+    color: #263246;
+    background: #fff;
+    border: 1px solid #transparent; }
+    .genric-btn.cart:hover {
+      font-weight: 600;
+      color: #fff;
+      border: 1px solid #fff;
+      background: #263246; }
+      
   .genric-btn.warning {
     color: #fff;
     background: #f4e700;

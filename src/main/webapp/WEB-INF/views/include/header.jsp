@@ -97,6 +97,7 @@
                         	 <ul>
                                 <li>Phone : 123-4567-7899</li>
                             </ul>
+                            <a href="/shop/cart" class="genric-btn cart radius">장바구니</a>
                         	<a href="/member/login" class="genric-btn info radius">LOGIN</a>
                             <a href="#" class="genric-btn info radius">JOIN US</a>	
                         </div>
