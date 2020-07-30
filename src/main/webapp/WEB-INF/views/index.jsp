@@ -13,7 +13,7 @@
                             <div class="hero__text">
                                 <span>Welcome to Zogin</span>
                                 <h2>What hurts today makes you stronger tomorrow</h2>
-                                <a href="#" class="primary-btn">DISCOVER MORE</a>
+                                <a href="#" class="genric-btn info radius">DISCOVER MORE</a>
                             </div>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                             <div class="hero__text">
                                 <span>Welcome to Zogin</span>
                                 <h2>What hurts today makes you stronger tomorrow</h2>
-                                <a href="#" class="primary-btn">DISCOVER MORE</a>
+                                <a href="#" class="genric-btn info radius">DISCOVER MORE</a>
                             </div>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                             true essence of yoga, meditation, health, peace and learning the art of creating a class to
                             teach safely. We are passionate about adjustments and mainly focus on the alignment of the
                             asanas.</p>
-                        <a href="#" class="primary-btn">MORE ABOUT US</a>
+                        <a href="#" class="genric-btn info radius">MORE ABOUT US</a>
                     </div>
                 </div>
             </div>
@@ -407,7 +407,7 @@
                         </div>
                         <div class="col-lg-12 text-center">
                             <textarea placeholder="Message"></textarea>
-                            <button type="submit">Submit</button>
+                            <input type="submit" class="genric-btn submit radius" value="보내기"/>
                         </div>
                     </div>
                 </form>

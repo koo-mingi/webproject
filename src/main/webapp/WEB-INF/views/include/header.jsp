@@ -22,6 +22,17 @@
     <link rel="stylesheet" href="/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/style.css" type="text/css">
+      
+    <link rel="stylesheet" href="/resources/shop/css/linearicons.css">
+	<link rel="stylesheet" href="/resources/shop/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/resources/shop/css/themify-icons.css">
+	<link rel="stylesheet" href="/resources/shop/css/bootstrap.css">
+	<link rel="stylesheet" href="/resources/shop/css/owl.carousel.css">
+	<link rel="stylesheet" href="/resources/shop/css/nice-select.css">
+	<link rel="stylesheet" href="/resources/shop/css/nouislider.min.css">
+	<link rel="stylesheet" href="/resources/shop/css/ion.rangeSlider.css" />
+	<link rel="stylesheet" href="/resources/shop/css/ion.rangeSlider.skinFlat.css" />
+	<link rel="stylesheet" href="/resources/shop/css/main.css">
 </head>
 
 <body>
@@ -86,8 +97,8 @@
                         	 <ul>
                                 <li>Phone : 123-4567-7899</li>
                             </ul>
-                        	<a href="/member/login" class="primary-btn">LOGIN</a>
-                            <a href="#" class="primary-btn">JOIN US</a>	
+                        	<a href="/member/login" class="genric-btn info radius">LOGIN</a>
+                            <a href="#" class="genric-btn info radius">JOIN US</a>	
                         </div>
                     </div>
                 </div>
@@ -107,12 +118,14 @@
                                 <li><a href="/menu/know-how">노하우</a></li>
                                 <li><a href="/menu/review">후기</a></li>
                                 <li><a href="/menu/hotplace">장소추천</a></li>
-                                <li><a href="/menu/shop">SHOP</a>
+                                <!-- <li><a href="/menu/shop">SHOP</a> -->
+                                <li><a href="#">SHOP</a>
                                     <ul class="dropdown">
-                                        <li><a href="./classes-details.html">Classes Details</a></li>
-                                        <li><a href="./blog-details.html">Blog Details</a></li>
-                                        <li><a href="/menu/pricing">Pricing</a></li>
-                                        <li><a href="./faq.html">Faq</a></li>
+                                        <li><a href="/shop/category">쇼핑 물품</a></li>
+                                        <li><a href="/shop/cart">장바구니</a></li>
+                                        <li><a href="/shop/checkout">결제</a></li>
+                                        <li><a href="/shop/confirmation">확인</a></li>
+                                        <li><a href="/shop/single-product">상품 상세</a></li>
                                     </ul>
                                 </li>
                             </ul>
