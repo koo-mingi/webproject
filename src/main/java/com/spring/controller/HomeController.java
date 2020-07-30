@@ -23,7 +23,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		log.info("홈 페이지");
+		log.info("홈 페이지!");
 		
 		return "index";
 	}
