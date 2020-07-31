@@ -184,18 +184,9 @@
                             </tr>
                             <tr class="out_button_area">
                                 <td>
-
-                                </td>
-                                <td>
-
-                                </td>
-                                <td>
-
-                                </td>
-                                <td>
                                     <div class="checkout_btn_inner d-flex align-items-center">
                                         <a class="gray_btn" href="#">Continue Shopping</a>
-                                        <a class="primary-btn" href="#">Proceed to checkout</a>
+                                        <a class="genric-btn info radius" href="/shop/checkout">주문하기</a>
                                     </div>
                                 </td>
                             </tr>
