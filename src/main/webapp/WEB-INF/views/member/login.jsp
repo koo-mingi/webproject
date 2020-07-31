@@ -17,8 +17,8 @@
 				<div class="col-first">
 					<h1>로그인/회원가입</h1>
 					<nav class="d-flex align-items-center">
-						<a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="/member/register">Register</a>
+						<a href=>Home<span class="lnr lnr-arrow-right"></span></a>
+						<a href=>Register</a>
 					</nav>
 				</div>
 			</div>
