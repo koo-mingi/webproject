@@ -153,7 +153,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <button id='regBtn' type='button' class='btn btn-xs pull-right btn-warning' onclick="location.href='register'">글쓰기</button>
+                            <button id='regBtn' type='button' class='btn btn-xs pull-right btn-warning' onclick="location.href='noticeWrite'">글쓰기</button>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
