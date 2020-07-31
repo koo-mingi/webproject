@@ -30,6 +30,9 @@
 
 /* Template default CSS
 /*----------------------------------------*/
+.gap-area{
+	height : 65px;	
+}
 
 html,
 body {
