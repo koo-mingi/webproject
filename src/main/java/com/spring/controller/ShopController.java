@@ -20,4 +20,15 @@ public class ShopController {
 	public void cart() {
 		log.info("장바구니 페이지");
 	}
+	
+	@GetMapping("/single-product")
+	public void singleProductGet(){
+		log.info("상품 상세페이지");
+	}
+	
+	@GetMapping("/checkout")
+	public void checkoutGet(){
+		log.info("결제 상세페이지");
+	}
+	
 }

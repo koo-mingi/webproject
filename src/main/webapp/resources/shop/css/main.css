@@ -55,10 +55,10 @@
 /* Start Gradient Area css
 ============================================================================================ */
 .gradient-bg, .primary-btn, .add-bag .add-btn, .single-product .product-details .prd-bottom .social-info span:after, .grid-btn:hover, .list-btn:hover, .grid-btn.active, .list-btn.active, .pagination a.active, .pagination a:hover, .s_Product_carousel .owl-dots div.active, .s_product_text .card_area .icon_btn:after, .product_description_area .nav.nav-tabs li a.active, .blog-pagination .page-item.active .page-link, .single-footer-widget .click-btn {
-  background: -webkit-linear-gradient(90deg, #ffba00 0%, #ff6c00 100%);
-  background: -moz-linear-gradient(90deg, #ffba00 0%, #ff6c00 100%);
-  background: -o-linear-gradient(90deg, #ffba00 0%, #ff6c00 100%);
-  background: linear-gradient(90deg, #ffba00 0%, #ff6c00 100%); }
+  background: -webkit-linear-gradient(90deg, #ffba00 0%, #ffba00 100%);
+  background: -moz-linear-gradient(90deg, #ffba00 0%, #ffba00 100%);
+  background: -o-linear-gradient(90deg, #ffba00 0%, #ffba00 100%);
+  background: linear-gradient(90deg, #ffba00 0%, #ffba00 100%); }
 
 .gradient-bg-reverse, #search_input_box {
   background: -webkit-linear-gradient(270deg, #ffba00 0%, #ff6c00 100%);
@@ -214,6 +214,7 @@ h1, h2, h3, h4, h5, h6 {
   outline: none;
   line-height: 40px;
   padding: 0 30px;
+  margin: 2px;
   font-size: 1.2em;
   text-align: center;
   text-decoration: none;
@@ -293,6 +294,8 @@ h1, h2, h3, h4, h5, h6 {
       color: #fff;
       background: #4cd3e3;
       border: 1px solid transparent; }
+      
+      
   .genric-btn.info {
     color: #fff;
     background: #263246;
@@ -333,7 +336,7 @@ h1, h2, h3, h4, h5, h6 {
    	font-weight: 600;
     color: #263246;
     background: #fff;
-    border: 1px solid #transparent; }
+    border: 1px solid #fff; }
     .genric-btn.cart:hover {
       font-weight: 600;
       color: #fff;
@@ -1568,7 +1571,7 @@ h1, h2, h3, h4, h5, h6 {
         width: 30px;
         line-height: 30px;
         text-align: center;
-        background: #828bb2;
+        background: #263246;
         border-radius: 50%;
         display: inline-block;
         color: #fff;
@@ -3146,7 +3149,7 @@ label {
 
 .filter-bar {
   padding: 0px 20px 10px 20px;
-  background: #828bb3; }
+  background: #263246; }
   .filter-bar a, .filter-bar i {
     color: #000; }
 
@@ -3322,7 +3325,7 @@ label {
 
 .sidebar-categories .head {
   line-height: 60px;
-  background: #828bb3;
+  background: #263246;
   padding: 0 30px;
   font-size: 16px;
   font-weight: 400;
@@ -3352,7 +3355,7 @@ label {
   margin-top: 50px; }
   .sidebar-filter .top-filter-head {
     line-height: 60px;
-    background: #828bb3;
+    background: #263246;
     padding: 0 30px;
     font-size: 16px;
     font-weight: 400;
@@ -3973,7 +3976,7 @@ label {
     width: 40px;
     line-height: 40px;
     text-align: center;
-    background: #828bb2;
+    background: #263246;
     border-radius: 50%;
     display: inline-block;
     color: #fff;
@@ -3981,7 +3984,8 @@ label {
     -moz-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
-    margin-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
     z-index: 1; }
     .s_product_text .card_area .icon_btn:after {
       position: absolute;
@@ -4385,6 +4389,7 @@ label {
     width: 100%;
     padding: 0px 15px;
     margin-bottom: 20px; }
+    
 .cart_inner .table tbody tr.out_button_area .checkout_btn_inner {
   margin-left: -388px; }
   .cart_inner .table tbody tr.out_button_area .checkout_btn_inner .primary-btn {

@@ -31,8 +31,11 @@
 /* Template default CSS
 /*----------------------------------------*/
 .gap-area{
-	height : 65px;	
+	height : 50px;	
 }
+/* .panel-heading{
+	height : 60px;
+} */
 
 html,
 body {

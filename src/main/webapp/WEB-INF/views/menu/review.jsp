@@ -239,4 +239,4 @@
     </section>
     <!-- Blog Section End -->
 
-    <%@ include file="/WEB-INF/views/include/footer.jsp" %>
+<%@ include file="/WEB-INF/views/include/footer.jsp" %>
