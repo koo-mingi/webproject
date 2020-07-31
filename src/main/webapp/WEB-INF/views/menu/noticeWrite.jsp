@@ -1,209 +1,204 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://www.springframework.org/security/tags"  prefix="sec"%>
-<link rel="stylesheet" href="/resources/css/mycss.css" />
-<%@ include file="/WEB-INF/views/include/header.jsp" %>
-<div class="gap-area">
-</div>
-<div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Board Register</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>            
-            <div class="row">
-                <div class="col-lg-12">
-                	<div class="panel panel-default">
-                        <div class="panel-heading">
-                           Board Register Page
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Directing Template">
+    <meta name="keywords" content="Directing, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Zogin | Template</title>
+    
+    <!-- include libraries(jQuery, bootstrap) -->
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+	<!-- include summernote css/js-->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+	<!-- include summernote-ko-KR -->
+	<script src="/resources/js/summernote/lang/summernote-ko-KR.js"></script>
+	<script src="/js/summernote/summernote-lite.js"></script>
+	<script src="/js/summernote/lang/summernote-ko-KR.js"></script>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <!-- <link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css"> -->
+    <link rel="stylesheet" href="/resources/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/barfiller.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/style.css" type="text/css">
+      
+	<link rel="stylesheet" href="/resources/shop/css/main.css">
+
+	<link rel="stylesheet" href="/css/board/summernote/summernote-lite.css">
+	
+
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+    
+	<!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu">
+        <div class="offcanvas__logo">
+            <a href="/"><img src="img/logo.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__widget">
+            <ul>
+                <li>CALL US: + 1 800-567-8990</li>
+                <li>WRITE US: OFFICE@EXAMPLE.COM</li>
+                <li>OPENING TIMES: MON - FRI: 9:00 - 19:00</li>
+            </ul>
+            <a href="#" class="primary-btn">JOIN US</a>
+        </div>
+        <nav class="header__menu">
+            <ul class="mobile-menu">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="./about-us.html">About</a></li>
+                <li><a href="./classes.html">Classes</a></li>
+                <li><a href="#">Pages</a>
+                    <ul class="dropdown">
+                        <li><a href="./classes-details.html">Classes Details</a></li>
+                        <li><a href="./blog-details.html">Blog Details</a></li>
+                        <li><a href="./pricing.html">Pricing</a></li>
+                        <li><a href="./faq.html">Faq</a></li>
+                    </ul>
+                </li>
+                <li><a href="./blog.html">Blog</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="offcanvas__social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3">
+                        <div class="header__logo">
+                            <a href="/"><img src="/resources/img/logo.png" alt=""></a>
                         </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                			<form action="" method="post" role="form">
-                				<div class="form-group">
-                					<label>Title</label>
-                					<input class="form-control" name="title">                				
-                				</div>  
-                				<div class="form-group">
-                					<label>Content</label>
-                					<textarea class="form-control" rows="3" name="content"></textarea>               				
-                				</div> 
-                				<div class="form-group">
-                					<label>Writer</label>
-                					<input class="form-control" name="writer" value='<sec:authentication property="principal.username"/>' readonly>                				
-                				</div>  
-                				<button type="submit" class="btn btn-default">Submit</button>              			
-                				<button type="reset" class="btn btn-default">reset</button>          
-            					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>    			
-                			</form>
-                		</div>
-                	</div>
+                    </div>
+                    <div class="col-lg-9 col-md-9">
+                        <div class="header__top__widget">
+                        	 <ul>
+                                <li>Phone : 123-4567-7899</li>
+                            </ul>
+                            <a href="/shop/cart" class="genric-btn cart radius">장바구니</a>
+                        	<a href="/member/login" class="genric-btn info radius">LOGIN</a>
+                            <a href="#" class="genric-btn info radius">JOIN US</a>	
+                        </div>
+                    </div>
+                </div>
+                <div class="canvas__open">
+                    <i class="fa fa-bars"></i>
                 </div>
             </div>
-<!-- 첨부파일영역 -->
-<div class="row">
-	<div class="col-lg-12">
-		<div class="panel panel-default">
-			<div class="panel-heading">파일 첨부</div>
-			<div class="panel-body">
-				<div class="form-group uploadDiv">
-					<input type="file" name="uploadFile" multiple="multiple" />
-				</div>
-				<div class="uploadResult">
-					<ul></ul>
-				</div>
-			</div>
-		</div>
-	</div>
+        </div>
+        <div class="header__nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 col-md-9">
+                        <nav class="header__menu">
+                            <ul>
+                                <li class="active"><a href="/menu/notice">공지사항</a></li>
+                                <li><a href="/menu/video">동영상</a></li>
+                                <li><a href="/menu/know-how">노하우</a></li>
+                                <li><a href="/menu/review">후기</a></li>
+                                <li><a href="/menu/hotplace">장소추천</a></li>
+                                <!-- <li><a href="/menu/shop">SHOP</a> -->
+                                <li><a href="#">SHOP</a>
+                                    <ul class="dropdown">
+                                        <li><a href="/shop/category">쇼핑 물품</a></li>
+                                        <li><a href="/shop/cart">장바구니</a></li>
+                                        <li><a href="/shop/checkout">결제</a></li>
+                                        <li><a href="/shop/confirmation">확인</a></li>
+                                        <li><a href="/shop/single-product">상품 상세</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="header__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+<!-- Header Section End -->
+<section>
+<div class="gap-area">
 </div>
+<!-- <div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">글쓰기</h1>
+		</div>
+   		form 안에 에디터를 사용하는 경우 (보통 이경우를 많이 사용하는듯)
+		<form method="post">
+			<textarea id="summernote" name="editordata"></textarea>
+		</form>
+	</div>
+</div> -->
+
+<title>글쓰기</title>
+
+<script>
+$(document).ready(function() {
+	//여기 아래 부분
+	$('#summernote').summernote({
+		  height: 300,                 // 에디터 높이
+		  minHeight: null,             // 최소 높이
+		  maxHeight: null,             // 최대 높이
+		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+		  lang: "ko-KR",					// 한글 설정
+		  placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
+          
+	});
+});
+</script>
+</head>
+<body>
+<h2 style="text-align: center;">글 작성</h2><br><br><br>
+
+<div style="width: 60%; margin: auto;">
+	<form method="post" action="/noticeWrite">
+		<input type="text" name="writer" style="width: 20%;" placeholder="작성자"/><br>
+		<input type="text" name="title" style="width: 40%;" placeholder="제목"/>
+		<br><br> 
+		<textarea id="summernote" name="content"></textarea>
+		<input id="subBtn" type="button" value="글 작성" style="float: right;" onclick="goWrite(this.form)"/>
+	</form>
 </div>
 <div class="gap-area">
 </div>
-<script>
-$(function(){
-	$("button[type='submit']").click(function(e){
-		// submit 버튼 기능 막기 (다른 기능도 막을 수 있음)
-		e.preventDefault();
-		// 게시글 등록 + 파일 첨부 한꺼번에 처리
-		// 첨부 파일 내용 수집
-		let str = "";
-		$(".uploadResult ul li").each(function(i, ele) {
-			let job = $(ele);
-			
-			str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+job.data("uuid")+"'>";
-			str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+job.data("path")+"'>";
-			str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+job.data("filename")+"'>";
-			str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+job.data("type")+"'>";
-		})
-		console.log(str);
-		// 해당 폼 전송 (체인 형태로 함수 호출 가능)
-		$("form[role='form']").append(str).submit();
-	})
-	
-	// csrf 토큰 값 생성
-	let csrfHeaderName = "${_csrf.headerName}"; 
-	let csrfTokenValue = "${_csrf.token}"; 
-	
-	$("input[type='file']").change(function(){
-		// form의 형태로 데이터를 구성할 수 있음
-		// input타입은 key, value 형태로 찾아오기 때문에 필수 구성요소! 
-		let formData = new FormData();
-		
-		// 첨부파일 목록 가져오기
-		let uploadFile = $("input[name='uploadFile']");
-		let files = uploadFile[0].files
-		console.log(files);
-		
-		// form의 형태로 붙이기
-		for(var i=0; i<files.length; i++){
-			if(!checkExtension(files[i].name, files[i].size)){
-				return false;
-			}
-			formData.append("uploadFile",files[i]);
-		}
-		
-		// processData : 데이터를 query string(http://~~~?uploadFile=테스트.txt&)로 변환할 것인지 결정
-		//				 기본값은 application/x-www-form-urlencoded로 true이기 때문에 false로 지정
-		// contentType : 기본값은 application/x-www-form-urlencoded
-		//				 파일의 경우에 enctype 은 multipart/form-data로 보내야하기 때문에 false로 지정
-		
-		$.ajax({
-			url : '/uploadAjax',
-			type : 'post',
-			beforeSend : function(xhr){
-				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-			},
-			processData : false,
-			contentType : false,
-			data : formData,
-			success : function(result){
-				console.log(result);
-				showUploadFile(result);
-				$("input[name='uploadFile']").val("");
-			},
-			error : function(xhr, status, error){
-				alert(xhr.responseText);
-			}
-			
-		})
-	})
-	
-	// 첨부파일 제한 / 크기 제한
-	function checkExtension(fileName, fileSize){
-		let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
-		let maxSize = 2097152;
-		
-		if(fileSize > maxSize){
-			alert("파일 사이즈 초과");
-			return false;
-		}
-		if(regex.test(fileName)){
-			alert("해당 종류의 파일은 업로드 할 수 없습니다.");
-			return false;
-		}
-		return true;
-	}
-	
-	// 업로드 된 파일 보여주기
-	function showUploadFile(uploadResultArr){
-		let str="";
-		// 결과를 보여줄 영역 가져오기
-		let uploadResult = $(".uploadResult ul");
-		$(uploadResultArr).each(function(i, element) { /* .each : jQuery에서 제공하는 for문 / element : 하나 가져오는 거 */
-			if(element.fileType){ //이미지파일
-				// 썸네일 이미지 경로
-				var fileCallPath = encodeURIComponent(element.uploadPath+"\\s_"+element.uuid+"_"+element.fileName);
-				// 원본 이미지 경로
-				var oriPath = element.uploadPath+"\\"+element.uuid+"_"+element.fileName;
-				oriPath = oriPath.replace(new RegExp(/\\/g),"/");
-				
-				str += "<li data-path='"+ element.uploadPath + "' data-uuid='"+element.uuid+"'";
-				str += " data-filename='"+element.fileName+"' data-type='"+element.fileType+"'>";
-				str += "<a href=\"javascript:showImage(\'"+oriPath+"\')\">";
-				str += "<img src='/display?fileName="+ fileCallPath +"'><div>"+element.fileName+"</a>";
-				str += " <button type='button' class='btn btn-success btn-circle btn-sm' data-file='"+fileCallPath+"' data-type='image'>";
-				str += "<i class='fa fa-times'></i></button>";
-				str += "</div></li>";
-			}else{ // 일반파일
-				var fileCallPath = encodeURIComponent(element.uploadPath+"\\"+element.uuid+"_"+element.fileName);
-				str += "<li data-path='"+ element.uploadPath + "' data-uuid='"+element.uuid+"'";
-				str += " data-filename='"+element.fileName+"' data-type='"+element.fileType+"'>";
-				str += "<a href='/download?fileName="+ fileCallPath +"'>";
-				str += "<img src='/resources/img/attach.png'><div>"+element.fileName+"</a>";
-				str += " <button type='button' class='btn btn-success btn-circle btn-sm' data-file='"+fileCallPath+"' data-type='file'>";
-				str += "<i class='fa fa-times'></i></button>";	
-				str += "</div></li>";		
-			}
-		})
-		uploadResult.append(str);
-	}
-	
-	// X를 누르면 목록에서 삭제하기
-	$(".uploadResult").on("click","button",function(e){			
-		
-		let targetFile = $(this).data("file");
-		let type = $(this).data("type");
-		let targetLi = $(this).closest("li");
-		
-		$.ajax({
-			url : '/deleteFile',
-			type : 'post',
-			beforeSend : function(xhr){
-				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-			},
-			data : {
-				fileName : targetFile,
-				type : type
-			},
-			success:function(result){
-				targetLi.remove();
-			}
-		})
-		// 다음 이벤트 발생 막기
-		e.stopPropagation();
-	})  // 첨부 파일 삭제 종료
-})
-</script>
+</section>
+
 <%@ include file="/WEB-INF/views/include/footer.jsp" %>

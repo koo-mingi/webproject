@@ -34,7 +34,7 @@ public class MenuController {
 	
 	// 공지사항 글쓰기
 //	@PreAuthorize("isAuthenticated()") // 인증된 사용자인 경우 true
-	@GetMapping("/noticeWrite")
+	@GetMapping("/write")
 	public void noticeWriteGet() {
 		log.info("write form 요청");
 	}
