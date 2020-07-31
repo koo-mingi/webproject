@@ -33,6 +33,7 @@
 	<link rel="stylesheet" href="/resources/shop/css/ion.rangeSlider.css" />
 	<link rel="stylesheet" href="/resources/shop/css/ion.rangeSlider.skinFlat.css" />
 	<link rel="stylesheet" href="/resources/shop/css/main.css">
+	<link rel="stylesheet" href="/resources/board/bootstrap/css/bootstrap.css">
 </head>
 
 <body>
