@@ -148,7 +148,10 @@ pageEncoding="UTF-8"%>
             </div>
         </div>
     </header>
-
+<div class="gap-area">
+</div>
+<div class="gap-area">
+</div>
     <div class="container" style="margin-top:40px">
       <form id="regist" method="post" action="step3">
         <div class="form-group row justify-content-center">
@@ -253,7 +256,10 @@ pageEncoding="UTF-8"%>
         </div>
       </form>
     </div>
-
+<div class="gap-area">
+</div>
+<div class="gap-area">
+</div>
   <!-- Footer Section Begin -->
     <section class="footer">
         <div class="container">
