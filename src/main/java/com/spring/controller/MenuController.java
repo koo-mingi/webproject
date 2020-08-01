@@ -13,9 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 public class MenuController {
 	
 	@GetMapping("/pricing")
-	public void pricingGet() {
+	public void pricingGet() { 
 		log.info("pricing 요청");
-	}
+	} 
 	
 	@GetMapping("/hotplace")
 	public void hotplaceGet() {

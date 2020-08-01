@@ -14,10 +14,10 @@ public class RegisterServiceImpl implements RegisterService {
 	
 	@Autowired
 	private RegisterMapper mapper;
-	
+	 
 	@Override
 	public boolean regist(RegisterVO vo) {
-		log.info("È¸¿ø°¡ÀÔ ¼­ºñ½º È£Ãâ....");
+		log.info("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½....");
 		return mapper.register(vo) > 0? true:false;
 	}
 

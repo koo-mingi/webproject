@@ -13,15 +13,15 @@ $(function(){
 			userid:{
 				required:true,
 				validID:true,
-				remote : { // ajax에서 데이터를 끌어오기위해 쓰인다.
-					url: "/register/checkId",
-					type : "post",
-					data : {
-						userid : function(){
-							return $('#userid').val();
-						}
-					}
-				}
+//				remote : { // ajax에서 데이터를 끌어오기위해 쓰인다.
+//					url: "/register/checkId",
+//					type : "post",
+//					data : {
+//						userid : function(){
+//							return $('#userid').val();
+//						}
+//					}
+//				}
 			},
 			password:{
 				required:true,
