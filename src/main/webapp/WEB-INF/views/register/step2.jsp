@@ -151,7 +151,6 @@ pageEncoding="UTF-8"%>
 
 <div class="gap-area">
 </div>
->>>>>>> branch 'master' of https://github.com/koo-mingi/webproject.git
     <div class="container" style="margin-top:40px">
       <form id="regist" method="post" action="step3">
         <div class="form-group row justify-content-center">
@@ -256,10 +255,10 @@ pageEncoding="UTF-8"%>
         </div>
       </form>
     </div>
-<<<<<<< HEAD
+
 
  <%@ include file="/WEB-INF/views/include/footer.jsp" %>
-=======
+
 <div class="gap-area">
 </div>
 <div class="gap-area">
