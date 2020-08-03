@@ -51,6 +51,13 @@
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 }
+.header__nav {
+	background-color : #263246;
+	position: relative;
+	z-index: 9;
+	padding-top: 10px;
+	padding-bottom: 5px;
+}
 </style>
 
 <body>
@@ -138,7 +145,7 @@
                                 <li><a href="/menu/know-how">노하우</a></li>
                                 <li><a href="/menu/review">후기</a></li>
                                 <li><a href="/menu/hotplace">장소추천</a></li>
-                                <li><a href="/menu/shop">SHOP</a>
+                                <!-- <li><a href="/menu/shop">SHOP</a> -->
                                 <li><a href="#">SHOP</a>
                                     <ul class="dropdown">
                                         <li><a href="/shop/category">쇼핑 물품</a></li>
