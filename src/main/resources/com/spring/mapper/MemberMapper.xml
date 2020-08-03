@@ -3,7 +3,7 @@
 <mapper namespace="com.spring.mapper.MemberMapper">
 	<!-- 로그인 처리 -->
 	<select id="login" resultType="com.spring.domain.AuthVO">
-		select userid,name from member where user=#{userid} and password=#{password}
+		select userid,name from member where userid=#{userid} and password=#{password}
 	</select>
 <!-- user와 일치하는 비밀번호 추출 -->
 <select id="getpassword" resultType="java.lang.String">
@@ -12,7 +12,7 @@
 
 <!-- 비밀번호 수정 -->
 <update id="updatePwd">
-	update member set password=#{new_password} where userid=#{userid} <!-- sql문 외위기 -->  
+	update member set password=#{new_password} where userid=#{userid} 
 </update>
 <!-- 회원탈퇴 -->
 <delete id="deleteMember">

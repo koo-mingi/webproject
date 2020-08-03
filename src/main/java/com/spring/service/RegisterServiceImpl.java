@@ -17,7 +17,7 @@ public class RegisterServiceImpl implements RegisterService {
 	 
 	@Override
 	public boolean regist(RegisterVO vo) {
-		log.info("ȸ������ ���� ȣ��....");
+		log.info("");
 		return mapper.register(vo) > 0? true:false;
 	}
 

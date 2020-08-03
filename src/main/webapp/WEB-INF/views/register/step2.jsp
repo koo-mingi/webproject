@@ -257,7 +257,7 @@ pageEncoding="UTF-8"%>
     </div>
 
 
- <%@ include file="/WEB-INF/views/include/footer.jsp" %>
+
 
 <div class="gap-area">
 </div>

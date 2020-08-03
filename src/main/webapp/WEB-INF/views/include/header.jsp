@@ -100,7 +100,13 @@
                             </ul>
                             <a href="/shop/cart" class="genric-btn cart radius">장바구니</a>
                         	<a href="/member/login" class="genric-btn info radius">LOGIN</a>
-                            <a href="/register/step1" class="genric-btn info radius">JOIN US</a>	
+                            <a href="/register/step1" class="genric-btn info radius">JOIN US</a>
+                            <sec:authorize access="isAuthenticated()">
+	                        	<a href="" id="logout" class="genric-btn info radius"> Logout</a>
+	                        </sec:authorize>
+	                        <sec:authorize access="isAnonymous()">
+	                        	<a href="/member/login" class="genric-btn info radius"> Login</a>
+	                        </sec:authorize>                            
                         </div>
                     </div>
                 </div>
