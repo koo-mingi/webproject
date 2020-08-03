@@ -13,6 +13,6 @@ public class MemberController {
 	
 	@GetMapping("/login")
 	public void login() {
-		log.info("로그인 요청");
+		log.info("로그인 요청"); 
 	}
 }

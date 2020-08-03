@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%>
     <meta name="keywords" content="Directing, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Zogin | Template</title>
+    <title>Zogin</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/resources/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/style.css" type="text/css">
-    
+      
     <link rel="stylesheet" href="/resources/shop/css/linearicons.css">
 	<link rel="stylesheet" href="/resources/shop/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/resources/shop/css/themify-icons.css">
@@ -34,22 +34,7 @@ pageEncoding="UTF-8"%>
 	<link rel="stylesheet" href="/resources/shop/css/ion.rangeSlider.css" />
 	<link rel="stylesheet" href="/resources/shop/css/ion.rangeSlider.skinFlat.css" />
 	<link rel="stylesheet" href="/resources/shop/css/main.css">
-  	
-    <!-- validation 사용자 작성 코드 삽입-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
-    <script src="/resources/js/join.js"></script> 
-    
-    <script>
-    $(function(){
-    	let gender = '${vo.gender}';
-    	if(gender === '남'){
-    		$("input:radio[name='gender'][value='남']").prop("checked",true);
-    	}else if(gender === '여'){
-    		$("input:radio[name='gender'][value='여']").prop("checked",true);
-    	}
-    })
-    </script> 
+	
 </head>
 
 <body>
@@ -62,7 +47,7 @@ pageEncoding="UTF-8"%>
     <div class="offcanvas-menu-overlay"></div>
     <div class="offcanvas-menu">
         <div class="offcanvas__logo">
-            <a href="/"><img src="/resources/img/logo.png" alt=""></a>
+            <a href="/"><img src="img/logo.png" alt=""></a>
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__widget">
@@ -161,8 +146,12 @@ pageEncoding="UTF-8"%>
             </div>
         </div>
     </header>
-    <!-- Header Section End -->
+<div class="gap-area">
+</div>
 
+<div class="gap-area">
+</div>
+>>>>>>> branch 'master' of https://github.com/koo-mingi/webproject.git
     <div class="container" style="margin-top:40px">
       <form id="regist" method="post" action="step3">
         <div class="form-group row justify-content-center">
@@ -267,5 +256,111 @@ pageEncoding="UTF-8"%>
         </div>
       </form>
     </div>
+<<<<<<< HEAD
 
  <%@ include file="/WEB-INF/views/include/footer.jsp" %>
+=======
+<div class="gap-area">
+</div>
+<div class="gap-area">
+</div>
+  <!-- Footer Section Begin -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <img src="/resources/img/footer-logo.png" alt="">
+                        <ul>
+                            <li><i class="fa fa-clock-o"></i> Mon - Fri: 6:30am - 07:45pm</li>
+                            <li><i class="fa fa-clock-o"></i> Sat - Sun: 8:30am - 05:45pm</li>
+                        </ul>
+                        <form action="#" class="subscribe-form">
+                            <input type="text" placeholder="Your Email">
+                            <button type="submit"><i class="fa fa-send"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h5>Inspiration</h5>
+                        <ul>
+                            <li><a href="#">Online Pilates</a></li>
+                            <li><a href="#">Yoga for Beginners</a></li>
+                            <li><a href="#">Online Pilates</a></li>
+                            <li><a href="#">Online Yoga</a></li>
+                            <li><a href="#">Conditioning</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h5>About Us</h5>
+                        <ul>
+                            <li><a href="#">Our Vision</a></li>
+                            <li><a href="#">Our Mission</a></li>
+                            <li><a href="#">Meet The Team</a></li>
+                            <li><a href="#">Introduce</a></li>
+                            <li><a href="#">Customer Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h5>Contact Us</h5>
+                        <ul class="footer-address">
+                            <li><i class="fa fa-phone"></i> (01) 436 8888</li>
+                            <li><i class="fa fa-envelope"></i> hello@zogin.com</li>
+                            <li><i class="fa fa-location-arrow"></i> 828 Granville Lights Suite 466</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__copyright">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <div class="footer__copyright__text">
+                            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+                        </div>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="footer__copyright__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer Section End -->
+    
+    <!-- Js Plugins -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+	<script src="/resources/js/join.js"></script> 
+    <script>
+    $(function(){
+    	let gender = '${vo.gender}';
+    	if(gender === '남'){
+    		$("input:radio[name='gender'][value='남']").prop("checked",true);
+    	}else if(gender === '여'){
+    		$("input:radio[name='gender'][value='여']").prop("checked",true);
+    	}
+    })
+    </script>  
+
+    <!-- 메인 템플릿 -->
+    <script src="/resources/js/bootstrap.min.js"></script>
+    <script src="/resources/js/jquery.nice-select.min.js"></script>
+    <script src="/resources/js/jquery.barfiller.js"></script>
+    <script src="/resources/js/jquery.slicknav.js"></script>
+    <script src="/resources/js/owl.carousel.min.js"></script>
+    <script src="/resources/js/main.js"></script>
+
+</body>
+</html>

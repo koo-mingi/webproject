@@ -379,7 +379,7 @@
 										</div>
 									</div>
 									<div class="col-md-12 text-right">
-										<button type="submit" value="submit" class="primary-btn">Submit Now</button>
+										<button type="submit" value="submit" class="genric-btn info radius">Submit Now</button>
 									</div>
 								</form>
 							</div>

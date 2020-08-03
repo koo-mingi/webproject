@@ -118,19 +118,18 @@
                             </tr>
                             <tr class="bottom_button">
                                 <td>
-                                    <a class="gray_btn" href="#">Update Cart</a>
+                                    <a class="gray_btn" href="#">새로고침</a>
                                 </td>
                                 <td>
 
                                 </td>
                                 <td>
 
-                                </td>
                                 <td>
                                     <div class="cupon_text d-flex align-items-center">
                                         <input type="text" placeholder="Coupon Code">
-                                        <a class="primary-btn" href="#">Apply</a>
-                                        <a class="gray_btn" href="#">Close Coupon</a>
+                                        <a class="genric-btn info radius" href="#">적용</a>
+                                        <a class="genric-btn info radius" href="#">쿠폰 닫기</a>
                                     </div>
                                 </td>
                             </tr>
@@ -178,15 +177,21 @@
                                             <option value="4">Select a State</option>
                                         </select>
                                         <input type="text" placeholder="Postcode/Zipcode">
-                                        <a class="gray_btn" href="#">Update Details</a>
+                                        <a class="gray_btn" href="#">상세 적용</a>
                                     </div>
                                 </td>
                             </tr>
                             <tr class="out_button_area">
                                 <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
                                     <div class="checkout_btn_inner d-flex align-items-center">
-                                        <a class="gray_btn" href="#">Continue Shopping</a>
-                                        <a class="genric-btn info radius" href="/shop/checkout">주문하기</a>
+                                        <a class="gray_btn" href="#">쇼핑 계속하기</a>
+                                        <a class="gray_btn" href="/shop/checkout">주문하기</a>
                                     </div>
                                 </td>
                             </tr>

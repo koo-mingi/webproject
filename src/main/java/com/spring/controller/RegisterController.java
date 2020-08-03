@@ -31,7 +31,7 @@ public class RegisterController {
 	@GetMapping("/step1")
 	public void step1Get() {
 		// step1 ������ �����ֱ�
-		log.info("step1 ��û��");
+		log.info("step1 ��û��"); 
 		
 	}
 	@PostMapping("/step2")

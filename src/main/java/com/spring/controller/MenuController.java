@@ -13,9 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 public class MenuController {
 	
 	@GetMapping("/pricing")
-	public void pricingGet() {
+	public void pricingGet() { 
 		log.info("pricing 요청");
-	}
+	} 
 	
 	@GetMapping("/hotplace")
 	public void hotplaceGet() {
@@ -36,6 +36,11 @@ public class MenuController {
 //	@PreAuthorize("isAuthenticated()") // 인증된 사용자인 경우 true
 	@GetMapping("/noticeWrite")
 	public void noticeWriteGet() {
+		log.info("write form 요청");
+	}
+	
+	@GetMapping("/write")
+	public void writeGet() {
 		log.info("write form 요청");
 	}
 	

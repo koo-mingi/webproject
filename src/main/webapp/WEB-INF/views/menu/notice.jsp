@@ -9,7 +9,7 @@
     <meta name="keywords" content="Directing, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Zogin | Template</title>
+    <title>Zogin</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -28,7 +28,33 @@
 	<link rel="stylesheet" href="/resources/board/bootstrap/css/bootstrap.css">
 </head>
 
+<style>
+.keyarea {
+  height: 34px;
+  padding: 6px 12px 5px 5px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.keyarea:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+</style>
+
 <body>
+
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -112,7 +138,7 @@
                                 <li><a href="/menu/know-how">노하우</a></li>
                                 <li><a href="/menu/review">후기</a></li>
                                 <li><a href="/menu/hotplace">장소추천</a></li>
-                                <!-- <li><a href="/menu/shop">SHOP</a> -->
+                                <li><a href="/menu/shop">SHOP</a>
                                 <li><a href="#">SHOP</a>
                                     <ul class="dropdown">
                                         <li><a href="/shop/category">쇼핑 물품</a></li>
@@ -153,7 +179,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <button id='regBtn' type='button' class='btn btn-xs pull-right btn-warning' onclick="location.href='noticeWrite'">글쓰기</button>
+                            <button id='regBtn' type='button' class='btn pull-right btn-warning' onclick="location.href='noticeWrite'">글쓰기</button>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -193,7 +219,7 @@
                             	  	  	 	<option value="TW" <c:out value="${cri.type=='TW'?'selected':''}"/>>제목 or 작성자</option>
                             	  	  	 	<option value="TCW" <c:out value="${cri.type=='TCW'?'selected':''}"/>>제목 or 내용 or 작성자</option>
                             	  	  	 </select>
-                            	  	  	 <input type="text" name="keyword" value="${cri.keyword}"/>
+                            	  	  	 <input type="text" class="keyarea" name="keyword" value="${cri.keyword}"/>
                             	  	  	 <button class="btn btn-default" type='button'>검색</button>
                             	  	  </form>
                             	   </div>
