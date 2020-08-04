@@ -39,6 +39,29 @@ public class MemberController {
 		}else {
 			return "/member/login";
 		}
-		
 	}
+
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("auth");
+		
+		return "redirect:/";
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
