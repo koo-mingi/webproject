@@ -3,10 +3,15 @@ package com.spring.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.domain.AuthVO;
 import com.spring.domain.LoginVO;
@@ -46,6 +51,33 @@ public class MemberController {
 		session.removeAttribute("auth");
 		
 		return "redirect:/";
+	}
+	
+	@GetMapping("/leave")
+	public void leaveForm() {
+		log.info("");
+	}
+	
+	@DeleteMapping("/leave")
+	@ResponseBody
+	public ResponseEntity<String> leaveDelete(@RequestBody LoginVO vo, HttpSession session){
+		log.info("loginVO"+vo);
+		
+		String password = service.getPwd(vo.getUserid());
+		
+		if(password.equals(vo.getPassword())) {
+			
+			if(service.delete(vo.getUserid())) {
+				session.removeAttribute("auth");
+				return new ResponseEntity<String>("success",HttpStatus.OK);
+			}
+		}
+		return new ResponseEntity<String>("fail",HttpStatus.BAD_REQUEST);
+	}
+	// 비밀번호 찾기 폼
+	@RequestMapping(value = "/find_pw_form.do")
+	public String find_pw_form() throws Exception{
+		return "/member/find_pw_form";
 	}
 	
 }
