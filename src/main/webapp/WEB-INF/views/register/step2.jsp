@@ -256,6 +256,10 @@ pageEncoding="UTF-8"%>
       </form>
     </div>
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master' of https://github.com/koo-mingi/webproject.git
 <div class="gap-area">
 </div>
 <div class="gap-area">

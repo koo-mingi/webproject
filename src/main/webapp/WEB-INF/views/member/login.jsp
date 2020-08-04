@@ -1,47 +1,72 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" session="true"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
-    <title>Signin</title>
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- Custom styles for this template -->
-    <!-- <link href="/resources/css/signin.css" rel="stylesheet"> -->
-  </head>
-  <style>
- .loginarea{
- 	width: 40%;
- 	-ms-flex-align: center;
- 	margin: auto;
- 	padding-top: 70px;
-    padding-bottom: 70px;	
- }
-  </style>
-  <body class="text-center">
-  <div class="container">
-  <div class="loginarea">
-    <form class="form-signin" method="post" action="/member/login">      
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>     
-      <label for="inputId" class="sr-only">아이디</label>
-      <input type="text" id="inputId" name="userid" class="form-control" placeholder="아이디" required autofocus>
-      <label for="inputPassword" class="sr-only">비밀번호</label>
-      <input type="password" id="inputPassword" name="password" class="form-control" placeholder="비밀번호" required>
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-      </div>
-      <div>
-      	 <p style="color:red">${error}</p>
-      </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
-    </form>
-    </div>
-    </div>
-  </body>
-</html>
- <%@ include file="/WEB-INF/views/include/footer.jsp" %>
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+<%--
+	custom Login page 작성 규칙
+	1. method = "post", action="/login" 으로 주기
+	2. csrf 토큰 값 무조건 포함
+	3. 아이디를 입력받는 부분의 이름은 반드시 username으로 하기
+	4. 비밀번호를 입력받는 부분의 이름은 반드시 password로 하기
+	
+ --%>
+	<!-- Start Banner Area -->
+	<section class="banner-area organic-breadcrumb">
+		<div class="container">
+			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+				<div class="col-first">
+					<h1>로그인/회원가입</h1>
+					<nav class="d-flex align-items-center">
+						<a href=>Home<span class="lnr lnr-arrow-right"></span></a>
+						<a href=>Register</a>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Banner Area -->
+
+	<!--================Login Box Area =================-->
+	<section class="login_box_area section_gap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="login_box_img">
+						<img class="img-fluid" src="/resources/shop/img/login.jpg" alt="">
+						<div class="hover">
+							<h4>우리 사이트에 처음 오셨습니까?</h4>
+							<p>회원가입을 해주세요!</p>
+							<p>더 많은 혜택과 정보를 얻을 수 있습니다!</p>
+							<a class="genric-btn info radius" href="/register/step1">Create an Account</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="login_form_inner">
+						<h3>로그인</h3>
+						<form class="row login_form" action="/member/login" method="post" id="contactForm" novalidate="novalidate">
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="inputId" name="userid" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+							</div>
+							<div class="col-md-12 form-group">
+								<div class="creat_account">
+									<input type="checkbox" id="f-option2" name="selector">
+									<label for="f-option2">Keep me logged in</label>
+								</div>
+							</div>
+							<div class="col-md-12 form-group">
+								<button type="submit" value="submit" class="genric-btn info radius">Log In</button>
+								<a href="#">Forgot Password?</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Login Box Area =================-->
+<%@ include file="/WEB-INF/views/include/footer.jsp" %>
+
