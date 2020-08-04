@@ -6,9 +6,42 @@
 		select * from notice_board order by bno desc
 	</select>
 
+	<!-- 글 목록 보기 -->
+	<!-- <select id="list" resultType="com.spring.domain.BoardVO">
+		select * from spring_board order by bno desc
+		html에서 <>는 태그를 여닫는 의미로 쓰이기 때문에 부등호로 쓸 경우 에러남 <![CDATA[ ]]>로 방지하기
+		<![CDATA[		 
+		select * 
+		from (select /*+ INDEX_DESC(spring_board pk_spring_board) */
+		      rownum rn, bno, title, writer, regdate, updatedate, replycnt
+		      from spring_board
+		      where 
+		]]>      
+		<include refid="criteria"></include>
+		<![CDATA[      
+		      bno>0 and rownum <= (#{pageNum}*#{amount}))
+		where rn>(#{pageNum}-1)*#{amount}
+		]]>
+	</select>
+	<select id="total" resultType="int">
+		select count(*) from spring_board where
+		<include refid="criteria"></include>
+		bno>0
+	</select> -->
+	
 	<insert id="create">
 		insert into notice_board(bno, title, content, writer) values(seq_board.nextVal, #{title}, #{content}, #writer})
 	</insert>
+	
+<!-- 	<insert id="create">
+		<selectKey keyProperty="bno" order="BEFORE" resultType="int">
+		bno라는 값에 담는데 bno는 vo에 있기 떄문에 vo에 담겨있다 생각하면 된다
+		주로 pk 값을 미리 sql을 통해서 처리해 두고 특정한 이름으로 보관
+			select seq_board.nextval from dual
+		</selectKey>
+		insert into notice_board(bno,title,content,writer) 
+		values(#{bno},#{title},#{content},#{writer})
+	</insert> -->
 	
 	<select id="read" resultType="com.spring.domain.NoticeVO">
 		select * from notice_board where bno=#{bno}

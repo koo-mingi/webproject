@@ -178,24 +178,24 @@ a:visited {
 	<form method="post" action="/noticeWrite">
 		<div class="mb-3">
 			<label for="title" style="font-size: 18px;">제목</label>
-			<input type="text" class="form-control" name="writer" placeholder="제목을 입력해주세요"/>
+			<input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요"/>
 		</div>
 		<br>
 		<div class="mb-3">
 			<label for="reg_id" style="font-size: 18px;">작성자</label>
-			<input type="text" class="form-control" name="title" placeholder="작성자"/>
+			<input type="text" class="form-control" name="writer" placeholder="작성자"/>
 		</div>
 		<br>
 		<div class="mb-3">
 			<label for="content" style="font-size: 18px;">내용</label>
 			<textarea id="summernote" name="editordata"></textarea>
 		</div>
+	</form>
 		<br>
 		<button class="btn btn-secondary" type="button" value="돌아가기" onclick="location.href='notice'">돌아가기</button>
-		<button class="btn btn-warning" type="submit" value="글 작성" style="float: right;" onclick="goWrite(this.form)">글작성</button>
+		<button class="btn btn-warning" type="submit" value="글 작성" style="float: right;" onclick="noticeWrite(this.form)">글작성</button>
 <!-- 		<input class="btn btn-xs pull-right btn-warning" id="subBtn" type="button" value="돌아가기" style="float: left;" onclick="goWrite(this.form)"/>
 		<input class="btn btn-xs pull-right btn-warning" id="subBtn" type="button" value="글 작성" style="float: right;" onclick="goWrite(this.form)"/> -->
-	</form>
 	</div>
 	<div class="gap-area">
 	</div>
@@ -219,40 +219,57 @@ a:visited {
 	                }
               }
 		});
-		
-		$('.summernote').summernote({
-			  toolbar: [
-				    // [groupName, [list of button]]
-				    ['fontname', ['fontname']],
-				    ['fontsize', ['fontsize']],
-				    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-				    ['color', ['forecolor','color']],
-				    ['table', ['table']],
-				    ['para', ['ul', 'ol', 'paragraph']],
-				    ['height', ['height']],
-				    ['insert',['picture','link','video']],
-				    ['view', ['fullscreen', 'help']]
-				  ],
-				fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
-				fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
-	 	});
-		
-		function uploadSummernoteImageFile(file, editor) {
-            data = new FormData();
-            data.append("file", file);
-            $.ajax({
-                data : data,
-                type : "POST",
-                url : "/uploadSummernoteImageFile",
-                contentType : false,
-                processData : false,
-                success : function(data) {
-                    //항상 업로드된 파일의 url이 있어야 한다.
-                    $(editor).summernote('insertImage', data.url);
-                }
-            });
-        }
 	});
+		
+	$('.summernote').summernote({
+		  toolbar: [
+			    // [groupName, [list of button]]
+			    ['fontname', ['fontname']],
+			    ['fontsize', ['fontsize']],
+			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+			    ['color', ['forecolor','color']],
+			    ['table', ['table']],
+			    ['para', ['ul', 'ol', 'paragraph']],
+			    ['height', ['height']],
+			    ['insert',['picture','link','video']],
+			    ['view', ['fullscreen', 'help']]
+			  ],
+			fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+ 	});
+	
+	function uploadSummernoteImageFile(file, editor) {
+           data = new FormData();
+           data.append("file", file);
+           $.ajax({
+               data : data,
+               type : "POST",
+               url : "/uploadSummernoteImageFile",
+               contentType : false,
+               processData : false,
+               success : function(data) {
+               	console.log("data"+data);
+                   //항상 업로드된 파일의 url이 있어야 한다.
+               	//url = encodeURIComponent(data.uploadPath+"_"+data.uuid+"_"+data.fileName);
+                   url = data.uploadPath+"\\"+data.uuid+"_"+data.fileName;
+                   console.log(url);
+                   
+                   $(editor).summernote('insertImage', "/summernote_image/"+url);
+               }
+           });
+       }
+	
+	$("div.note-editable").on('drop',function(e){
+         for(i=0; i< e.originalEvent.dataTransfer.files.length; i++){
+         	uploadSummernoteImageFile(e.originalEvent.dataTransfer.files[i],$("#summernote")[0]);
+         }
+         e.preventDefault();
+       })
+  
+    $(document).on('click', '#btnSave', function(e){
+		 $("#form").submit();
+	});
+		
 	</script>
     <!-- Footer Section Begin -->
     <section class="footer">
@@ -339,6 +356,5 @@ a:visited {
     <script src="/resources/js/jquery.slicknav.js"></script>
     <script src="/resources/js/owl.carousel.min.js"></script>
     <script src="/resources/js/main.js"></script> 
-
 	
 </body>
