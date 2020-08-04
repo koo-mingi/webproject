@@ -30,6 +30,45 @@
 
 /* Template default CSS
 /*----------------------------------------*/
+
+.genric-btn {
+  display: inline-block;
+  outline: none;
+  line-height: 40px;
+  padding: 0 30px;
+  margin: 2px;
+  font-size: 1.2em;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s; 
+}
+.genric-btn.info {
+  color: #fff;
+  background: #263246;
+  border: 2px solid #fff; 
+}
+.genric-btn.info:hover {
+  color: #263246;
+  border: 2px solid #263246;
+  background: #fff; 
+}
+.genric-btn.cart {
+  font-weight: 600;
+  color: #263246;
+  background: #fff;
+  border: 1px solid #fff; 
+}
+.genric-btn.cart:hover {
+  font-weight: 600;
+  color: #fff;
+  border: 1px solid #fff;
+  background: #263246; 
+}
 .gap-area{
 	height : 50px;	
 }
