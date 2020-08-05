@@ -13,15 +13,15 @@ $(function(){
 			userid:{
 				required:true,
 				validID:true,
-//				remote : { // ajax에서 데이터를 끌어오기위해 쓰인다.
-//					url: "/register/checkId",
-//					type : "post",
-//					data : {
-//						userid : function(){
-//							return $('#userid').val();
-//						}
-//					}
-//				}
+				remote : { // ajax에서 데이터를 끌어오기위해 쓰인다.
+					url: "/register/checkId",
+					type : "post",
+					data : {
+						userid : function(){
+							return $('#userid').val();
+						}
+					}
+				}
 			},
 			password:{
 				required:true,
@@ -41,9 +41,20 @@ $(function(){
 			},
 			email:{
 				required:true,
-				email:true
+				email:true,
+				remote : { // ajax에서 데이터를 끌어오기위해 쓰인다.
+					url: "/register/checkEmail",
+					type : "post",
+					data : {
+						userid : function(){
+							return $('#email').val();
+						}
+					}
+				}
 			}
 		},
+		
+		
 		messages:{
 			userid:{
 				required:"아이디는 필수 속성입니다.",
@@ -64,7 +75,8 @@ $(function(){
 			},
 			email:{
 				required:"이메일은 필수 속성입니다.",
-				email:"이메일을 확인해 주세요"
+				email:"이메일을 확인해 주세요",
+				remote : "중복된 이메일입니다."
 			}
 		},//messages end
 		errorPlacement:function(error,element){//에러메시지 위치 지정

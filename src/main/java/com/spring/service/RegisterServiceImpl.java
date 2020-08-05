@@ -26,6 +26,10 @@ public class RegisterServiceImpl implements RegisterService {
 		return mapper.dupId(userid) > 0 ? false:true;
 	}
 	
+	@Override
+	public boolean dupEmail(String email) {
+		return mapper.dupEmail(email) > 0 ? false:true;
+	}
 	
 
 }
