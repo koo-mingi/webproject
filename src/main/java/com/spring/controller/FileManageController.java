@@ -33,7 +33,7 @@ public class FileManageController {
 	 @PostMapping(value="/uploadSummernoteImageFile", produces = MediaType.APPLICATION_JSON_VALUE)    
 	 public ResponseEntity<AttachFileVO> uploadSummernoteImageFile(@RequestParam("file") MultipartFile f) {
 
-		 String uploadFolder = "C:\\summernote_image\\";
+		 String uploadFolder = "D:\\summernote_image\\";
 		 String uploadFileName = "";
 
 		 String uploadFolderPath = getFolder();

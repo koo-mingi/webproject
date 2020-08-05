@@ -1,9 +1,18 @@
 package com.spring.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.spring.domain.Criteria;
+import com.spring.domain.NoticeVO;
+import com.spring.service.NoticeBoardService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -11,6 +20,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequestMapping("/menu")
 public class MenuController {
+	
+	@Autowired
+	private NoticeBoardService service;
 	
 	@GetMapping("/pricing")
 	public void pricingGet() { 
@@ -27,9 +39,13 @@ public class MenuController {
 		log.info("know-how 요청");
 	}
 	
+	// 공지사항 글 읽기
 	@GetMapping("/notice")
-	public void noticeGet() {
-		log.info("notice 요청");
+	public void noticeGet(Model model) {
+		log.info("notice list 요청");
+		List<NoticeVO> list = service.getList();
+		// 현재 페이지에 보여줄 게시물
+		model.addAttribute("list", list);
 	}
 	
 	// 공지사항 글쓰기
@@ -47,8 +63,14 @@ public class MenuController {
 	// 공지사항 글 작성하기
 //	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/noticeWrite")
-	public void noticeWritePost() {
-		log.info("공지사항 글 작성 요청");
+	public String noticeWritePost(NoticeVO vo) {
+		log.info("공지사항 글 작성 요청"+vo);
+		
+		if(service.insertNotice(vo)) {
+			return "redirect:notice";
+		}
+		return "noticeWrite";
+		
 //	public String noticePost(BoardVO vo, RedirectAttributes rttr) {
 //		log.info("글 작성 요청"+vo);
 //		
@@ -60,6 +82,22 @@ public class MenuController {
 //			rttr.addFlashAttribute("result", vo.getBno());
 //			return "redirect:list";
 //		}
+	}
+	
+	// 공지사항 읽기
+	@GetMapping("/noticeRead")
+	public void noticeRead(int bno, @ModelAttribute("cri") Criteria cri, Model model) {
+		log.info(bno+"번째 공지사항 Read 요청"+cri);
+		
+		NoticeVO vo = service.readNotice(bno);
+		model.addAttribute("vo", vo);
+	}
+	
+	// 공지사항 수정하기
+	@GetMapping("/noticeModify")
+	public void modifyGet(int bno) {
+		log.info(bno+"번째 공지사항 수정하기");
+		
 	}
 	
 	@GetMapping("/review")

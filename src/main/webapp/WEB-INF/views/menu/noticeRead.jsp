@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags"  prefix="sec"%>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -58,6 +59,12 @@
 	z-index: 9;
 	padding-top: 10px;
 	padding-bottom: 5px;
+}
+.panel-head {
+	border-bottom: 1px solid #eee;
+}
+.view_content{
+	padding: 80px 50px 100px;
 }
 </style>
 
@@ -175,167 +182,59 @@
 <section>
 <div class="gap-area">
 </div>
+<br />
+<br />
 <div class="container">
-   <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">공지사항/이벤트</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <button id='regBtn' type='button' class='btn pull-right btn-warning' onclick="location.href='noticeWrite'">글쓰기</button>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <table class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>번 호</th>
-                                        <th>제 목</th>
-                                        <th>작성자</th>
-                                        <th>작성일</th>
-                                        <th>조회수</th>
-                                    </tr>
-                                </thead>
-								<!-- 게시판 리스트 반복문 -->
-								<c:forEach var="vo" items="${list}">
-									<tr>
-										<td>${vo.bno}</td>
-										<td><a href="noticeRead?bno=${vo.bno}">${vo.title}</a></td>
-										<%-- <td><a href="<c:out value='${vo.bno}'/>" class="move">${vo.title}</a></td> --%>
-										<td>${vo.writer}</td>
-										<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${vo.regdate}" /></td>
-										<td>${vo.readcount}</td>
-									</tr>
-								</c:forEach>
-                            </table>
-							<div class="row"> <!-- start search -->
-                            	<div class="col-md-12">
-                            	   <div class="col-md-8"><!--search Form-->
-                            	  	  <form action="" id="searchForm">
-                            	  	  	 <input type="hidden" name="pageNum" value="${cri.pageNum}"/>
-                            	  	  	 <input type="hidden" name="amount" value="${cri.amount}"/>
-                            	  	  	 <select name="type" id="">
-                            	  	  	 	<option value="" <c:out value="${empty cri.type?'selected':''}"/>>------</option>
-                            	  	  	 	<option value="T" <c:out value="${cri.type=='T'?'selected':''}"/>>제목</option>
-                            	  	  	 	<option value="C" <c:out value="${cri.type=='C'?'selected':''}"/>>내용</option>
-                            	  	  	 	<option value="W" <c:out value="${cri.type=='W'?'selected':''}"/>>작성자</option>
-                            	  	  	 	<option value="TC" <c:out value="${cri.type=='TC'?'selected':''}"/>>제목 or 내용</option>
-                            	  	  	 	<option value="TW" <c:out value="${cri.type=='TW'?'selected':''}"/>>제목 or 작성자</option>
-                            	  	  	 	<option value="TCW" <c:out value="${cri.type=='TCW'?'selected':''}"/>>제목 or 내용 or 작성자</option>
-                            	  	  	 </select>
-                            	  	  	 <input type="text" class="keyarea" name="keyword" value="${cri.keyword}"/>
-                            	  	  	 <button class="btn btn-default" type='button'>검색</button>
-                            	  	  </form>
-                            	   </div>
-                            	   <div class="col-md-2 col-md-offset-2">
-                            	   	<!--페이지 목록 갯수 지정하는 폼-->
-                            	   	<select class="form-control" name="amount" id="amount">
-                            	   		<option value="10" <c:out value="${cri.amount == 10?'selected':''}"/>>10</option>
-                            	   		<option value="20" <c:out value="${cri.amount == 20?'selected':''}"/>>20</option>
-                            	   		<option value="30" <c:out value="${cri.amount == 30?'selected':''}"/>>30</option>
-                            	   		<option value="40" <c:out value="${cri.amount == 40?'selected':''}"/>>40</option>
-                            	   	</select>
-								  </div>
-                             	 </div>                             	 
-                      		 </div><!-- end search -->
-                            <!-- start Pagination -->
-                            <div class="text-center">
-                            	<ul class="pagination">
-                            	  <c:if test="${pageVO.prev}">
-                            		<li class="paginate_button previous"><a href="${pageVO.startPage-1}">Previous</a></li>
-                            	  </c:if>
-                            	  <c:forEach var="idx" begin="${pageVO.startPage}" end="${pageVO.endPage}">
-                            		<li class="paginate_button ${pageVO.cri.pageNum==idx?'active':''}"><a href="${idx}">${idx}</a></li>
-                            	  </c:forEach>
-                            	  <c:if test="${pageVO.next}">
-                            		<li class="paginate_button next"><a href="${pageVO.endPage+1}">Next</a></li>
-                            	  </c:if>
-							</ul>
-						</div>
-                    <!-- end Pagination -->   
+	<div class="row">
+		<div class="col-lg-12">
+        	<div class="panel panel-default">
+				<div class="panel-head">
+					<div class="notice-title">
+						<label style="font-size:39px; display: block; text-align: center;">${vo.title}</label>
 					</div>
-                <!-- end panel-body -->
+					<br />
+					<br />
+					<div>
+						<p style="font-size:20px; display: block; text-align: center;"><fmt:formatDate pattern="yyyy.MM.dd" value="${vo.regdate}" /></p>
+					</div>
+					<br />
+					<br />
 				</div>
-            <!-- end panel -->
-			</div>                   
-		</div>   
-	</div>
+				<br />
+	    		<div class="panel-body">
+					<div class="view_content">
+						${vo.content}
+						<sec:authentication property="principal" var="info"/>
+						<sec:authorize access="isAuthenticated()">
+							<c:if test="${info.username == vo.writer}">
+								<button type="button" class="btn btn-default">Modify</button>     			
+							</c:if>
+						</sec:authorize>
+					</div>
+				</div>
+			</div>
+			<button type="button" class="btn btn-secondary" onclick="location.href='notice'">목록</button>          			
+			<button type="button" class="btn btn-warning" style="float: right;" onclick="location.href='modify'">수정</button>          			
+		</div>
+	</div>   
+</div>
+<br />
+<br />
 <div class="gap-area">
 </div>
-</section>
-<!-- 스크립트 -->
-<!-- <script>
+<!-- 수정하기 버튼누르면 수정화면으로 이동 -->
+<form action="" id="myForm">
+	<input type="hidden" name="bno" value="${vo.bno}" />
+</form>
+<script>
 $(function(){
-	let result = '${result}';
-	checkModal(result);
-	history.replaceState({}, null, null);
+	let form = $("#myForm");
 	
-	function checkModal(result){
-		if(result === '' || history.state){
-			return;
-		}
-		if(parseInt(result)>0){
-			$(".modal-body").html("게시글 "+parseInt(result)+" 번이 등록되었습니다.");
-		}
-		$("#myModal").modal("show");
-	}
-	
-	// 사용자가 페이지 번호를 누르면 동작하는 스크립트
-	let actionForm = $("#actionForm");
-	$(".paginate_button a").click(function(e){
-		// a 태그의 동작 막기
-		e.preventDefault();
-		// 전송해야할 폼 가져온 후 pageNum의 값과 amount 값을 변경한 후
-		actionForm.find("input[name='pageNum']").val($(this).attr("href")); // this : $(".paginate_button a")
-		// 폼 전송하기
-		actionForm.submit();
-	})
-	
-	$(".form-control").change(function(){
-		// 전송해야 할 폼 가져온 후 amount 값을 변경한 후
-		actionForm.find("input[name='amount']").val($(this).val()); // this : $(".form-control")
-		// 폼 전송하기
-		actionForm.submit();
-	})
-	
-	// 타이틀 클릭 시 페이지 나누기 정보가 있는 폼 보내기
-	$(".move").click(function(e){
-		// 36번 줄에 
-		// <a href="read?bno=${vo.bno}"$pageNum=${cri.pageNum}&amount=${cri.amount}">${vo.title}</a> 에러 조심
-		// 이렇게 작성하는 부분 대체
-		e.preventDefault();
-		actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"' />");
-		actionForm.attr('action','read');
-		actionForm.submit();
-	})
-	
-	// 검색 버튼 클릭 시 동작하는 스크립트
-	$(".btn-default").click(function(){
-		
-		let searchForm = $("#searchForm");
-
-		// type과 keyword가 비어있는지 확인하고
-		// 비어있으면 메세지 띄워준 후 return
-		let type = $("select[name='type']").val();
-		let keyword = $("input[name='keyword']").val();
-		
-		if(type===''){
-			alert("검색 기준을 입력해주세요");
-			return false;
-		}else if(keyword===''){
-			alert("검색어를 입력해주세요");
-			return false;
-		}
-		// 모두 입력이 된 경우 폼 전송
-		searchForm.find("input[name='pageNum']").val("1");
-		searchForm.submit();
+	$(".btn-warning").click(function(){
+		form.attr('action','noticeModify')	// http://localhost:8080/menu/noticeModify
+		form.submit();
 	})
 })
 </script>
- -->
+</section>
 <%@ include file="/WEB-INF/views/include/footer.jsp" %>
