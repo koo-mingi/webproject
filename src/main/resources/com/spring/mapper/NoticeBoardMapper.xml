@@ -3,18 +3,18 @@
 <mapper namespace="com.spring.mapper.NoticeBoardMapper">
 
 	<select id="list" resultType="com.spring.domain.NoticeVO">
-		select * from notice_board order by bno desc
+		select * from noticeBoard order by bno desc
 	</select>
 
 	<!-- 글 목록 보기 -->
-	<!-- <select id="list" resultType="com.spring.domain.BoardVO">
-		select * from spring_board order by bno desc
+	<!-- <select id="list" resultType="com.spring.domain.NoticeVO">
+		select * from noticeBoard order by bno desc
 		html에서 <>는 태그를 여닫는 의미로 쓰이기 때문에 부등호로 쓸 경우 에러남 <![CDATA[ ]]>로 방지하기
 		<![CDATA[		 
 		select * 
 		from (select /*+ INDEX_DESC(spring_board pk_spring_board) */
-		      rownum rn, bno, title, writer, regdate, updatedate, replycnt
-		      from spring_board
+		      rownum rn, bno, title, writer, regdate, replycnt
+		      from noticeBoard
 		      where 
 		]]>      
 		<include refid="criteria"></include>
@@ -24,27 +24,47 @@
 		]]>
 	</select>
 	<select id="total" resultType="int">
-		select count(*) from spring_board where
+		select count(*) from noticeBoard where
 		<include refid="criteria"></include>
 		bno>0
 	</select> -->
 	
-	<insert id="create">
-		insert into notice_board(bno, title, content, writer) values(seq_board.nextVal, #{title}, #{content}, #writer})
-	</insert>
-	
 <!-- 	<insert id="create">
-		<selectKey keyProperty="bno" order="BEFORE" resultType="int">
-		bno라는 값에 담는데 bno는 vo에 있기 떄문에 vo에 담겨있다 생각하면 된다
-		주로 pk 값을 미리 sql을 통해서 처리해 두고 특정한 이름으로 보관
-			select seq_board.nextval from dual
-		</selectKey>
-		insert into notice_board(bno,title,content,writer) 
-		values(#{bno},#{title},#{content},#{writer})
+		insert into noticeBoard(bno, title, content, writer) values(noticeBoard_seq.nextVal, #{title}, #{content}, #{writer})
 	</insert> -->
 	
+	<!-- 글 작성하기 -->
+	<insert id="create">
+		<selectKey keyProperty="bno" order="BEFORE" resultType="int">
+			<!-- 주로 PK 값을 미리 SQL을 통해서 처리해두고 특정한 이름으로 보관 / bno는 vo에 들어있음 -->
+			select noticeBoard_seq.nextval from dual
+		</selectKey>
+		insert into noticeBoard(bno, title, content, writer) values(#{bno}, #{title}, #{content}, #{writer}) <!-- getBno()로 가져오는 것 -->
+	</insert>
+	
 	<select id="read" resultType="com.spring.domain.NoticeVO">
-		select * from notice_board where bno=#{bno}
+		select * from noticeBoard where bno=#{bno}
 	</select>
+	
+	<!-- 동적 SQL 작성 -->
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR" >
+			<foreach collection="typeArr" item="type">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
 	
 </mapper>

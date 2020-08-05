@@ -178,17 +178,17 @@ a:visited {
 	<form method="post" action="/menu/noticeWrite" role="form">
 		<div class="mb-3">
 			<label for="title" style="font-size: 18px;">제목</label>
-			<input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요"/>
+			<input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요" value="${vo.title}"/>
 		</div>
 		<br>
 		<div class="mb-3">
 			<label for="reg_id" style="font-size: 18px;">작성자</label>
-			<input type="text" class="form-control" name="writer" placeholder="작성자"/>
+			<input type="text" class="form-control" name="writer" placeholder="작성자" value="${vo.writer}"/>
 		</div>
 		<br>
 		<div class="mb-3">
 			<label for="content" style="font-size: 18px;">내용</label>
-			<textarea id="summernote" name="content"></textarea>
+			<textarea id="summernote" name="content">${vo.content}</textarea>
 		</div>
 		<br>
 		<button class="btn btn-secondary" type="button" value="돌아가기" onclick="location.href='notice'">돌아가기</button>

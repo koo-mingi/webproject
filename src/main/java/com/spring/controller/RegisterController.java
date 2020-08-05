@@ -77,16 +77,27 @@ public class RegisterController {
 //	}
 	
 	 
-	/*
-	 * @PostMapping("/checkId")
-	 * 
-	 * @ResponseBody //controller���� ������ ���� jsp���� �ƴ��� �ǹ� public String
-	 * checkId(String userid) { log.info("�ߺ����̵� �˻� : "+userid);
-	 * if(service.dupId(userid)) { return "true"; }else { return "false"; } }
-	 * 
-	 * }
-	 */
+	@PostMapping("/checkId")
+	@ResponseBody  //controller
+	public String checkId(String userid) {
+		log.info("userid : "+userid);
+		if(service.dupId(userid)) {
+			return "true";
+		}else {
+			return "false";
+		}
+	}
 	
+	@PostMapping("/checkEmail")
+	@ResponseBody  //controller
+	public String checkEmail(String email) {
+		log.info("userid : "+email);
+		if(service.dupEmail(email)) {
+			return "true";
+		}else {
+			return "false";
+		}
+	}
 	
 	@GetMapping("/step3")
 	public void step3Get() {
