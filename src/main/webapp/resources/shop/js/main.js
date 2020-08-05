@@ -255,14 +255,14 @@ $(document).ready(function(){
         noUiSlider.create(nonLinearSlider, {
             connect: true,
             behaviour: 'tap',
-            start: [ 500, 4000 ],
+            start: [ 1000, 100000 ],
             range: {
                 // Starting at 500, step the value by 500,
                 // until 4000 is reached. From there, step by 1000.
-                'min': [ 0 ],
-                '10%': [ 500, 500 ],
-                '50%': [ 4000, 1000 ],
-                'max': [ 10000 ]
+                'min': [ 1000,500 ],
+                '10%': [ 10000, 500 ],
+                '50%': [ 50000, 1000 ],
+                'max': [ 100000 ]
             }
         });
 
@@ -276,10 +276,26 @@ $(document).ready(function(){
         // from the left edge of the slider.
         nonLinearSlider.noUiSlider.on('update', function ( values, handle, unencoded, isTap, positions ) {
             nodes[handle].innerHTML = values[handle];
+      
+            $.ajax({
+            	url : '/shop/category',
+            	type : 'get',
+            	data : {
+            		lower : values[0],
+            		upper : values[1]
+            	},
+            	success:function(data){
+            		console.log("성공");
+            	},
+            	error:function(xhr,status,err){
+            		alert(xhr.responseText);
+            	}
+            	
+            })
         });
 
         }
-
+        
     });
 
     

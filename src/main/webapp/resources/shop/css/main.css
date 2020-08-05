@@ -170,7 +170,7 @@ button:focus {
   margin-bottom: 30px;
   font-size: 24px; }
 
-b, sup, sub, u, del {
+sup, sub, u, del {
   color: #ffba00; }
 
 h1 {

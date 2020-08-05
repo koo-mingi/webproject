@@ -15,9 +15,9 @@ public class ShopServiceImpl implements ShopService {
 	private ShopMapper mapper;
 	
 	@Override
-	public List<ShopProductVO> select() {
+	public List<ShopProductVO> select(float lower,float upper) {
 		
-		return mapper.select();
+		return mapper.select(lower,upper);
 	}
 
 }

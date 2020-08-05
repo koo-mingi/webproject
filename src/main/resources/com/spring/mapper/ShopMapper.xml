@@ -4,7 +4,7 @@
 	
 	<!-- 상품 끌고오기 -->
 	<select id="select" resultType="com.spring.domain.ShopProductVO">
-		select * from producttbl
+		select * from producttbl where price between #{lower} and #{upper} 
 	</select>
 
 </mapper>
