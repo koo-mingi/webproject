@@ -103,6 +103,40 @@
 	<script src="/resources/shop/js/gmaps.min.js"></script>
 	<script src="/resources/shop/js/main.js"></script>
 	
+	<!-- 상점 스크립트 -->
+	<script>
+    //----- Page Amount --------//
+    
+    let shopActionForm = $("#shopActionForm"); // 상점의 페이지와 관련된 폼
+	
+    let shopAmount1 = $(".shop-amount1"); // 상점 페이지 내 개시물 개수 상단옵션
+    let shopAmount2 = $(".shop-amount2"); // 상점 페이지 내 개시물 개수 하단옵션
+    
+    shopAmount1.change(function(){
+		shopActionForm.find("input[name='amount']").val($(this).val());
+		shopActionForm.submit();
+	})
+    
+    shopAmount2.change(function(){
+    		shopActionForm.find("input[name='amount']").val($(this).val());
+    		shopActionForm.submit();
+    })
+    
+    //----- Page move -------//
+    
+    $(".pagination_button1").click(function(e){ // 상단 페이지 버튼
+    	e.preventDefault();
+		shopActionForm.find("input[name='pageNum']").val($(this).attr("href"));
+		shopActionForm.submit();
+    })
+    
+        $(".pagination_button2").click(function(e){ // 상단 페이지 버튼
+    	e.preventDefault();
+		shopActionForm.find("input[name='pageNum']").val($(this).attr("href"));
+		shopActionForm.submit();
+    })
+    
+	</script>
 </body>
 </html>
 

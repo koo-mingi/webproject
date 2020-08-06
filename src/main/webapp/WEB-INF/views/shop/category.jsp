@@ -81,25 +81,28 @@
 					<div class="sorting">
 						<select>
 							<option value="">전체</option>
-							<option value="1">추천순</option>
-							<option value="2">가격 높은순</option>
+							<option value="R">추천순</option>
+							<option value="P">가격 높은순</option>
 						</select>
 					</div>
 					<div class="sorting mr-auto">
-						<select>
-							<option value="12">Show 12</option>
-							<option value="21">Show 21</option>
-							<option value="30">Show 30</option>
+						<select class="shop-amount1">
+							<option value="12" <c:out value="${cri.amount == '12'?'selected':'' }"/>>Show 12</option>
+							<option value="21" <c:out value="${cri.amount == '21'?'selected':'' }"/>>Show 21</option>
+							<option value="30" <c:out value="${cri.amount == '30'?'selected':'' }"/>>Show 30</option>
 						</select>
 					</div>
 					<div class="pagination">
-						<a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-						<a href="#" class="active">1</a>
-						<a href="#">2</a>
-						<a href="#">3</a>
-						<a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
-						<a href="#">6</a>
-						<a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+					<c:if test="${shopPageVO.prev }">
+						<a href="${shopPageVO.startPage-1 }" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+					</c:if>
+					<c:forEach var="idx" begin="${shopPageVO.startPage}" end="${shopPageVO.endPage}">
+						<a href="${idx}" class="pagination_button1 ${shopPageVO.cri.pageNum == idx?'active':'' }">${idx}</a>
+					</c:forEach>
+					<c:if test="${shopPageVO.next }">
+						<a href="${shopPageVO.endPage}+1" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+					</c:if>
+						
 					</div>
 				</div>
 				<!-- End Filter Bar -->
@@ -145,20 +148,23 @@
 				<!-- Start Filter Bar -->
 				<div class="filter-bar d-flex flex-wrap align-items-center">
 					<div class="sorting mr-auto">
-						<select>
-							<option value="12">Show 12</option>
-							<option value="21">Show 21</option>
-							<option value="30">Show 30</option>
+						<select class="shop-amount2">
+							<option value="12" <c:out value="${cri.amount == '12'?'selected':'' }"/>>Show 12</option>
+							<option value="21" <c:out value="${cri.amount == '21'?'selected':'' }"/>>Show 21</option>
+							<option value="30" <c:out value="${cri.amount == '30'?'selected':'' }"/>>Show 30</option>
 						</select>
 					</div>
 					<div class="pagination">
-						<a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-						<a href="#" class="active">1</a>
-						<a href="#">2</a>
-						<a href="#">3</a>
-						<a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
-						<a href="#">6</a>
-						<a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+					<c:if test="${shopPageVO.prev }">
+						<a href="${shopPageVO.startPage-1 }" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+					</c:if>
+					<c:forEach var="idx" begin="${shopPageVO.startPage}" end="${shopPageVO.endPage}">
+						<a href="${idx}" class="pagination_button2 ${shopPageVO.cri.pageNum == idx?'active':'' }">${idx}</a>
+					</c:forEach>
+					<c:if test="${shopPageVO.next }">
+						<a href="${shopPageVO.endPage}+1" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+					</c:if>
+						
 					</div>
 				</div>
 				<!-- End Filter Bar -->
@@ -302,5 +308,10 @@
 		</div>
 	</section>
 	<!-- End related-product Area -->
-
+	<%--페이지 번호 및 개수를 누르면 동작하는 폼 --%>
+	<form action="category" id="shopActionForm">
+		<input type="hidden" name="pageNum" value="${cri.pageNum }" />
+		<input type="hidden" name="amount" value="${cri.amount }" />
+	</form>
+	
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>

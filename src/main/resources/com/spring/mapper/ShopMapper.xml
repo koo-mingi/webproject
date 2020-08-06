@@ -4,7 +4,16 @@
 	
 	<!-- 상품 끌고오기 -->
 	<select id="select" resultType="com.spring.domain.ShopProductVO">
-		select * from producttbl where price between #{lower} and #{upper} 
+	<![CDATA[
+		select *
+		from (select rownum rn,pid,pname,price,saleprice,amount,category,description,gradeavg,volume,shipcost,storage,expdate 
+      			from producttbl where (price between #{lower} and #{upper}) and rownum <= (#{pageNum}*#{amount}))
+		where rn > (#{pageNum}-1)*#{amount}
+	]]>
 	</select>
-
+	
+	<!-- 상품 전체 개수 구하기 -->
+	<select id="total" resultType="int">
+		select count(*) from producttbl where pid>0
+	</select>
 </mapper>
