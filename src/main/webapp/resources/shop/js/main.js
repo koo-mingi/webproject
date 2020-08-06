@@ -241,7 +241,7 @@ $(document).ready(function(){
       })
 
 
-
+      
     //----- Active No ui slider --------//
 
 
@@ -271,29 +271,32 @@ $(document).ready(function(){
             document.getElementById('lower-value'), // 0
             document.getElementById('upper-value')  // 1
         ];
-
+        
+   
         // Display the slider value and how far the handle moved
         // from the left edge of the slider.
         nonLinearSlider.noUiSlider.on('update', function ( values, handle, unencoded, isTap, positions ) {
             nodes[handle].innerHTML = values[handle];
-      
-            $.ajax({
-            	url : '/shop/category',
-            	type : 'get',
-            	data : {
-            		lower : values[0],
-            		upper : values[1]
-            	},
-            	success:function(data){
-            		console.log("성공");
-            	},
-            	error:function(xhr,status,err){
-            		alert(xhr.responseText);
-            	}
-            	
-            })
+            
+          console.log(values[0]);
+          console.log(values[1]);
+          
+          let list = $(".category-list");
+          
+             $.ajax({
+		      	url : '/shop/category?lower='+values[0]+'&upper='+values[1],
+		      	type : 'get',
+		      	success:function(data){
+		      		console.log("성공");
+		      	},
+		      	error:function(xhr,status,err){
+		      		alert(xhr.responseText);
+		      	}
+		      	
+             })
+            
         });
-
+       
         }
         
     });

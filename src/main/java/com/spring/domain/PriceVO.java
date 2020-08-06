@@ -4,11 +4,13 @@ import lombok.Data;
 
 @Data
 public class PriceVO {
-	private String lower;
-	private String upper;
+	private float lower;
+	private float upper;
 	
 	public PriceVO() {
-		this.lower="1000";
-		this.upper="100000";
+		this.lower=1000;
+		this.upper=100000;
 	}
+
+	
 }

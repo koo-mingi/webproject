@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.domain.PriceVO;
+import com.spring.domain.ShopCriteria;
 import com.spring.domain.ShopProductVO;
 import com.spring.mapper.ShopMapper;
 
@@ -15,9 +17,14 @@ public class ShopServiceImpl implements ShopService {
 	private ShopMapper mapper;
 	
 	@Override
-	public List<ShopProductVO> select(float lower,float upper) {
+	public List<ShopProductVO> select(ShopCriteria cri) {
 		
-		return mapper.select(lower,upper);
+		return mapper.select(cri);
 	}
 
+	@Override
+	public int totalRows() {
+		return mapper.total();
+	}
+	
 }
