@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.domain.AttachFileVO;
 import com.spring.domain.Criteria;
 import com.spring.domain.NoticeVO;
 import com.spring.service.NoticeBoardService;
@@ -63,29 +65,18 @@ public class MenuController {
 	// 공지사항 글 작성하기
 //	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/noticeWrite")
-	public String noticeWritePost(NoticeVO vo) {
+	public String noticeWritePost(NoticeVO vo, RedirectAttributes rttr) {
 		log.info("공지사항 글 작성 요청"+vo);
 		
 		if(service.insertNotice(vo)) {
+			rttr.addFlashAttribute("result", vo.getBno());
 			return "redirect:notice";
 		}
 		return "noticeWrite";
-		
-//	public String noticePost(BoardVO vo, RedirectAttributes rttr) {
-//		log.info("글 작성 요청"+vo);
-//		
-//		if(vo.getAttachList()!=null) {
-//			vo.getAttachList().forEach(attach -> log.info(attach+""));
-//		}
-//		
-//		if(service.insertBoard(vo)) {
-//			rttr.addFlashAttribute("result", vo.getBno());
-//			return "redirect:list";
-//		}
 	}
 	
 	// 공지사항 읽기
-	@GetMapping("/noticeRead")
+	@GetMapping(value= {"/noticeRead","/noticeModify"})
 	public void noticeRead(int bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		log.info(bno+"번째 공지사항 Read 요청"+cri);
 		
@@ -94,10 +85,39 @@ public class MenuController {
 	}
 	
 	// 공지사항 수정하기
-	@GetMapping("/noticeModify")
-	public void modifyGet(int bno) {
-		log.info(bno+"번째 공지사항 수정하기");
+	@PostMapping("/noticeModify")
+	public String modifyPost(NoticeVO vo, RedirectAttributes rttr) {
+		log.info("공지사항 수정 요청"+vo);
 		
+		if(service.modifyNotice(vo)) {
+			rttr.addAttribute("bno", vo.getBno());
+			return "redirect:noticeRead";
+		}
+		rttr.addAttribute("bno", vo.getBno());
+		return "redirect:noticeModify";
+	}
+	
+	// 게시글 삭제하기
+//	@PreAuthorize("principal.username == #writer")
+	@PostMapping("/remove")
+	public String delete(int bno, String writer, Criteria cri, RedirectAttributes rttr) {
+		log.info("삭제 요청"+bno);
+		
+		// 현재 글번호에 해당한는 첨부파일 목록을 서버에서 삭제하기 위해서
+		// bno에 해당하는 첨부파일 리스트 가져오기
+//		List<AttachFileVO> attachList=service.attachList(bno);
+		
+		if(service.deleteNotice(bno)) {
+//			rttr.addAttribute("pageNum", cri.getPageNum());
+//			rttr.addAttribute("amount", cri.getAmount());
+//			rttr.addAttribute("type", cri.getType());
+//			rttr.addAttribute("keyword", cri.getKeyword());
+//			rttr.addFlashAttribute("result", "success");
+			return "redirect:notice";
+		}else {
+			rttr.addAttribute("bno", bno);
+			return "redirect:noticeRead";
+		}
 	}
 	
 	@GetMapping("/review")

@@ -170,12 +170,11 @@ a:visited {
 <title>글쓰기</title>
 </head>
 <body>
-<div class="gap-area">
-</div>
+<div class="gap-area"></div>
 <h2 style="text-align: center;">Write</h2><br><br>
 
 <div style="width: 60%; margin: auto;">
-	<form method="post" action="/menu/noticeWrite" role="form">
+	<form method="post" action="/menu/noticeModify" role="form">
 		<div class="mb-3">
 			<label for="title" style="font-size: 18px;">제목</label>
 			<input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요" value="${vo.title}"/>
@@ -191,16 +190,16 @@ a:visited {
 			<textarea id="summernote" name="content">${vo.content}</textarea>
 		</div>
 		<br>
-		<button class="btn btn-secondary" type="button" value="돌아가기" onclick="location.href='notice'">돌아가기</button>
+		<button class="btn btn-secondary" type="button" value="돌아가기" onclick="location.href='noticeRead?bno=${vo.bno}'">돌아가기</button>
 		<button class="btn btn-warning" type="submit" value="글 작성" style="float: right;">글작성</button>
+		<input type="hidden" name="bno" value="${vo.bno}" />   
 <!-- 		<input class="btn btn-xs pull-right btn-warning" id="subBtn" type="button" value="돌아가기" style="float: left;" onclick="goWrite(this.form)"/>
 		<input class="btn btn-xs pull-right btn-warning" id="subBtn" type="button" value="글 작성" style="float: right;" onclick="goWrite(this.form)"/> -->
-		</form>
-	</div>
-	<br>
-	<div class="gap-area">
-	</div>
-	</section>
+	</form>
+</div>
+<br>
+<div class="gap-area"></div>
+</section>
 
 	<script>
 	$(document).ready(function() {

@@ -11,4 +11,8 @@ public interface NoticeBoardService {
 	public boolean insertNotice(NoticeVO vo);
 	// 공지사항 글 읽기
 	public NoticeVO readNotice(int bno);
+	// 공지사항 글 수정
+	public boolean modifyNotice(NoticeVO vo);
+	// 공지사항 글 삭제
+	public boolean deleteNotice(int bno);
 }

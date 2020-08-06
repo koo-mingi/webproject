@@ -204,18 +204,20 @@
 	    		<div class="panel-body">
 					<div class="view_content">
 						${vo.content}
-						<sec:authentication property="principal" var="info"/>
+<%-- 						<sec:authentication property="principal" var="info"/>
 						<sec:authorize access="isAuthenticated()">
 							<c:if test="${info.username == vo.writer}">
 								<button type="button" class="btn btn-default">Modify</button>     			
 							</c:if>
-						</sec:authorize>
+						</sec:authorize> --%>
 					</div>
 				</div>
 			</div>
 			<button type="button" class="btn btn-secondary" onclick="location.href='notice'">목록</button>          			
-			<button type="button" class="btn btn-warning" style="float: right;" onclick="location.href='modify'">수정</button>          			
-		</div>
+			<button type="button" class="btn btn-danger" style="float: right; margin-left: 5px;" onclick="remove_click()">삭제</button>  
+			<button type="button" class="btn btn-warning" style="float: right;" onclick="location.href='noticeModify?bno=${vo.bno}'">수정</button>
+			<input type="hidden" name="bno" value="${vo.bno}" />
+		</div> 
 	</div>   
 </div>
 <br />
@@ -225,16 +227,18 @@
 <!-- 수정하기 버튼누르면 수정화면으로 이동 -->
 <form action="" id="myForm">
 	<input type="hidden" name="bno" value="${vo.bno}" />
+	<input type="hidden" name="writer" value="${vo.writer}" />
 </form>
 <script>
-$(function(){
+function remove_click() {
 	let form = $("#myForm");
 	
-	$(".btn-warning").click(function(){
-		form.attr('action','noticeModify')	// http://localhost:8080/menu/noticeModify
+	$(".btn-danger").click(function(){
+		form.attr('action','remove');
+		form.attr('method','post');
 		form.submit();
 	})
-})
+}
 </script>
 </section>
 <%@ include file="/WEB-INF/views/include/footer.jsp" %>

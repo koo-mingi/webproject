@@ -8,4 +8,6 @@ public interface NoticeBoardMapper {
 	public List<NoticeVO> list();
 	public int create(NoticeVO vo);
 	public NoticeVO read(int bno);
+	public int modify(NoticeVO vo);
+	public int delete(int bno);
 }

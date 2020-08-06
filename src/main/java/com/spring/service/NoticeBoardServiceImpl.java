@@ -28,4 +28,14 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 	public NoticeVO readNotice(int bno) {
 		return mapper.read(bno);
 	}
+
+	@Override
+	public boolean modifyNotice(NoticeVO vo) {
+		return mapper.modify(vo)==1? true:false;
+	}
+
+	@Override
+	public boolean deleteNotice(int bno) {
+		return mapper.delete(bno)==1? true:false;
+	}
 }

@@ -268,13 +268,32 @@
 <div class="gap-area">
 </div>
 </section>
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">게시글 추가</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>공지사항이 등록되었습니다.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- 스크립트 -->
-<!-- <script>
+<script>
 $(function(){
 	let result = '${result}';
 	checkModal(result);
 	history.replaceState({}, null, null);
-	
+	 
 	function checkModal(result){
 		if(result === '' || history.state){
 			return;
@@ -337,5 +356,5 @@ $(function(){
 	})
 })
 </script>
- -->
+ 
 <%@ include file="/WEB-INF/views/include/footer.jsp" %>
