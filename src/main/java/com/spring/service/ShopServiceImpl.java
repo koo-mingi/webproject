@@ -23,8 +23,8 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public int totalRows() {
-		return mapper.total();
+	public int totalRows(ShopCriteria cri) {
+		return mapper.total(cri);
 	}
 	
 }

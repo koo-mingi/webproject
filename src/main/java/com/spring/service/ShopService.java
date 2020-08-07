@@ -8,5 +8,5 @@ import com.spring.domain.ShopProductVO;
 
 public interface ShopService {
 	public List<ShopProductVO> select(ShopCriteria cri);
-	public int totalRows();
+	public int totalRows(ShopCriteria cri);
 }

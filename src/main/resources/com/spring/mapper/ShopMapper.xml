@@ -7,13 +7,35 @@
 	<![CDATA[
 		select *
 		from (select rownum rn,pid,pname,price,saleprice,amount,category,description,gradeavg,volume,shipcost,storage,expdate 
-      			from producttbl where (price between #{lower} and #{upper}) and rownum <= (#{pageNum}*#{amount}))
+      			from (select * from producttbl
+      ]]>
+      <include refid="criteria"></include>
+      <![CDATA[		
+      			)
+      			where (saleprice between #{lower} and #{upper}) and rownum <= (#{pageNum}*#{amount}))
 		where rn > (#{pageNum}-1)*#{amount}
 	]]>
 	</select>
 	
 	<!-- 상품 전체 개수 구하기 -->
 	<select id="total" resultType="int">
-		select count(*) from producttbl where pid>0
+		select count(*) from producttbl where pid>0 and (saleprice between #{lower} and #{upper})
 	</select>
+	
+	<!-- 동적 sql 작성 -->
+	<sql id="criteria">
+		<trim prefix="order by ">
+			<choose>
+				<when test="type == ''.toString()">
+					pid desc
+				</when>
+				<when test="type == 'R'.toString()">
+					gradeavg desc
+				</when>
+				<when test="type == 'P'.toString()">
+					saleprice desc
+				</when>
+			</choose>
+		</trim>
+	</sql>
 </mapper>

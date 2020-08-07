@@ -247,6 +247,13 @@ $(document).ready(function(){
 
 
     $(function(){
+    	// catogory.jsp 의 가격 검색 버튼
+    	 let shopPriceButton=$(".shop-price-btn");
+         
+    	// catogory.jsp 의 페이지 관련 Form
+         let shopActionForm = $("#shopActionForm");
+         var lower = shopActionForm.find("input[name='lower']");
+         var upper = shopActionForm.find("input[name='upper']");
 
         if(document.getElementById("price-range")){
         
@@ -272,31 +279,33 @@ $(document).ready(function(){
             document.getElementById('upper-value')  // 1
         ];
         
+        // 슬라이드 핸들러에 값 세팅
+        console.log(lower.val());
+        console.log(upper.val());
+        
+        nonLinearSlider.noUiSlider.set([lower.val(),upper.val()]);
    
         // Display the slider value and how far the handle moved
         // from the left edge of the slider.
         nonLinearSlider.noUiSlider.on('update', function ( values, handle, unencoded, isTap, positions ) {
-            nodes[handle].innerHTML = values[handle];
-            
-          console.log(values[0]);
-          console.log(values[1]);
-          
-          let list = $(".category-list");
-          
-             $.ajax({
-		      	url : '/shop/category?lower='+values[0]+'&upper='+values[1],
-		      	type : 'get',
-		      	success:function(data){
-		      		console.log("성공");
-		      	},
-		      	error:function(xhr,status,err){
-		      		alert(xhr.responseText);
-		      	}
-		      	
-             })
-            
+            nodes[handle].innerHTML = values[handle];     
         });
        
+       
+        
+        shopPriceButton.click(function(){
+        	
+             lower.val(nonLinearSlider.noUiSlider.get()[0]); //최저 가격
+             upper.val(nonLinearSlider.noUiSlider.get()[1]); //최대 가격
+             shopActionForm.find("input[name='pageNum']").val("1");
+             
+             console.log(lower.val());
+             console.log(upper.val());
+             
+             shopActionForm.submit();
+        })
+
+        
         }
         
     });
