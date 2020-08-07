@@ -71,6 +71,7 @@
 								<span>￦</span>
 								<div id="upper-value"></div>
 							</div>
+							 	<a href="#" class="shop-price-btn genric-btn info radius">검색</a>
 						</div>
 					</div>
 				</div>
@@ -79,10 +80,10 @@
 				<!-- Start Filter Bar -->
 				<div class="filter-bar d-flex flex-wrap align-items-center">
 					<div class="sorting">
-						<select>
-							<option value="">전체</option>
-							<option value="R">추천순</option>
-							<option value="P">가격 높은순</option>
+						<select class="shop-category">
+							<option value="" <c:out value="${cri.type == ''?'selected':'' }"/>>최신순</option>
+							<option value="R" <c:out value="${cri.type == 'R'?'selected':'' }"/>>추천순</option>
+							<option value="P" <c:out value="${cri.type == 'P'?'selected':'' }"/>>가격 높은순</option>
 						</select>
 					</div>
 					<div class="sorting mr-auto">
@@ -117,9 +118,10 @@
 									<div class="product-details">
 										<h6>${vo.pname }</h6>
 										<div class="price">
-											<h6>${vo.saleprice }</h6>
-											<h6 class="l-through">${vo.price }</h6>
+											<h6>￦ ${vo.saleprice }</h6>
+											<h6 class="l-through">￦ ${vo.price }</h6>
 										</div>
+											<a><i class="fa fa-star"> ${vo.gradeavg}</i></a>
 										<div class="prd-bottom">
 											<a href="" class="social-info">
 												<span class="ti-bag"></span>
@@ -312,6 +314,9 @@
 	<form action="category" id="shopActionForm">
 		<input type="hidden" name="pageNum" value="${cri.pageNum }" />
 		<input type="hidden" name="amount" value="${cri.amount }" />
+		<input type="hidden" name="lower" value="${cri.lower }" />
+		<input type="hidden" name="upper" value="${cri.upper}" />
+		<input type="hidden" name="type" value="${cri.type}" />
 	</form>
 	
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>

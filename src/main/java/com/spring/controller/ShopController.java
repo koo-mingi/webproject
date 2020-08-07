@@ -33,14 +33,16 @@ public class ShopController {
 	@GetMapping("/category")
 	public void categoryGet(Model model,String lower,String upper,@ModelAttribute("cri") ShopCriteria cri) {
 		log.info("상품 페이지");
-		log.info("가격 : "+lower+", 최대 : "+upper);
 		
 		if(lower != null && upper !=null) {
 			cri.setLower(Float.parseFloat(lower));
 			cri.setUpper(Float.parseFloat(upper));
 		}
 		
-		model.addAttribute("shopPageVO", new ShopPageVO(cri, shopService.totalRows()));
+		log.info("가격 : "+cri.getLower()+", 최대 : "+cri.getUpper());
+		log.info("type : ",cri.getType());
+		
+		model.addAttribute("shopPageVO", new ShopPageVO(cri, shopService.totalRows(cri)));
 		List<ShopProductVO> list = shopService.select(cri);
 		log.info("list : "+list);
 		model.addAttribute("list", list);

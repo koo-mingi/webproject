@@ -13,7 +13,7 @@ public class ShopProductVO {
 	private int amount;
 	private String category;
 	private String description;
-	private int gradeavg;
+	private float gradeavg;
 	private int volume;
 	private int shipcost;
 	private String storage;

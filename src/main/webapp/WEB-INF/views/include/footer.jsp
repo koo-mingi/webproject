@@ -105,20 +105,23 @@
 	
 	<!-- 상점 스크립트 -->
 	<script>
-    //----- Page Amount --------//
-    
     let shopActionForm = $("#shopActionForm"); // 상점의 페이지와 관련된 폼
 	
     let shopAmount1 = $(".shop-amount1"); // 상점 페이지 내 개시물 개수 상단옵션
     let shopAmount2 = $(".shop-amount2"); // 상점 페이지 내 개시물 개수 하단옵션
+    let shopCategory = $(".shop-category"); // 상점 페이지 내 카테고리 옵션 버튼
+    
+    //----- Page Amount --------//
     
     shopAmount1.change(function(){
 		shopActionForm.find("input[name='amount']").val($(this).val());
+		shopActionForm.find("input[name='pageNum']").val("1");
 		shopActionForm.submit();
 	})
     
     shopAmount2.change(function(){
     		shopActionForm.find("input[name='amount']").val($(this).val());
+    		shopActionForm.find("input[name='pageNum']").val("1");
     		shopActionForm.submit();
     })
     
@@ -136,6 +139,12 @@
 		shopActionForm.submit();
     })
     
+    //----- Page category -----//
+    
+    shopCategory.change(function(){
+    	shopActionForm.find("input[name='type']").val($(this).val());
+    	shopActionForm.submit();
+    })
 	</script>
 </body>
 </html>
