@@ -1549,6 +1549,10 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-block;
     padding-right: 15px;
     margin: 0; }
+    .l-through{
+    	color: #cccccc;
+    	text-decoration: line-through;
+    }
   .single-product .product-details .price .l-through {
     text-decoration: line-through;
     color: #cccccc;
@@ -3929,13 +3933,14 @@ label {
 
 .s_product_text {
   margin-left: -15px;
-  margin-top: 65px; }
+  margin-top: 65px;
+  }
   @media (max-width: 575px) {
     .s_product_text {
       margin-left: 0px; } }
   .s_product_text h3 {
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 600;
     color: #222222;
     margin-bottom: 10px; }
   .s_product_text h2 {
@@ -3945,9 +3950,9 @@ label {
   .s_product_text .list li {
     margin-bottom: 5px; }
     .s_product_text .list li a {
-      font-size: 14px;
+      font-size: 16px;
       font-family: "Roboto", sans-serif;
-      font-weight: normal;
+      font-weight: 600;
       color: #555555; }
       .s_product_text .list li a span {
         width: 90px;

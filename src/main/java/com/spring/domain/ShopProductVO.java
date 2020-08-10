@@ -11,6 +11,7 @@ public class ShopProductVO {
 	private int price;
 	private int saleprice;
 	private int amount;
+	private String simpletext;
 	private String category;
 	private String description;
 	private float gradeavg;
