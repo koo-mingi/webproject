@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.spring.domain.AttachFileVO;
 import com.spring.domain.Criteria;
 import com.spring.domain.NoticeVO;
+import com.spring.domain.PageVO;
 import com.spring.service.NoticeBoardService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,10 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequestMapping("/menu")
 public class MenuController {
-	
-	@Autowired
-	private NoticeBoardService service;
-	
+		
 	@GetMapping("/pricing")
 	public void pricingGet() { 
 		log.info("pricing 요청");
@@ -39,85 +36,6 @@ public class MenuController {
 	@GetMapping("/know-how")
 	public void knowHowGet() {
 		log.info("know-how 요청");
-	}
-	
-	// 공지사항 글 읽기
-	@GetMapping("/notice")
-	public void noticeGet(Model model) {
-		log.info("notice list 요청");
-		List<NoticeVO> list = service.getList();
-		// 현재 페이지에 보여줄 게시물
-		model.addAttribute("list", list);
-	}
-	
-	// 공지사항 글쓰기
-//	@PreAuthorize("isAuthenticated()") // 인증된 사용자인 경우 true
-	@GetMapping("/noticeWrite")
-	public void noticeWriteGet() {
-		log.info("write form 요청");
-	}
-	
-	@GetMapping("/write")
-	public void writeGet() {
-		log.info("write form 요청");
-	}
-	
-	// 공지사항 글 작성하기
-//	@PreAuthorize("isAuthenticated()")
-	@PostMapping("/noticeWrite")
-	public String noticeWritePost(NoticeVO vo, RedirectAttributes rttr) {
-		log.info("공지사항 글 작성 요청"+vo);
-		
-		if(service.insertNotice(vo)) {
-			rttr.addFlashAttribute("result", vo.getBno());
-			return "redirect:notice";
-		}
-		return "noticeWrite";
-	}
-	
-	// 공지사항 읽기
-	@GetMapping(value= {"/noticeRead","/noticeModify"})
-	public void noticeRead(int bno, @ModelAttribute("cri") Criteria cri, Model model) {
-		log.info(bno+"번째 공지사항 Read 요청"+cri);
-		
-		NoticeVO vo = service.readNotice(bno);
-		model.addAttribute("vo", vo);
-	}
-	
-	// 공지사항 수정하기
-	@PostMapping("/noticeModify")
-	public String modifyPost(NoticeVO vo, RedirectAttributes rttr) {
-		log.info("공지사항 수정 요청"+vo);
-		
-		if(service.modifyNotice(vo)) {
-			rttr.addAttribute("bno", vo.getBno());
-			return "redirect:noticeRead";
-		}
-		rttr.addAttribute("bno", vo.getBno());
-		return "redirect:noticeModify";
-	}
-	
-	// 게시글 삭제하기
-//	@PreAuthorize("principal.username == #writer")
-	@PostMapping("/remove")
-	public String delete(int bno, String writer, Criteria cri, RedirectAttributes rttr) {
-		log.info("삭제 요청"+bno);
-		
-		// 현재 글번호에 해당한는 첨부파일 목록을 서버에서 삭제하기 위해서
-		// bno에 해당하는 첨부파일 리스트 가져오기
-//		List<AttachFileVO> attachList=service.attachList(bno);
-		
-		if(service.deleteNotice(bno)) {
-//			rttr.addAttribute("pageNum", cri.getPageNum());
-//			rttr.addAttribute("amount", cri.getAmount());
-//			rttr.addAttribute("type", cri.getType());
-//			rttr.addAttribute("keyword", cri.getKeyword());
-//			rttr.addFlashAttribute("result", "success");
-			return "redirect:notice";
-		}else {
-			rttr.addAttribute("bno", bno);
-			return "redirect:noticeRead";
-		}
 	}
 	
 	@GetMapping("/review")

@@ -205,8 +205,8 @@
 								<c:forEach var="vo" items="${list}">
 									<tr>
 										<td>${vo.bno}</td>
-										<td><a href="noticeRead?bno=${vo.bno}">${vo.title}</a></td>
-										<%-- <td><a href="<c:out value='${vo.bno}'/>" class="move">${vo.title}</a></td> --%>
+										<%-- <td><a href="noticeRead?bno=${vo.bno}">${vo.title}</a></td> --%>
+										<td><a href="<c:out value='${vo.bno}'/>" class="move">${vo.title}</a></td>
 										<td>${vo.writer}</td>
 										<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${vo.regdate}" /></td>
 										<td>${vo.readcount}</td>
@@ -267,31 +267,39 @@
 	</div>
 <div class="gap-area">
 </div>
-</section>
-<div class="modal" tabindex="-1">
+<%-- 페이지 번호를 누르면 동작하는 폼 --%>
+<form action="notice" id="actionForm">
+	<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum}" />
+	<input type="hidden" name="amount" value="${pageVO.cri.amount}" />
+	<input type="hidden" name="type" value="${cri.type}" /> <!-- value="${pageVO.cri.type}" 도 가능 -->
+	<input type="hidden" name="keyword" value="${pageVO.cri.keyword}" />
+</form>
+<!-- 모달 추가 -->
+<div class="modal" tabindex="-1" role="dialog" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">게시글 추가</h5>
+        <h5 class="modal-title">공지사항</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>공지사항이 등록되었습니다.</p>
+        <p>처리가 완료되었습니다.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- 스크립트 -->
 <script>
 $(function(){
 	let result = '${result}';
-	checkModal(result);
+ 	checkModal(result);
 	history.replaceState({}, null, null);
 	 
 	function checkModal(result){
@@ -299,7 +307,7 @@ $(function(){
 			return;
 		}
 		if(parseInt(result)>0){
-			$(".modal-body").html("게시글 "+parseInt(result)+" 번이 등록되었습니다.");
+			$(".modal-body").html("공지사항 "+parseInt(result)+" 번이 등록되었습니다.");
 		}
 		$("#myModal").modal("show");
 	}
@@ -329,7 +337,7 @@ $(function(){
 		// 이렇게 작성하는 부분 대체
 		e.preventDefault();
 		actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"' />");
-		actionForm.attr('action','read');
+		actionForm.attr('action','noticeRead');
 		actionForm.submit();
 	})
 	
@@ -342,7 +350,7 @@ $(function(){
 		// 비어있으면 메세지 띄워준 후 return
 		let type = $("select[name='type']").val();
 		let keyword = $("input[name='keyword']").val();
-		
+	
 		if(type===''){
 			alert("검색 기준을 입력해주세요");
 			return false;
@@ -352,6 +360,8 @@ $(function(){
 		}
 		// 모두 입력이 된 경우 폼 전송
 		searchForm.find("input[name='pageNum']").val("1");
+		searchForm.find("input[name='amount']").val("10");
+
 		searchForm.submit();
 	})
 })

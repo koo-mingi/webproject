@@ -213,7 +213,7 @@
 					</div>
 				</div>
 			</div>
-			<button type="button" class="btn btn-secondary" onclick="location.href='notice'">목록</button>          			
+			<button type="button" class="btn btn-secondary" onclick="location.href='notice?pageNum=${cri.pageNum}&amount=${cri.amount}'">목록</button>          			
 			<button type="button" class="btn btn-danger" style="float: right; margin-left: 5px;" onclick="remove_click()">삭제</button>  
 			<button type="button" class="btn btn-warning" style="float: right;" onclick="location.href='noticeModify?bno=${vo.bno}'">수정</button>
 			<input type="hidden" name="bno" value="${vo.bno}" />
@@ -224,12 +224,17 @@
 <br />
 <div class="gap-area">
 </div>
-<!-- 수정하기 버튼누르면 수정화면으로 이동 -->
+<%-- 페이지 나누기와 다른 작업들을 위해서 폼 작성 --%>
 <form action="" id="myForm">
 	<input type="hidden" name="bno" value="${vo.bno}" />
 	<input type="hidden" name="writer" value="${vo.writer}" />
+	<input type="hidden" name="pageNum" value="${cri.pageNum}" />
+	<input type="hidden" name="amount" value="${cri.amount}" />
+	<input type="hidden" name="type" value="${cri.type}" />
+	<input type="hidden" name="keyword" value="${cri.keyword}" />
 </form>
 <script>
+// 게시글 삭제하기
 function remove_click() {
 	let form = $("#myForm");
 	
