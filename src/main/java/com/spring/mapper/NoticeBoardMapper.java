@@ -12,4 +12,5 @@ public interface NoticeBoardMapper {
 	public NoticeVO read(int bno);
 	public int modify(NoticeVO vo);
 	public int delete(int bno);
+	public int hitUpdate(int bno);
 }

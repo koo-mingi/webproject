@@ -43,7 +43,7 @@ public class MenuController {
 	
 	// 공지사항 목록보기
 	@GetMapping("/notice")
-	public void noticeGet(Model model, Criteria cri) {
+	public void noticeGet(Model model,@ModelAttribute("cri") Criteria cri) {
 		log.info("notice list 요청");
 		List<NoticeVO> list = service.getList(cri);
 		// 현재 페이지에 보여줄 게시물
@@ -70,11 +70,15 @@ public class MenuController {
 	public String noticeWritePost(NoticeVO vo, RedirectAttributes rttr) {
 		log.info("공지사항 글 작성 요청"+vo);
 		
-		if(service.insertNotice(vo)) {
-			rttr.addFlashAttribute("result", vo.getBno());
-			return "redirect:notice";
+		try {
+			if(service.insertNotice(vo)) {
+				rttr.addFlashAttribute("result", vo.getBno());
+				return "redirect:notice";
+			}
+			return "noticeWrite";
+		} catch (Exception e) {
+			return "noticeWrite";
 		}
-		return "noticeWrite";
 	}
 	
 	// 공지사항 읽기
@@ -88,7 +92,6 @@ public class MenuController {
 		model.addAttribute("vo", vo);
 		log.info(""+cri.getPageNum());
 		log.info(""+cri.getAmount());
-		
 	}
 	
 	// 공지사항 수정화면 Get
@@ -109,13 +112,15 @@ public class MenuController {
 			rttr.addAttribute("bno", vo.getBno());
 			rttr.addAttribute("pageNum", cri.getPageNum());
 			rttr.addAttribute("amount", cri.getAmount());
+			rttr.addAttribute("type", cri.getType());
+			rttr.addAttribute("keyword", cri.getKeyword());
 			return "redirect:noticeRead";
 		}
 		rttr.addAttribute("bno", vo.getBno());
 		return "redirect:noticeModify";
 	}
 	
-	// 게시글 삭제하기
+	// 공지사항 삭제하기
 //	@PreAuthorize("principal.username == #writer")
 	@PostMapping("/remove")
 	public String delete(int bno, String writer, Criteria cri, RedirectAttributes rttr) {

@@ -8,15 +8,14 @@
 		<!-- html에서 <>는 태그를 여닫는 의미로 쓰이기 때문에 부등호로 쓸 경우 에러남 <![CDATA[ ]]>로 방지하기 -->
 		<![CDATA[		 
 		select * 
-		from (select /*+ INDEX_DESC(noticeBoard pk_noticeBoard) */
-		      rownum rn, bno, title, writer, readcount, regdate
+		from (select /*+INDEX_DESC(noticeBoard pk_noticeBoard)*/ rownum rn, bno, title, writer, readcount, regdate
 		      from noticeBoard
 		      where
    		]]>      
 		<include refid="criteria"></include>
 		<![CDATA[ 
 	       bno>0 and rownum <= (#{pageNum}*#{amount}))
-		where rn>(#{pageNum}-1)*#{amount}
+		where rn>((#{pageNum}-1)*#{amount})
 		]]>
 	</select>
 	<select id="total" resultType="int">
@@ -48,6 +47,11 @@
 	<delete id="delete">
 		delete from noticeBoard where bno=#{bno}
 	</delete>
+	
+	<!-- 공지사항 조회수 올리기 -->
+	<update id="hitUpdate">
+		update noticeBoard set readcount=readcount+1 where bno=#{bno}
+	</update>
 	
 	<!-- 동적 SQL 작성 -->
 	<sql id="criteria">
