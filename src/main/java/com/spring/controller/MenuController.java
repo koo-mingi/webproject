@@ -22,15 +22,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequestMapping("/menu")
 public class MenuController {
-		
-	@GetMapping("/pricing")
-	public void pricingGet() { 
-		log.info("pricing 요청");
-	} 
 	
-	@GetMapping("/hotplace")
-	public void hotplaceGet() {
-		log.info("hotplace 요청");
+	@GetMapping("/video")
+	public void videoGet() {
+		log.info("video 요청");
 	}
 	
 	@GetMapping("/know-how")
@@ -43,13 +38,18 @@ public class MenuController {
 		log.info("review 요청");
 	}
 	
+	@GetMapping("/hotplace")
+	public void hotplaceGet() {
+		log.info("hotplace 요청");
+	}
+	
 	@GetMapping("/shop")
 	public void shopGet() {
 		log.info("shop 요청");
 	}
 	
-	@GetMapping("/video")
-	public void videoGet() {
-		log.info("video 요청");
-	}
+	@GetMapping("/pricing")
+	public void pricingGet() { 
+		log.info("pricing 요청");
+	} 
 }
