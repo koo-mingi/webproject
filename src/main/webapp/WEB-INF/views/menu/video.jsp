@@ -209,7 +209,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="classes__item classes__item__page">
                         <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-1.jpg">
-                            <span>Beginer</span>
+                            <!-- <span>Beginer</span> -->
                         </div>
                         <div class="classes__item__text">
                             <ul>
@@ -217,7 +217,7 @@
                                 <li><span class="icon_clock_alt"></span> 18:30 - 19:30</li>
                             </ul>
                             <h4><a href="#">100 Hour Yoga Course Rishikesh</a></h4>
-                            <h6>Jordan Lawson <span>- Yoga Teacher</span></h6>
+                            <h6>Jordan Lawson <span>- channelTitle </span></h6>
                             <a href="#" class="class-btn">JOIN NOW</a>
                         </div>
                     </div>
@@ -225,7 +225,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="classes__item classes__item__page">
                         <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-2.jpg">
-                            <span>All levels</span>
+                            <!-- <span>All levels</span> -->
                         </div>
                         <div class="classes__item__text">
                             <ul>
@@ -233,7 +233,7 @@
                                 <li><span class="icon_clock_alt"></span> 18:30 - 19:30</li>
                             </ul>
                             <h4><a href="#">200 Hour Yoga Course Rishikesh</a></h4>
-                            <h6>Jordan Lawson <span>- Yoga Teacher</span></h6>
+                            <h6>Jordan Lawson <span>- channelTitle </span></h6>
                             <a href="#" class="class-btn">JOIN NOW</a>
                         </div>
                     </div>
@@ -241,7 +241,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="classes__item classes__item__page">
                         <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-3.jpg">
-                            <span>Beginer</span>
+                            <!-- <span>Beginer</span> -->
                         </div>
                         <div class="classes__item__text">
                             <ul>
@@ -249,7 +249,7 @@
                                 <li><span class="icon_clock_alt"></span> 18:30 - 19:30</li>
                             </ul>
                             <h4><a href="#">300 Hour Yoga Course Rishikesh</a></h4>
-                            <h6>Jordan Lawson <span>- Yoga Teacher</span></h6>
+                            <h6>Jordan Lawson <span>- channelTitle </span></h6>
                             <a href="#" class="class-btn">JOIN NOW</a>
                         </div>
                     </div>
@@ -257,7 +257,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="classes__item classes__item__page">
                         <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-4.jpg">
-                            <span>Beginer</span>
+                            <!-- <span>Beginer</span> -->
                         </div>
                         <div class="classes__item__text">
                             <ul>
@@ -265,7 +265,7 @@
                                 <li><span class="icon_clock_alt"></span> 18:30 - 19:30</li>
                             </ul>
                             <h4><a href="#">100 Hour Yoga Course Rishikesh</a></h4>
-                            <h6>Jordan Lawson <span>- Yoga Teacher</span></h6>
+                            <h6>Jordan Lawson <span>- channelTitle </span></h6>
                             <a href="#" class="class-btn">JOIN NOW</a>
                         </div>
                     </div>
@@ -273,7 +273,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="classes__item classes__item__page">
                         <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-5.jpg">
-                            <span>All levels</span>
+                            <!-- <span>All levels</span> -->
                         </div>
                         <div class="classes__item__text">
                             <ul>
@@ -281,7 +281,7 @@
                                 <li><span class="icon_clock_alt"></span> 18:30 - 19:30</li>
                             </ul>
                             <h4><a href="#">200 Hour Yoga Course Rishikesh</a></h4>
-                            <h6>Jordan Lawson <span>- Yoga Teacher</span></h6>
+                            <h6>Jordan Lawson <span>- channelTitle </span></h6>
                             <a href="#" class="class-btn">JOIN NOW</a>
                         </div>
                     </div>
@@ -289,7 +289,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="classes__item classes__item__page">
                         <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-6.jpg">
-                            <span>Beginer</span>
+                            <!-- <span>Beginer</span> -->
                         </div>
                         <div class="classes__item__text">
                             <ul>
@@ -297,7 +297,7 @@
                                 <li><span class="icon_clock_alt"></span> 18:30 - 19:30</li>
                             </ul>
                             <h4><a href="#">300 Hour Yoga Course Rishikesh</a></h4>
-                            <h6>Jordan Lawson <span>- Yoga Teacher</span></h6>
+                            <h6>Jordan Lawson <span>- channelTitle </span></h6>
                             <a href="#" class="class-btn">JOIN NOW</a>
                         </div>
                     </div>
@@ -305,7 +305,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="classes__item classes__item__page">
                         <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-7.jpg">
-                            <span>Beginer</span>
+                            <!-- <span>Beginer</span> -->
                         </div>
                         <div class="classes__item__text">
                             <ul>
@@ -313,7 +313,7 @@
                                 <li><span class="icon_clock_alt"></span> 18:30 - 19:30</li>
                             </ul>
                             <h4><a href="#">100 Hour Yoga Course Rishikesh</a></h4>
-                            <h6>Jordan Lawson <span>- Yoga Teacher</span></h6>
+                            <h6>Jordan Lawson <span>- channelTitle </span></h6>
                             <a href="#" class="class-btn">JOIN NOW</a>
                         </div>
                     </div>
@@ -321,7 +321,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="classes__item classes__item__page">
                         <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-8.jpg">
-                            <span>All levels</span>
+                            <!-- <span>All levels</span> -->
                         </div>
                         <div class="classes__item__text">
                             <ul>
@@ -329,7 +329,7 @@
                                 <li><span class="icon_clock_alt"></span> 18:30 - 19:30</li>
                             </ul>
                             <h4><a href="#">200 Hour Yoga Course Rishikesh</a></h4>
-                            <h6>Jordan Lawson <span>- Yoga Teacher</span></h6>
+                            <h6>Jordan Lawson <span>- channelTitle </span></h6>
                             <a href="#" class="class-btn">JOIN NOW</a>
                         </div>
                     </div>
@@ -337,7 +337,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="classes__item classes__item__page">
                         <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-9.jpg">
-                            <span>Beginer</span>
+                            <!-- <span>Beginer</span> -->
                         </div>
                         <div class="classes__item__text">
                             <ul>
@@ -345,7 +345,7 @@
                                 <li><span class="icon_clock_alt"></span> 18:30 - 19:30</li>
                             </ul>
                             <h4><a href="#">300 Hour Yoga Course Rishikesh</a></h4>
-                            <h6>Jordan Lawson <span>- Yoga Teacher</span></h6>
+                            <h6>Jordan Lawson <span>- channelTitle </span></h6>
                             <a href="#" class="class-btn">JOIN NOW</a>
                         </div>
                     </div>
@@ -509,15 +509,23 @@
     <script src="/resources/js/jquery.slicknav.js"></script>
     <script src="/resources/js/owl.carousel.min.js"></script>
     <script src="/resources/js/main.js"></script>
-	
-	<!-- 운동 검색 -->
+		
+	<!-- 운동 검색 스크립트 -->
 	<script>
 	$(function(){
 		$("#searchOp").click(function(){
-			let url = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyDKULjchbgQy69Uc62iDbcXGcg_CYnUHhU&part=snippet&type=video&maxResults=20&videoEmbeddable=true&q=";
+			let url = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyDKULjchbgQy69Uc62iDbcXGcg_CYnUHhU&part=snippet&type=video&maxResults=9&videoEmbeddable=true&q=";
 			// 사용자가 선택한 운동 가져오기
 			url+=$("#fitArea").val()+$("#fitStyle").val()+$("#fitYouTuber").val();
-			console.log(url);
+			/* console.log(url); */
+			
+			let list = $("div.row > div > div.classes__item.classes__item__page");		
+/* 			for(var i=0;i<list.length;i++){			
+				let div = list[i];				
+				//첫번째 img div
+				childes1 = div.children[0];			   
+			    console.log($(childes1).attr('data-setbg', view));
+			} */
 			
 			// ajax로 데이터 요청하기
 			$.ajax({
@@ -525,8 +533,36 @@
 				type : "get",
 				success : function(data){
 					console.log(data);
+ 					
+					$.each(data.items, function(i, elt) {
+						
+						let div = list[i];				
+						// 첫번째 img div
+						childes1 = div.children[0];			   
+						// 두번째 설명 div
+						childes2 = div.children[1];
+					    console.log(childes2);
+					    // 두번째 설명 div > h4
+						childes2_1 = div.children[1].h4;
+					    // 두번째 설명 div > h6
+						childes2_2 = div.children[1].h6;
+												
+						let viewImg = elt.snippet.thumbnails.high.url;		
+						let title = elt.snippet.title;
+						let channelTitle = elt.snippet.channelTitle;
+						
+						/* $("#view1").attr('data-setbg', viewImg); */
+						$(childes1).attr('data-setbg', viewImg);
+						$(childes1).css('background-image',"url("+viewImg+")");
+ 						$(childes2_1).empty();
+						$(childes2_1).attr('a', title);
+						$(childes2).append('h6', channelTitle);
+						
+						
+						
+					})
 				}
-			})
+			}) /* ajax end */
 		})
 	})
 	</script>
