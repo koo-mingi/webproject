@@ -17,4 +17,6 @@ public interface NoticeBoardService {
 	public boolean modifyNotice(NoticeVO vo);
 	// 공지사항 글 삭제
 	public boolean deleteNotice(int bno);
+//	// 공지사항 조회수 올리기
+//	public boolean updateReadCnt(int bno);
 }

@@ -11,4 +11,5 @@ import com.spring.domain.ShopProductVO;
 public interface ShopMapper {
 	public List<ShopProductVO> select(ShopCriteria cri);
 	public int total(ShopCriteria cri);
+	public ShopProductVO get(int pid);
 }

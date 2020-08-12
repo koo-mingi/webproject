@@ -3,14 +3,14 @@
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
 
     <!-- Breadcrumb Begin -->
-    <section class="breadcrumb-option set-bg" data-setbg="img/breadcrumb.jpg">
+    <section class="breadcrumb-option set-bg" data-setbg="/resources/img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__text">
                         <h2>Blog</h2>
                         <div class="breadcrumb__widget">
-                            <a href="./index.html">Home</a>
+                            <a href="/">Home</a>
                             <span>Blog</span>
                         </div>
                     </div>

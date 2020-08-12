@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.domain.Criteria;
 import com.spring.domain.NoticeVO;
@@ -30,9 +31,15 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 		return mapper.create(vo)==1? true:false;
 	}
 
+	@Transactional
 	@Override
 	public NoticeVO readNotice(int bno) {
-		return mapper.read(bno);
+		
+		if(mapper.read(bno) != null) {
+			mapper.hitUpdate(bno);
+			return mapper.read(bno);
+		}
+		return null;
 	}
 
 	@Override
@@ -44,5 +51,10 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 	public boolean deleteNotice(int bno) {
 		return mapper.delete(bno)==1? true:false;
 	}
+
+//	@Override
+//	public boolean updateReadCnt(int bno) {
+//		return mapper.hitUpdate(bno)==1? true:false;
+//	}
 
 }

@@ -54,8 +54,12 @@ public class ShopController {
 	}
 	
 	@GetMapping("/single-product")
-	public void singleProductGet(){
+	public void singleProductGet(int pid,Model model){
 		log.info("상품 상세페이지");
+		log.info("pid : "+pid);
+		
+		model.addAttribute("vo", shopService.get(pid));
+		
 	}
 	
 	@GetMapping("/checkout")

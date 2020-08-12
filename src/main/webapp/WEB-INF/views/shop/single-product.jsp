@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
 <!-- Start Banner Area -->
 	<section class="banner-area organic-breadcrumb">
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>Product Details Page</h1>
+					<h1>상품 상세 페이지</h1>
 					<nav class="d-flex align-items-center">
 						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
 						<a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
@@ -25,29 +26,28 @@
 				<div class="col-lg-6">
 					<div class="s_Product_carousel">
 						<div class="single-prd-item">
-							<img class="img-fluid" src="img/category/s-p1.jpg" alt="">
+							<img class="img-fluid" src="/resources/shop/img/category/s-p1.jpg" alt="">
 						</div>
 						<div class="single-prd-item">
-							<img class="img-fluid" src="img/category/s-p1.jpg" alt="">
+							<img class="img-fluid" src="/resources/shop/img/category/s-p1.jpg" alt="">
 						</div>
 						<div class="single-prd-item">
-							<img class="img-fluid" src="img/category/s-p1.jpg" alt="">
+							<img class="img-fluid" src="/resources/shop/img/category/s-p1.jpg" alt="">
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
-						<h3>Faded SkyBlu Denim Jeans</h3>
-						<h2>$149.99</h2>
+						<h3>${vo.pname }</h3>
+						<h2>￦ ${vo.saleprice }</h2>
+							<h6 class="l-through">￦ ${vo.price }</h6>
 						<ul class="list">
-							<li><a class="active" href="#"><span>Category</span> : Household</a></li>
-							<li><a href="#"><span>Availibility</span> : In Stock</a></li>
+							<li><a class="active" href="#"><span>카테고리</span>${vo.category }</a></li>
+							<li><a href="#"><span>재고</span>${vo.amount } 개</a></li>
 						</ul>
-						<p>Mill Oil is an innovative oil filled radiator with the most modern technology. If you are looking for
-							something that can make your interior look awesome, and at the same time give you the pleasant warm feeling
-							during the winter.</p>
+						<p>${vo.simpletext }</p>
 						<div class="product_count">
-							<label for="qty">Quantity:</label>
+							<label for="qty">수량:</label>
 							<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
 							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
 							 class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
@@ -88,21 +88,7 @@
 			</ul>
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
-					<p>Beryl Cook is one of Britain’s most talented and amusing artists .Beryl’s pictures feature women of all shapes
-						and sizes enjoying themselves .Born between the two world wars, Beryl Cook eventually left Kendrick School in
-						Reading at the age of 15, where she went to secretarial school and then into an insurance office. After moving to
-						London and then Hampton, she eventually married her next door neighbour from Reading, John Cook. He was an
-						officer in the Merchant Navy and after he left the sea in 1956, they bought a pub for a year before John took a
-						job in Southern Rhodesia with a motor company. Beryl bought their young son a box of watercolours, and when
-						showing him how to use it, she decided that she herself quite enjoyed painting. John subsequently bought her a
-						child’s painting set for her birthday and it was with this that she produced her first significant work, a
-						half-length portrait of a dark-skinned lady with a vacant expression and large drooping breasts. It was aptly
-						named ‘Hangover’ by Beryl’s husband and</p>
-					<p>It is often frustrating to attempt to plan meals that are designed for one. Despite this fact, we are seeing
-						more and more recipe books and Internet websites that are dedicated to the act of cooking for one. Divorce and
-						the death of spouses or grown children leaving for college are all reasons that someone accustomed to cooking for
-						more than one would suddenly need to learn how to adjust all the cooking practices utilized before into a
-						streamlined plan of cooking that is more efficient for one person creating less</p>
+					<p>${vo.description }</p>
 				</div>
 				<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 					<div class="table-responsive">
@@ -110,66 +96,35 @@
 							<tbody>
 								<tr>
 									<td>
-										<h5>Width</h5>
+										<h5>용량</h5>
 									</td>
 									<td>
-										<h5>128mm</h5>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5>Height</h5>
-									</td>
-									<td>
-										<h5>508mm</h5>
+										<h5>${vo.volume }</h5>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<h5>Depth</h5>
+										<h5>배송비</h5>
 									</td>
 									<td>
-										<h5>85mm</h5>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5>Weight</h5>
-									</td>
-									<td>
-										<h5>52gm</h5>
+										<h5>${vo.shipcost }</h5>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<h5>Quality checking</h5>
+										<h5>보관방법</h5>
 									</td>
 									<td>
-										<h5>yes</h5>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5>Freshness Duration</h5>
-									</td>
-									<td>
-										<h5>03days</h5>
+										<h5>${vo.storage }</h5>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<h5>When packeting</h5>
+										<h5>유통기한</h5>
 									</td>
 									<td>
-										<h5>Without touch of hand</h5>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5>Each Box contains</h5>
-									</td>
-									<td>
-										<h5>60pcs</h5>
+										<h5><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.expdate }" /></h5>
+										
 									</td>
 								</tr>
 							</tbody>
@@ -182,9 +137,6 @@
 							<div class="comment_list">
 								<div class="review_item">
 									<div class="media">
-										<div class="d-flex">
-											<img src="img/product/review-1.png" alt="">
-										</div>
 										<div class="media-body">
 											<h4>Blake Ruiz</h4>
 											<h5>12th Feb, 2018 at 05:56 pm</h5>
@@ -197,9 +149,6 @@
 								</div>
 								<div class="review_item reply">
 									<div class="media">
-										<div class="d-flex">
-											<img src="img/product/review-2.png" alt="">
-										</div>
 										<div class="media-body">
 											<h4>Blake Ruiz</h4>
 											<h5>12th Feb, 2018 at 05:56 pm</h5>
@@ -212,9 +161,6 @@
 								</div>
 								<div class="review_item">
 									<div class="media">
-										<div class="d-flex">
-											<img src="img/product/review-3.png" alt="">
-										</div>
 										<div class="media-body">
 											<h4>Blake Ruiz</h4>
 											<h5>12th Feb, 2018 at 05:56 pm</h5>
@@ -233,17 +179,8 @@
 								<form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" class="form-control" id="name" name="name" placeholder="Your Full name">
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="email" class="form-control" id="email" name="email" placeholder="Email Address">
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" id="number" name="number" placeholder="Phone Number">
+											<input type="text" class="form-control" id="name" name="name" placeholder="Your Full name" readonly="readonly"
+											value="${auth.userid }">
 										</div>
 									</div>
 									<div class="col-md-12">

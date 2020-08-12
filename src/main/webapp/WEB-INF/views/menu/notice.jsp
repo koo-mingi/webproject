@@ -272,7 +272,7 @@
 	<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum}" />
 	<input type="hidden" name="amount" value="${pageVO.cri.amount}" />
 	<input type="hidden" name="type" value="${cri.type}" /> <!-- value="${pageVO.cri.type}" 도 가능 -->
-	<input type="hidden" name="keyword" value="${cri.keyword}" />
+	<input type="hidden" name="keyword" value="${pageVO.cri.keyword}" />
 </form>
 <!-- 모달 추가 -->
 <div class="modal" tabindex="-1" role="dialog" id="myModal">
@@ -350,7 +350,7 @@ $(function(){
 		// 비어있으면 메세지 띄워준 후 return
 		let type = $("select[name='type']").val();
 		let keyword = $("input[name='keyword']").val();
-		
+	
 		if(type===''){
 			alert("검색 기준을 입력해주세요");
 			return false;
@@ -361,6 +361,7 @@ $(function(){
 		// 모두 입력이 된 경우 폼 전송
 		searchForm.find("input[name='pageNum']").val("1");
 		searchForm.find("input[name='amount']").val("10");
+
 		searchForm.submit();
 	})
 })

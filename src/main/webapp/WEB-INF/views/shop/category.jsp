@@ -114,7 +114,7 @@
 							<!-- single product -->
 							<div class="col-lg-4 col-md-6">
 								<div class="single-product">
-									<a href="/shop/single-product"><img class="img-fluid" src="/resources/shop/img/product/p1.jpg" alt=""></a>
+									<a href="/shop/single-product?pid=${vo.pid}"><img class="img-fluid" src="/resources/shop/img/product/p1.jpg" alt=""></a>
 									<div class="product-details">
 										<h6>${vo.pname }</h6>
 										<div class="price">

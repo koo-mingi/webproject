@@ -26,5 +26,10 @@ public class ShopServiceImpl implements ShopService {
 	public int totalRows(ShopCriteria cri) {
 		return mapper.total(cri);
 	}
+
+	@Override
+	public ShopProductVO get(int pid) {
+		return mapper.get(pid);
+	}
 	
 }
