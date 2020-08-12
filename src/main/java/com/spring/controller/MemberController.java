@@ -1,5 +1,6 @@
 package com.spring.controller;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.domain.AuthVO;
 import com.spring.domain.LoginVO;
+import com.spring.domain.MemberVO;
 import com.spring.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -75,8 +77,15 @@ public class MemberController {
 		return new ResponseEntity<String>("fail",HttpStatus.BAD_REQUEST);
 	}
 	// 비밀번호 찾기 폼
-	@RequestMapping(value = "/find_pw_form.do")
-	public String find_pw_form() throws Exception{
+	@PostMapping(value = "/find_pw_form")
+	@ResponseBody
+	public ResponseEntity<String> find_pw_form(MemberVO member) throws Exception{
+		log.info("비밀번호 찾기 폼");
+		service.find_pw(member);
+		return new ResponseEntity<String>("success",HttpStatus.OK);
+	}
+	@GetMapping("/find_pw_form")
+	public String find_pw_formGet() {
 		return "/member/find_pw_form";
 	}
 	
