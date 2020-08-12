@@ -59,7 +59,7 @@
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit" class="genric-btn info radius">Log In</button>
-								<a href="#">Forgot Password?</a>
+								<a href="/member/find_pw_form">Forgot Password?</a>
 							</div>
 						</form>
 					</div>

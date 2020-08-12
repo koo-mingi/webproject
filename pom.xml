@@ -14,6 +14,20 @@
 		<org.slf4j-version>1.7.30</org.slf4j-version>
 	</properties>
 	<dependencies>
+	<!-- 메일 관련 api -->
+	<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+	<dependency>
+	    <groupId>javax.mail</groupId>
+	    <artifactId>mail</artifactId>
+	    <version>1.4.7</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+	<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-email -->
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-email</artifactId>
+    <version>1.5</version>
+</dependency>
 		<!-- gson -->	
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<!-- <dependency>
