@@ -5,3 +5,5 @@ create table member(
 	gender varchar2(30) not null,
 	email varchar2(50) not null
 );
+
+select * from member;
