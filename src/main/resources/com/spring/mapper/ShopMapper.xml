@@ -43,4 +43,9 @@
 	<select id="get" resultType="com.spring.domain.ShopProductVO">
 		select * from producttbl where pid=#{pid}
 	</select>
+	
+	<!-- 상품의 코멘트 목록 가져오기 -->
+	<select id="" resultType="">
+	
+	</select>
 </mapper>

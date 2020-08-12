@@ -135,18 +135,6 @@
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="comment_list">
-								<div class="review_item">
-									<div class="media">
-										<div class="media-body">
-											<h4>Blake Ruiz</h4>
-											<h5>12th Feb, 2018 at 05:56 pm</h5>
-											<a class="reply_btn" href="#">Reply</a>
-										</div>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-										commodo</p>
-								</div>
 								<div class="review_item reply">
 									<div class="media">
 										<div class="media-body">
@@ -157,19 +145,8 @@
 									</div>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
 										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-										commodo</p>
-								</div>
-								<div class="review_item">
-									<div class="media">
-										<div class="media-body">
-											<h4>Blake Ruiz</h4>
-											<h5>12th Feb, 2018 at 05:56 pm</h5>
-											<a class="reply_btn" href="#">Reply</a>
-										</div>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-										commodo</p>
+										commodo
+									</p>
 								</div>
 							</div>
 						</div>
@@ -465,4 +442,31 @@
 		</div>
 	</section>
 	<!-- End related-product Area -->
+	<script>
+		$(function(){
+			// 현재 상품의 상품번호 가져오기
+			let pid = ${vo.pid};
+			// 댓글 영역 가져오기
+			let replyUl = $(".comment_list");
+			
+			// 페이지의 댓글 보여주기
+			showList(1);
+			
+			//댓글 리스트 요청하기
+			function showList(page){
+				$.ajax({
+					url:'/shop/commentList'+pid,
+					type:'get',
+					success:function(list){
+						console.log(list);
+						
+						if(list == null || list.length === 0){
+							replyUl.html("");
+							return;
+						}
+					}
+				})
+			}
+		})
+	</script>
 <%@ include file="/WEB-INF/views/include/footer.jsp" %>
