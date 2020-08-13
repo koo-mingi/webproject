@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -9,7 +10,7 @@
     <meta name="keywords" content="Directing, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Zogin | Template</title>
+    <title>Zogin</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -28,7 +29,40 @@
 	<link rel="stylesheet" href="/resources/board/bootstrap/css/bootstrap.css">
 </head>
 
+<style>
+.keyarea {
+  height: 34px;
+  padding: 6px 12px 5px 5px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.keyarea:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+.header__nav {
+	background-color : #263246;
+	position: relative;
+	z-index: 9;
+	padding-top: 10px;
+	padding-bottom: 5px;
+}
+</style>
+
 <body>
+
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -153,7 +187,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <button id='regBtn' type='button' class='btn btn-xs pull-right btn-warning' onclick="location.href='noticeWrite'">글쓰기</button>
+                            <button id='regBtn' type='button' class='btn pull-right btn-warning' onclick="location.href='noticeWrite'">글쓰기</button>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -164,17 +198,18 @@
                                         <th>제 목</th>
                                         <th>작성자</th>
                                         <th>작성일</th>
-                                        <th>수정일</th>
+                                        <th>조회수</th>
                                     </tr>
                                 </thead>
 								<!-- 게시판 리스트 반복문 -->
 								<c:forEach var="vo" items="${list}">
 									<tr>
 										<td>${vo.bno}</td>
-										<td><a href="<c:out value='${vo.bno}'/>" class="move">${vo.title}</a><strong>[${vo.replycnt}]</strong></td>
+										<%-- <td><a href="noticeRead?bno=${vo.bno}">${vo.title}</a></td> --%>
+										<td><a href="<c:out value='${vo.bno}'/>" class="move">${vo.title}</a></td>
 										<td>${vo.writer}</td>
 										<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${vo.regdate}" /></td>
-										<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${vo.updatedate}" /></td>
+										<td>${vo.readcount}</td>
 									</tr>
 								</c:forEach>
                             </table>
@@ -193,7 +228,7 @@
                             	  	  	 	<option value="TW" <c:out value="${cri.type=='TW'?'selected':''}"/>>제목 or 작성자</option>
                             	  	  	 	<option value="TCW" <c:out value="${cri.type=='TCW'?'selected':''}"/>>제목 or 내용 or 작성자</option>
                             	  	  	 </select>
-                            	  	  	 <input type="text" name="keyword" value="${cri.keyword}"/>
+                            	  	  	 <input type="text" class="keyarea" name="keyword" value="${cri.keyword}"/>
                             	  	  	 <button class="btn btn-default" type='button'>검색</button>
                             	  	  </form>
                             	   </div>
@@ -232,5 +267,104 @@
 	</div>
 <div class="gap-area">
 </div>
+<%-- 페이지 번호를 누르면 동작하는 폼 --%>
+<form action="notice" id="actionForm">
+	<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum}" />
+	<input type="hidden" name="amount" value="${pageVO.cri.amount}" />
+	<input type="hidden" name="type" value="${cri.type}" /> <!-- value="${pageVO.cri.type}" 도 가능 -->
+	<input type="hidden" name="keyword" value="${pageVO.cri.keyword}" />
+</form>
+<!-- 모달 추가 -->
+<div class="modal" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">공지사항</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>처리가 완료되었습니다.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- 스크립트 -->
+<script>
+$(function(){
+	let result = '${result}';
+ 	checkModal(result);
+	history.replaceState({}, null, null);
+	 
+	function checkModal(result){
+		if(result === '' || history.state){
+			return;
+		}
+		if(parseInt(result)>0){
+			$(".modal-body").html("공지사항 "+parseInt(result)+" 번이 등록되었습니다.");
+		}
+		$("#myModal").modal("show");
+	}
+	
+	// 사용자가 페이지 번호를 누르면 동작하는 스크립트
+	let actionForm = $("#actionForm");
+	$(".paginate_button a").click(function(e){
+		// a 태그의 동작 막기
+		e.preventDefault();
+		// 전송해야할 폼 가져온 후 pageNum의 값과 amount 값을 변경한 후
+		actionForm.find("input[name='pageNum']").val($(this).attr("href")); // this : $(".paginate_button a")
+		// 폼 전송하기
+		actionForm.submit();
+	})
+	
+	$(".form-control").change(function(){
+		// 전송해야 할 폼 가져온 후 amount 값을 변경한 후
+		actionForm.find("input[name='amount']").val($(this).val()); // this : $(".form-control")
+		// 폼 전송하기
+		actionForm.submit();
+	})
+	
+	// 타이틀 클릭 시 페이지 나누기 정보가 있는 폼 보내기
+	$(".move").click(function(e){
+		// 36번 줄에 
+		// <a href="read?bno=${vo.bno}"$pageNum=${cri.pageNum}&amount=${cri.amount}">${vo.title}</a> 에러 조심
+		// 이렇게 작성하는 부분 대체
+		e.preventDefault();
+		actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"' />");
+		actionForm.attr('action','noticeRead');
+		actionForm.submit();
+	})
+	
+	// 검색 버튼 클릭 시 동작하는 스크립트
+	$(".btn-default").click(function(){
+		
+		let searchForm = $("#searchForm");
+
+		// type과 keyword가 비어있는지 확인하고
+		// 비어있으면 메세지 띄워준 후 return
+		let type = $("select[name='type']").val();
+		let keyword = $("input[name='keyword']").val();
+	
+		if(type===''){
+			alert("검색 기준을 입력해주세요");
+			return false;
+		}else if(keyword===''){
+			alert("검색어를 입력해주세요");
+			return false;
+		}
+		// 모두 입력이 된 경우 폼 전송
+		searchForm.find("input[name='pageNum']").val("1");
+		searchForm.find("input[name='amount']").val("10");
+
+		searchForm.submit();
+	})
+})
+</script>
+ 
 <%@ include file="/WEB-INF/views/include/footer.jsp" %>

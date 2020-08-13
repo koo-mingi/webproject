@@ -32,23 +32,24 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="login_box_img">
-						<img class="img-fluid" src="img/login.jpg" alt="">
+						<img class="img-fluid" src="/resources/shop/img/login.jpg" alt="">
 						<div class="hover">
-							<h4>New to our website?</h4>
-							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-							<a class="genric-btn info radius" href="registration.html">Create an Account</a>
+							<h4>우리 사이트에 처음 오셨습니까?</h4>
+							<p>회원가입을 해주세요!</p>
+							<p>더 많은 혜택과 정보를 얻을 수 있습니다!</p>
+							<a class="genric-btn info radius" href="/register/step1">Create an Account</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="login_form_inner">
-						<h3>Log in to enter</h3>
-						<form class="row login_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+						<h3>로그인</h3>
+						<form class="row login_form" action="/member/login" method="post" id="contactForm" novalidate="novalidate">
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+								<input type="text" class="form-control" id="inputId" name="userid" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+								<input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
@@ -58,7 +59,7 @@
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit" class="genric-btn info radius">Log In</button>
-								<a href="#">Forgot Password?</a>
+								<a href="/member/find_pw_form">Forgot Password?</a>
 							</div>
 						</form>
 					</div>

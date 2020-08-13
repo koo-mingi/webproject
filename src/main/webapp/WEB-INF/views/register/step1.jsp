@@ -23,6 +23,8 @@
     </script>
 </head>
 <body>
+<div class="gap-area">
+</div>
 <div class="container">
 <form action="../register/step2" method="post">
 	<div class="form-group">
@@ -162,6 +164,8 @@
 </label>
 <input type="submit" class="btn btn-primary btn-sm" value="다음단계">
 </form>	
+</div>
+<div class="gap-area">
 </div>
 </body>
 </html>

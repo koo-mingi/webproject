@@ -17,7 +17,7 @@ public class RegisterServiceImpl implements RegisterService {
 	 
 	@Override
 	public boolean regist(RegisterVO vo) {
-		log.info("ȸ������ ���� ȣ��....");
+		log.info("");
 		return mapper.register(vo) > 0? true:false;
 	}
 
@@ -26,6 +26,10 @@ public class RegisterServiceImpl implements RegisterService {
 		return mapper.dupId(userid) > 0 ? false:true;
 	}
 	
+	@Override
+	public boolean dupEmail(String email) {
+		return mapper.dupEmail(email) > 0 ? false:true;
+	}
 	
 
 }

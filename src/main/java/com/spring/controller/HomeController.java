@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,6 +24,11 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		log.info("홈 페이지!");
 		return "index";
+	}
+	@PostMapping("/")
+	public String index() {
+		log.info("홈페이지");
+		return "/index";
 	}
 	
 }

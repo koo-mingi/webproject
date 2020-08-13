@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.ShopMapper">
+	
+	<!-- 상품 끌고오기 -->
+	<select id="select" resultType="com.spring.domain.ShopProductVO">
+	<![CDATA[
+		select *
+		from (select rownum rn,pid,pname,price,saleprice,amount,category,description,gradeavg,volume,shipcost,storage,expdate 
+      			from (select * from producttbl
+      ]]>
+      <include refid="criteria"></include>
+      <![CDATA[		
+      			)
+      			where (saleprice between #{lower} and #{upper}) and pid > 0 and rownum <= (#{pageNum}*#{amount}))
+		where rn > (#{pageNum}-1)*#{amount}
+	]]>
+	</select>
+	
+	<!-- 상품 전체 개수 구하기 -->
+	<select id="total" resultType="int">
+		select count(*) from producttbl where pid>0 and (saleprice between #{lower} and #{upper})
+	</select>
+	
+	<!-- 동적 sql 작성 -->
+	<sql id="criteria">
+		<trim prefix="order by ">
+			<choose>
+				<when test="type == ''.toString()">
+					pid desc
+				</when>
+				<when test="type == 'R'.toString()">
+					gradeavg desc
+				</when>
+				<when test="type == 'P'.toString()">
+					saleprice desc
+				</when>
+			</choose>
+		</trim>
+	</sql>
+	
+	<!-- 상품 1개 정보 가져오기 -->
+	<select id="get" resultType="com.spring.domain.ShopProductVO">
+		select * from producttbl where pid=#{pid}
+	</select>
+	
+	<!-- 상품의 코멘트 목록 가져오기 -->
+	<select id="selectComment" resultType="com.spring.domain.ShopCommentVO">
+		<![CDATA[
+			select * 
+			from (select rownum rn, cid, pid, userid, title, content, regdate,re_ref,re_seq,re_lev
+				  from (select * from commentTBL order by re_ref desc, re_seq asc) 
+				  where pid = #{pid} and cid > 0 and rownum <= #{pageNum} * 10)
+			where rn > (#{pageNum}-1) * 10
+			 
+		]]>
+	</select>
+	
+	<!-- 상품 코멘트 추가하기 --> 
+	<insert id="insertComment">
+		insert into commentTBL(cid,pid,userid,title,content,re_ref)
+		 values(comment_seq.nextval,#{pid},#{userid},#{title},#{content},comment_seq.currval)
+	</insert>
+	
+	<!-- 상품 코멘트 답글 달기 -->
+	<insert id="insertCommentReply">
+		insert into commentTBL(cid,pid,userid,title,content,re_ref,re_seq,re_lev)
+		 values(comment_seq.nextval,#{pid},#{userid},#{title},#{content},#{re_ref},#{re_seq},#{re_lev})
+	</insert>
+	
+	<!-- 상품 코멘트 답글달기 전에 값 변경하기 -->
+	<update id="updateComment">
+		update commentTBL set re_seq=re_seq+1 where re_ref=#{re_ref} and re_seq>#{re_seq}
+	</update>
+</mapper>

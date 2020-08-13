@@ -5,5 +5,6 @@ import com.spring.domain.RegisterVO;
 public interface RegisterService {
 	public boolean regist(RegisterVO vo);
 	public boolean dupId(String userid);
+	public boolean dupEmail(String email);
 
 }

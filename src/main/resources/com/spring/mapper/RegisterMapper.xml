@@ -10,4 +10,9 @@
 	<select id="dupId" resultType="int">
 		select count(*) from member where userid=#{userid}
 	</select>
+	<!-- 중복이메일 검사 -->
+	<select id="dupEmail" resultType="int">
+		select count(*) from member where email=#{email}
+	</select>
+	
 </mapper>

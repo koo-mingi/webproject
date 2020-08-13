@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.NoticeBoardMapper">
+
+	<!-- 글 목록 보기 -->
+	<select id="list" resultType="com.spring.domain.NoticeVO">
+		<!-- select * from noticeBoard order by bno desc -->
+		<!-- html에서 <>는 태그를 여닫는 의미로 쓰이기 때문에 부등호로 쓸 경우 에러남 <![CDATA[ ]]>로 방지하기 -->
+		<![CDATA[		 
+		select * 
+		from (select /*+INDEX_DESC(noticeBoard pk_noticeBoard)*/ rownum rn, bno, title, writer, readcount, regdate
+		      from noticeBoard
+		      where
+   		]]>      
+		<include refid="criteria"></include>
+		<![CDATA[ 
+	       bno>0 and rownum <= (#{pageNum}*#{amount}))
+		where rn>((#{pageNum}-1)*#{amount})
+		]]>
+	</select>
+	<select id="total" resultType="int">
+		select count(*) from noticeBoard where 
+		<include refid="criteria"></include>
+		bno>0
+	</select>
+	
+	<!-- 글 작성하기 -->
+	<insert id="create">
+		<selectKey keyProperty="bno" order="BEFORE" resultType="int">
+			<!-- 주로 PK 값을 미리 SQL을 통해서 처리해두고 특정한 이름으로 보관 / bno는 vo에 들어있음 -->
+			select noticeBoard_seq.nextval from dual
+		</selectKey>
+		insert into noticeBoard(bno, title, content, writer) values(#{bno}, #{title}, #{content}, #{writer}) <!-- getBno()로 가져오는 것 -->
+	</insert>
+	
+	<!-- 게시글 읽기 -->
+	<select id="read" resultType="com.spring.domain.NoticeVO">
+		select * from noticeBoard where bno=#{bno}
+	</select>
+	
+	<!-- 게시글 수정하기 -->
+	<update id="modify">
+		update noticeBoard set title=#{title}, writer=#{writer}, content=#{content} where bno=#{bno}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="delete">
+		delete from noticeBoard where bno=#{bno}
+	</delete>
+	
+	<!-- 공지사항 조회수 올리기 -->
+	<update id="hitUpdate">
+		update noticeBoard set readcount=readcount+1 where bno=#{bno}
+	</update>
+	
+	<!-- 동적 SQL 작성 -->
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR" >
+			<foreach collection="typeArr" item="type">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+</mapper>

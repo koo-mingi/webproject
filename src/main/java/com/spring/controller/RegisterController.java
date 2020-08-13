@@ -30,15 +30,14 @@ public class RegisterController {
 	
 	@GetMapping("/step1")
 	public void step1Get() {
-		// step1 ������ �����ֱ�
-		log.info("step1 ��û��"); 
+		
+		log.info("step1 가는중"); 
 		
 	}
 	@PostMapping("/step2")
 	public String step2Post(boolean agree, RedirectAttributes rttr) {
-		log.info("step2 ��û��"+agree);
-		//agree üũ ���ο� ���� üũ�� �ȵ� ���
-		//step1 �������� �ٽ� �����ֱ�
+		log.info("step2 동의"+agree);
+		
 		if(!agree) {
 			rttr.addFlashAttribute("msg", "false");
 			return "redirect:step1";
@@ -51,44 +50,54 @@ public class RegisterController {
 	
 	
 	@PostMapping("/step3") public String step3(@ModelAttribute("vo") RegisterVO
-	regist) { //step2.jsp���� ������� �Է°� ��������
-	log.info("step2 �� ���� ��������"); 
+	regist) { 
+	log.info("step2 "); 
 	log.info(""+regist);
 	
 	if(regist.isPasswordEqualToConfirmPassword()) { 
-		// step3.jsp �����ֱ�
+		
 	if(service.regist(regist)) { 
-		log.info("ȸ������ ����"); 
+		log.info("회원가입 성공"); 
 		return "/register/step3"; 
 		}else { 
 			return "/register/step2"; 
 			} 
-	}else { //ȸ�������������� ���������� 
+	}else { 
 		return "/register/step2"; 
 		} 
 	}
 	
 	
-	@GetMapping(value= {"/step2","/step3"}) 
-	public String handleStep2_3() { 
-		//	����ڰ� step2, step3�� get ������� ��û�ϴ� 
-		// ��쿡 step1���� �ǵ���������
-	
-	return "redirect:step1";
-	
-	}
+//	@GetMapping(value= {"/step2","/step3"}) 
+//	public String handleStep2_3() { 
+//		
+//	
+//	return "redirect:step1";
+//	
+//	}
 	
 	 
-	/*
-	 * @PostMapping("/checkId")
-	 * 
-	 * @ResponseBody //controller���� ������ ���� jsp���� �ƴ��� �ǹ� public String
-	 * checkId(String userid) { log.info("�ߺ����̵� �˻� : "+userid);
-	 * if(service.dupId(userid)) { return "true"; }else { return "false"; } }
-	 * 
-	 * }
-	 */
+	@PostMapping("/checkId")
+	@ResponseBody  //controller
+	public String checkId(String userid) {
+		log.info("userid : "+userid);
+		if(service.dupId(userid)) {
+			return "true";
+		}else {
+			return "false";
+		}
+	}
 	
+	@PostMapping("/checkEmail")
+	@ResponseBody  //controller
+	public String checkEmail(String email) {
+		log.info("userid : "+email);
+		if(service.dupEmail(email)) {
+			return "true";
+		}else {
+			return "false";
+		}
+	}
 	
 	@GetMapping("/step3")
 	public void step3Get() {

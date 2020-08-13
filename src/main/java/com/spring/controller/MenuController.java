@@ -1,9 +1,20 @@
 package com.spring.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.spring.domain.Criteria;
+import com.spring.domain.NoticeVO;
+import com.spring.domain.PageVO;
+import com.spring.service.NoticeBoardService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,14 +23,9 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/menu")
 public class MenuController {
 	
-	@GetMapping("/pricing")
-	public void pricingGet() { 
-		log.info("pricing 요청");
-	} 
-	
-	@GetMapping("/hotplace")
-	public void hotplaceGet() {
-		log.info("hotplace 요청");
+	@GetMapping("/video")
+	public void videoGet() {
+		log.info("video 요청");
 	}
 	
 	@GetMapping("/know-how")
@@ -27,39 +33,14 @@ public class MenuController {
 		log.info("know-how 요청");
 	}
 	
-	@GetMapping("/notice")
-	public void noticeGet() {
-		log.info("notice 요청");
-	}
-	
-	// 공지사항 글쓰기
-//	@PreAuthorize("isAuthenticated()") // 인증된 사용자인 경우 true
-	@GetMapping("/write")
-	public void noticeWriteGet() {
-		log.info("write form 요청");
-	}
-	
-	// 공지사항 글 작성하기
-//	@PreAuthorize("isAuthenticated()")
-	@PostMapping("/noticeWrite")
-	public void noticeWritePost() {
-		log.info("공지사항 글 작성 요청");
-//	public String noticePost(BoardVO vo, RedirectAttributes rttr) {
-//		log.info("글 작성 요청"+vo);
-//		
-//		if(vo.getAttachList()!=null) {
-//			vo.getAttachList().forEach(attach -> log.info(attach+""));
-//		}
-//		
-//		if(service.insertBoard(vo)) {
-//			rttr.addFlashAttribute("result", vo.getBno());
-//			return "redirect:list";
-//		}
-	}
-	
 	@GetMapping("/review")
 	public void reviewGet() {
 		log.info("review 요청");
+	}
+	
+	@GetMapping("/hotplace")
+	public void hotplaceGet() {
+		log.info("hotplace 요청");
 	}
 	
 	@GetMapping("/shop")
@@ -67,8 +48,8 @@ public class MenuController {
 		log.info("shop 요청");
 	}
 	
-	@GetMapping("/video")
-	public void videoGet() {
-		log.info("video 요청");
-	}
+	@GetMapping("/pricing")
+	public void pricingGet() { 
+		log.info("pricing 요청");
+	} 
 }

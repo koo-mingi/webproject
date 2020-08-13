@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -10,7 +9,7 @@ pageEncoding="UTF-8"%>
     <meta name="keywords" content="Directing, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Zogin | Template</title>
+    <title>Zogin</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -36,7 +35,6 @@ pageEncoding="UTF-8"%>
 	<link rel="stylesheet" href="/resources/shop/css/ion.rangeSlider.skinFlat.css" />
 	<link rel="stylesheet" href="/resources/shop/css/main.css">
 	
-	 
 </head>
 
 <body>
@@ -148,7 +146,11 @@ pageEncoding="UTF-8"%>
             </div>
         </div>
     </header>
+<div class="gap-area">
+</div>
 
+<div class="gap-area">
+</div>
     <div class="container" style="margin-top:40px">
       <form id="regist" method="post" action="step3">
         <div class="form-group row justify-content-center">
@@ -253,7 +255,10 @@ pageEncoding="UTF-8"%>
         </div>
       </form>
     </div>
-
+<div class="gap-area">
+</div>
+<div class="gap-area">
+</div>
   <!-- Footer Section Begin -->
     <section class="footer">
         <div class="container">
