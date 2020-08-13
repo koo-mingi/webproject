@@ -108,7 +108,7 @@
 	                            <sec:authorize access="isAuthenticated()">
 		                        	<a href="/member/logout" id="logout" class="genric-btn info radius"> Logout</a>
 		                        </sec:authorize>
-	                            <a href="/member/leave" class="genric-btn info radius">My page</a>
+	                            <a href="/member/know-how" class="genric-btn info radius">My page</a>
                             </c:if>
                         </div>
                     </div>

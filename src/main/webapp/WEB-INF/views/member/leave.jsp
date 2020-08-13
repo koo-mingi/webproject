@@ -23,10 +23,10 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 			<div class="form-group text-center">		
 				<button type="submit" class="btn btn-primary">탈퇴</button>
 			    <button type="button" class="btn btn-secondary" id="leavecancel">취소</button>		
-			</div>
+			</div>			
 		</div>
-	</div>		
-</form>
+	</div>				
+</form>	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 $(function(){
