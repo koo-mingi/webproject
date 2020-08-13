@@ -23,5 +23,9 @@ public interface MemberService {
 	public void send_mail(MemberVO member, String div) throws Exception;
 
 	public void find_pw(MemberVO member) throws Exception;
+	
+	MemberVO update_mypage(MemberVO member) throws Exception;
+
+	public boolean update_pw1(MemberVO member);
 
 }
