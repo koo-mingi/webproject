@@ -12,7 +12,7 @@
       <include refid="criteria"></include>
       <![CDATA[		
       			)
-      			where (saleprice between #{lower} and #{upper}) and rownum <= (#{pageNum}*#{amount}))
+      			where (saleprice between #{lower} and #{upper}) and pid > 0 and rownum <= (#{pageNum}*#{amount}))
 		where rn > (#{pageNum}-1)*#{amount}
 	]]>
 	</select>
@@ -45,7 +45,31 @@
 	</select>
 	
 	<!-- 상품의 코멘트 목록 가져오기 -->
-	<select id="" resultType="">
-	
+	<select id="selectComment" resultType="com.spring.domain.ShopCommentVO">
+		<![CDATA[
+			select * 
+			from (select rownum rn, cid, pid, userid, title, content, regdate,re_ref,re_seq,re_lev
+				  from (select * from commentTBL order by re_ref desc, re_seq asc) 
+				  where pid = #{pid} and cid > 0 and rownum <= #{pageNum} * 10)
+			where rn > (#{pageNum}-1) * 10
+			 
+		]]>
 	</select>
+	
+	<!-- 상품 코멘트 추가하기 --> 
+	<insert id="insertComment">
+		insert into commentTBL(cid,pid,userid,title,content,re_ref)
+		 values(comment_seq.nextval,#{pid},#{userid},#{title},#{content},comment_seq.currval)
+	</insert>
+	
+	<!-- 상품 코멘트 답글 달기 -->
+	<insert id="insertCommentReply">
+		insert into commentTBL(cid,pid,userid,title,content,re_ref,re_seq,re_lev)
+		 values(comment_seq.nextval,#{pid},#{userid},#{title},#{content},#{re_ref},#{re_seq},#{re_lev})
+	</insert>
+	
+	<!-- 상품 코멘트 답글달기 전에 값 변경하기 -->
+	<update id="updateComment">
+		update commentTBL set re_seq=re_seq+1 where re_ref=#{re_ref} and re_seq>#{re_seq}
+	</update>
 </mapper>

@@ -106,6 +106,8 @@
 	
 	<!-- 상점 스크립트 -->
 	<script>
+	
+		
     let shopActionForm = $("#shopActionForm"); // 상점의 페이지와 관련된 폼
 	
     let shopAmount1 = $(".shop-amount1"); // 상점 페이지 내 개시물 개수 상단옵션
@@ -146,6 +148,7 @@
     	shopActionForm.find("input[name='type']").val($(this).val());
     	shopActionForm.submit();
     })
+    
 	</script>
 </body>
 </html>

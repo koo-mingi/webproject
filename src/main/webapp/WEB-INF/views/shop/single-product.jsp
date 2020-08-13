@@ -131,14 +131,19 @@
 						</table>
 					</div>
 				</div>
+				<!-- 코멘트 영역 -->
 				<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="comment_list">
 								<div class="review_item reply">
 									<div class="media">
+										<div class="d-flex">
+											<img src="img/product/review-1.png" alt="">
+										</div>
 										<div class="media-body">
 											<h4>Blake Ruiz</h4>
+											<h4>Title</h4>
 											<h5>12th Feb, 2018 at 05:56 pm</h5>
 											<a class="reply_btn" href="#">Reply</a>
 										</div>
@@ -153,20 +158,26 @@
 						<div class="col-lg-6">
 							<div class="review_box">
 								<h4>Post a comment</h4>
-								<form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+								<form class="row contact_form" action="" method="post" id="comment-form" novalidate="novalidate">
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" class="form-control" id="name" name="name" placeholder="Your Full name" readonly="readonly"
+											<input type="text" class="form-control" id="userid" name="userid" placeholder="Your Full name" readonly="readonly"
 											value="${auth.userid }">
 										</div>
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<textarea class="form-control" name="message" id="message" rows="1" placeholder="Message"></textarea>
+											<input type="text" class="form-control" id="title" name="title" placeholder="Title">
 										</div>
 									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<textarea class="form-control" name="content" id="content" rows="1" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<input type="hidden" name="pid" value="${vo.pid}" />
 									<div class="col-md-12 text-right">
-										<button type="submit" value="submit" class="genric-btn info radius">Submit Now</button>
+										<button type="submit" value="submit" class="comment-btn genric-btn info radius">Submit Now</button>
 									</div>
 								</form>
 							</div>
@@ -443,19 +454,41 @@
 	</section>
 	<!-- End related-product Area -->
 	<script>
-		$(function(){
+	
+	 // ----- ms 단위로 나온 시간 변경 -----//
+	function displayTime(timeVal){
+		let today = new Date();
+		
+		let gap = today.getTime()-timeVal;
+		let dateObj = new Date(timeVal);
+		
+		if(gap < (1000 * 60 * 60 * 24)){
+			let hh = dateObj.getHours();
+			let mm = dateObj.getMinutes();
+			let ss = dateObj.getSeconds();
+			return[(hh > 9 ? '' : '0')+hh,':',(mm > 9 ? '':'0')+mm,':',(ss > 9 ? '':'0')+ss].join("");
+		}else{
+			let yy = dateObj.getFullYear();
+			let mm2 = dateObj.getMonth() + 1;
+			let dd = dateObj.getDate();
+			return [yy,"/",(mm2 > 9 ? '':'0')+mm2,"/",(dd > 9 ? '':'0')+dd].join("");
+		}
+	} // 시간 변경 끝
+    
+    // ----- comment ------//
+    $(function(){
 			// 현재 상품의 상품번호 가져오기
 			let pid = ${vo.pid};
 			// 댓글 영역 가져오기
 			let replyUl = $(".comment_list");
 			
-			// 페이지의 댓글 보여주기
+			// 첫 페이지의 댓글 보여주기
 			showList(1);
 			
-			//댓글 리스트 요청하기
+			// 댓글 리스트 요청하기
 			function showList(page){
 				$.ajax({
-					url:'/shop/commentList'+pid,
+					url:'/shopcomment/'+pid+'/'+page,
 					type:'get',
 					success:function(list){
 						console.log(list);
@@ -464,9 +497,94 @@
 							replyUl.html("");
 							return;
 						}
+						
+						let str = "";
+						for(var i = 0,len = list.length||0;i<len;i++){
+							
+							let reply = list[i].re_seq > 0 ? 'reply':'';
+							let replyButton = list[i].re_seq == 0 ? '<a class="reply_btn" data-seq="'+list[i].re_seq+'" data-ref="'+list[i].re_ref+'" data-lev="'+list[i].re_lev+'" href="#">Reply</a>':'';
+							
+							str += '<div class="review_item '+reply+'" >';
+							str += '<div class="media">';
+							str += '<div class="media-body">';
+							str += '<h4> 작성자 : '+list[i].userid+'</h4>';
+							str += '<h4> 제목 : '+list[i].title+'</h4>';
+							str += '<h5> 작성 시간 : '+ displayTime(list[i].regdate)+'</h5>';
+							str += replyButton;
+							str += '</div>';
+							str += '</div>';
+							str += '<p>'+list[i].content+'</p>';
+							str += '------------------------------------------------------------------------------------------------------------------';
+							str += '</div>';
+						}
+						replyUl.html(str);
 					}
 				})
-			}
+			} // 리스트 요청 끝
+			
+			// 글 작성 폼
+			let commentForm = $("#comment-form");
+			let userid = commentForm.find("input[name='userid']");
+			let title = commentForm.find("input[name='title']");
+			let content = commentForm.find("textarea");
+			
+			// 작성하기 버튼을 클릭했을 때
+			$(".comment-btn").click(function(e){
+				
+				e.preventDefault();
+			
+				$.ajax({
+					url:'/shopcomment/new',
+					type:'post',
+					data: commentForm.serializeArray(),
+					success: function(data){
+						title.val("");
+						content.val("");
+						
+						showList(1);
+						
+					},
+					error:function(xhr,status,err){
+						alert("코멘트 추가 실패");
+					}
+					
+				})
+			}) // 코멘트 작성 버튼 끝
+			
+			// 답글달기 버튼을 클릭했을 때
+			$(".comment_list").on("click",".reply_btn",function(e){
+				
+				e.preventDefault();
+				let re_ref = $(this).data("ref");
+				let re_seq = $(this).data("seq");
+				let re_lev = $(this).data("lev");
+				console.log(re_ref);
+				console.log(re_seq);
+				console.log(re_lev);
+				
+				$.ajax({
+					url:'/shopcomment/reply',
+					type:'post',
+					data: {
+						pid : pid,
+						userid : userid.val(),
+						title : title.val(),
+						content : content.val(),
+						re_ref : re_ref,
+						re_seq : re_seq,
+						re_lev : re_lev
+					},
+					success:function(data){
+						console.log(data)
+						title.val("");
+						content.val("");
+						
+						showList(1);
+						
+					}
+				})
+			})
+			
 		})
 	</script>
 <%@ include file="/WEB-INF/views/include/footer.jsp" %>
