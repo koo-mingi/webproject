@@ -183,7 +183,7 @@
                                 <p>YouTuber:</p>
                                 <select id="fitYouTuber">
                                     <option>전체보기</option>
-                                    <option value="비타민신지니">신지니</option>
+                                    <option value="비타민신지니">비타민신지니</option>
                                     <option value="심으뜸">심으뜸</option>
                                     <option value="땅끄부부">땅끄부부</option>
                                     <option value="말왕">말왕</option>
@@ -216,9 +216,9 @@
                                 <li><span class="icon_calendar"></span> Mon, Wed, Fri</li>
                                 <li><span class="icon_clock_alt"></span> 18:30 - 19:30</li>
                             </ul>
-                            <h4><a href="#">100 Hour Yoga Course Rishikesh</a></h4>
+                            <h4 id="title"><a href="#">100 Hour Yoga Course Rishikesh</a></h4>
                             <h6>Jordan Lawson <span>- channelTitle </span></h6>
-                            <a href="#" class="class-btn">JOIN NOW</a>
+                            <a href="#" class="class-btn">Go Go!!</a>
                         </div>
                     </div>
                 </div>
@@ -232,9 +232,9 @@
                                 <li><span class="icon_calendar"></span> Mon, Wed, Fri</li>
                                 <li><span class="icon_clock_alt"></span> 18:30 - 19:30</li>
                             </ul>
-                            <h4><a href="#">200 Hour Yoga Course Rishikesh</a></h4>
+                            <h4 id="title"><a href="#">200 Hour Yoga Course Rishikesh</a></h4>
                             <h6>Jordan Lawson <span>- channelTitle </span></h6>
-                            <a href="#" class="class-btn">JOIN NOW</a>
+                            <a href="#" class="class-btn">Go Go!!</a>
                         </div>
                     </div>
                 </div>
@@ -248,9 +248,9 @@
                                 <li><span class="icon_calendar"></span> Mon, Wed, Fri</li>
                                 <li><span class="icon_clock_alt"></span> 18:30 - 19:30</li>
                             </ul>
-                            <h4><a href="#">300 Hour Yoga Course Rishikesh</a></h4>
+                            <h4 id="title"><a href="#">300 Hour Yoga Course Rishikesh</a></h4>
                             <h6>Jordan Lawson <span>- channelTitle </span></h6>
-                            <a href="#" class="class-btn">JOIN NOW</a>
+                            <a href="#" class="class-btn">Go Go!!</a>
                         </div>
                     </div>
                 </div>
@@ -264,9 +264,9 @@
                                 <li><span class="icon_calendar"></span> Mon, Wed, Fri</li>
                                 <li><span class="icon_clock_alt"></span> 18:30 - 19:30</li>
                             </ul>
-                            <h4><a href="#">100 Hour Yoga Course Rishikesh</a></h4>
+                            <h4 id="title"><a href="#">100 Hour Yoga Course Rishikesh</a></h4>
                             <h6>Jordan Lawson <span>- channelTitle </span></h6>
-                            <a href="#" class="class-btn">JOIN NOW</a>
+                            <a href="#" class="class-btn">Go Go!!</a>
                         </div>
                     </div>
                 </div>
@@ -280,9 +280,9 @@
                                 <li><span class="icon_calendar"></span> Mon, Wed, Fri</li>
                                 <li><span class="icon_clock_alt"></span> 18:30 - 19:30</li>
                             </ul>
-                            <h4><a href="#">200 Hour Yoga Course Rishikesh</a></h4>
+                            <h4 id="title"><a href="#">200 Hour Yoga Course Rishikesh</a></h4>
                             <h6>Jordan Lawson <span>- channelTitle </span></h6>
-                            <a href="#" class="class-btn">JOIN NOW</a>
+                            <a href="#" class="class-btn">Go Go!!</a>
                         </div>
                     </div>
                 </div>
@@ -296,9 +296,9 @@
                                 <li><span class="icon_calendar"></span> Mon, Wed, Fri</li>
                                 <li><span class="icon_clock_alt"></span> 18:30 - 19:30</li>
                             </ul>
-                            <h4><a href="#">300 Hour Yoga Course Rishikesh</a></h4>
+                            <h4 id="title"><a href="#">300 Hour Yoga Course Rishikesh</a></h4>
                             <h6>Jordan Lawson <span>- channelTitle </span></h6>
-                            <a href="#" class="class-btn">JOIN NOW</a>
+                            <a href="#" class="class-btn">Go Go!!</a>
                         </div>
                     </div>
                 </div>
@@ -312,9 +312,9 @@
                                 <li><span class="icon_calendar"></span> Mon, Wed, Fri</li>
                                 <li><span class="icon_clock_alt"></span> 18:30 - 19:30</li>
                             </ul>
-                            <h4><a href="#">100 Hour Yoga Course Rishikesh</a></h4>
+                            <h4 id="title"><a href="#">100 Hour Yoga Course Rishikesh</a></h4>
                             <h6>Jordan Lawson <span>- channelTitle </span></h6>
-                            <a href="#" class="class-btn">JOIN NOW</a>
+                            <a href="#" class="class-btn">Go Go!!</a>
                         </div>
                     </div>
                 </div>
@@ -328,9 +328,9 @@
                                 <li><span class="icon_calendar"></span> Mon, Wed, Fri</li>
                                 <li><span class="icon_clock_alt"></span> 18:30 - 19:30</li>
                             </ul>
-                            <h4><a href="#">200 Hour Yoga Course Rishikesh</a></h4>
+                            <h4 id="title"><a href="#">200 Hour Yoga Course Rishikesh</a></h4>
                             <h6>Jordan Lawson <span>- channelTitle </span></h6>
-                            <a href="#" class="class-btn">JOIN NOW</a>
+                            <a href="#" class="class-btn">Go Go!!</a>
                         </div>
                     </div>
                 </div>
@@ -344,9 +344,9 @@
                                 <li><span class="icon_calendar"></span> Mon, Wed, Fri</li>
                                 <li><span class="icon_clock_alt"></span> 18:30 - 19:30</li>
                             </ul>
-                            <h4><a href="#">300 Hour Yoga Course Rishikesh</a></h4>
+                            <h4 id="title"><a href="#">300 Hour Yoga Course Rishikesh</a></h4>
                             <h6>Jordan Lawson <span>- channelTitle </span></h6>
-                            <a href="#" class="class-btn">JOIN NOW</a>
+                            <a href="#" class="class-btn">Go Go!!</a>
                         </div>
                     </div>
                 </div>
@@ -514,10 +514,11 @@
 	<script>
 	$(function(){
 		$("#searchOp").click(function(){
-			let url = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyDKULjchbgQy69Uc62iDbcXGcg_CYnUHhU&part=snippet&type=video&maxResults=9&videoEmbeddable=true&q=";
+			let apiKey = "AIzaSyDKULjchbgQy69Uc62iDbcXGcg_CYnUHhU";
+			let url = "https://www.googleapis.com/youtube/v3/search?key="+apiKey+"&part=snippet&type=video&maxResults=9&videoEmbeddable=true&q=";
 			// 사용자가 선택한 운동 가져오기
 			url+=$("#fitArea").val()+$("#fitStyle").val()+$("#fitYouTuber").val();
-			/* console.log(url); */
+			console.log(url);
 			
 			let list = $("div.row > div > div.classes__item.classes__item__page");		
 /* 			for(var i=0;i<list.length;i++){			
@@ -541,28 +542,63 @@
 						childes1 = div.children[0];			   
 						// 두번째 설명 div
 						childes2 = div.children[1];
-					    console.log(childes2);
-					    // 두번째 설명 div > h4
-						childes2_1 = div.children[1].h4;
-					    // 두번째 설명 div > h6
-						childes2_2 = div.children[1].h6;
-												
-						let viewImg = elt.snippet.thumbnails.high.url;		
-						let title = elt.snippet.title;
-						let channelTitle = elt.snippet.channelTitle;
+						console.log(childes2);
+					    // 동영상 게시일 (div > ul > li)
+ 						childes2_ul = childes2.children[0];
+ 						childes2_li1 = childes2_ul.children[0];
+						console.log(childes2_li1);
+					    // 동영상 제목 div > h4
+ 						childes2_1 = childes2.children[1];
+					    // 유투브 채널명 div > h6
+						childes2_2 = childes2.children[2];
+					    // 링크연결 버튼
+						childes2_3 = childes2.children[3];
 						
-						/* $("#view1").attr('data-setbg', viewImg); */
+					    // 썸네일 이미지 url
+						let viewImg = elt.snippet.thumbnails.high.url;
+						// img div에 속성값 썸네일 이미지 url로 변경 
 						$(childes1).attr('data-setbg', viewImg);
 						$(childes1).css('background-image',"url("+viewImg+")");
- 						$(childes2_1).empty();
-						$(childes2_1).attr('a', title);
-						$(childes2).append('h6', channelTitle);
+						
+						// 동영상 게시일
+						let publishTime = elt.snippet.publishTime;
+						let publishDate = publishTime.split('T');
+						let date = publishDate[0];
+						$(childes2_li1).replaceWith("<li><span class='icon_calendar'></span>"+date+"</li>");
+						
+						// 동영상 길이
+						/* let duration = elt.contentDetails.duration;
+						console.log(duration); */
+						
+						// h4 내의 a태그 value 값 바꾸기
+ 						let title = elt.snippet.title;
+						let linkUrl = "https://www.youtube.com/watch?v=";
+ 						let videoId = elt.id.videoId;
+						$(childes2_1).attr('style', 'margin-right: 50px;');
+						$(childes2_1).html("<a href="+linkUrl+videoId+">"+title+"</a>");
+
+						// h6 태그 값 바꾸기
+						let channelTitle = elt.snippet.channelTitle;
+						/* $(childes2_2).html("<h6>"+channelTitle+"<span> - channelTitle </span></h6>"); */
+						$(childes2_2).replaceWith("<h6>"+channelTitle+"<span> - channelTitle </span></h6>");
+						
+						// 링크연결 a 태그 값 변경
+						$(childes2_3).attr('href', linkUrl+videoId);
+						
+						
+						
 						
 						
 						
 					})
 				}
 			}) /* ajax end */
+			
+			function viewCountFun(){
+				let url = "";
+				
+			} /* function end */
+			
 		})
 	})
 	</script>
