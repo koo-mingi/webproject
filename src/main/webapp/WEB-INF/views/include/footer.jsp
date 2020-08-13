@@ -89,7 +89,7 @@
     <script src="/resources/js/main.js"></script>
 
     <!-- 상점 템플릿 -->
-    <script src="/resources/shop/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- <script src="/resources/shop/js/vendor/jquery-2.2.4.min.js"></script> -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 	 crossorigin="anonymous"></script>
 	<script src="/resources/shop/js/vendor/bootstrap.min.js"></script>
@@ -106,8 +106,6 @@
 	
 	<!-- 상점 스크립트 -->
 	<script>
-	
-		
     let shopActionForm = $("#shopActionForm"); // 상점의 페이지와 관련된 폼
 	
     let shopAmount1 = $(".shop-amount1"); // 상점 페이지 내 개시물 개수 상단옵션

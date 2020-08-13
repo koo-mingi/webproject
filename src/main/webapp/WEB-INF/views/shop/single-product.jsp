@@ -154,6 +154,17 @@
 									</p>
 								</div>
 							</div>
+							<div class="comment pagination">
+								<c:if test="${shopPageVO.next }">
+									<a href="${shopPageVO.startPage-1 }" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+								</c:if>
+								<c:forEach var="idx" begin="1" end="5">
+									<a href="${idx}" class="pagination_button2 ${idx == 1 ? 'active':''}">${idx}</a>
+								</c:forEach>
+								<c:if test="${shopPageVO.next }">
+									<a href="${shopPageVO.endPage}+1" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+								</c:if>
+							</div>
 						</div>
 						<div class="col-lg-6">
 							<div class="review_box">
@@ -453,8 +464,112 @@
 		</div>
 	</section>
 	<!-- End related-product Area -->
-	<script>
 	
+  	<!-- Footer Section Begin -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <img src="/resources/img/footer-logo.png" alt="">
+                        <ul>
+                            <li><i class="fa fa-clock-o"></i> Mon - Fri: 6:30am - 07:45pm</li>
+                            <li><i class="fa fa-clock-o"></i> Sat - Sun: 8:30am - 05:45pm</li>
+                        </ul>
+                        <form action="#" class="subscribe-form">
+                            <input type="text" placeholder="Your Email">
+                            <button type="submit"><i class="fa fa-send"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h5>Inspiration</h5>
+                        <ul>
+                            <li><a href="#">Online Pilates</a></li>
+                            <li><a href="#">Yoga for Beginners</a></li>
+                            <li><a href="#">Online Pilates</a></li>
+                            <li><a href="#">Online Yoga</a></li>
+                            <li><a href="#">Conditioning</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h5>About Us</h5>
+                        <ul>
+                            <li><a href="#">Our Vision</a></li>
+                            <li><a href="#">Our Mission</a></li>
+                            <li><a href="#">Meet The Team</a></li>
+                            <li><a href="#">Introduce</a></li>
+                            <li><a href="#">Customer Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h5>Contact Us</h5>
+                        <ul class="footer-address">
+                            <li><i class="fa fa-phone"></i> (01) 436 8888</li>
+                            <li><i class="fa fa-envelope"></i> hello@zogin.com</li>
+                            <li><i class="fa fa-location-arrow"></i> 828 Granville Lights Suite 466</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__copyright">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <div class="footer__copyright__text">
+                            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+                        </div>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="footer__copyright__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+    
+    <!-- 메인 템플릿 -->
+    <script src="/resources/js/bootstrap.min.js"></script>
+    <script src="/resources/js/jquery.nice-select.min.js"></script>
+    <script src="/resources/js/jquery.barfiller.js"></script>
+    <script src="/resources/js/jquery.slicknav.js"></script>
+    <script src="/resources/js/owl.carousel.min.js"></script>
+    <script src="/resources/js/main.js"></script>
+
+    <!-- 상점 템플릿 -->
+    <script src="/resources/shop/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+	 crossorigin="anonymous"></script>
+	<script src="/resources/shop/js/vendor/bootstrap.min.js"></script>
+	<script src="/resources/shop/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/resources/shop/js/jquery.nice-select.min.js"></script>
+	<script src="/resources/shop/js/jquery.sticky.js"></script>
+	<script src="/resources/shop/js/nouislider.min.js"></script>
+	<script src="/resources/shop/js/jquery.magnific-popup.min.js"></script>
+	<script src="/resources/shop/js/owl.carousel.min.js"></script>
+	<!--gmaps Js-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+	<script src="/resources/shop/js/gmaps.min.js"></script>
+	<script src="/resources/shop/js/main.js"></script>
+	
+	<!-- 상점 스크립트 -->
+	<script>
 	 // ----- ms 단위로 나온 시간 변경 -----//
 	function displayTime(timeVal){
 		let today = new Date();
@@ -474,9 +589,9 @@
 			return [yy,"/",(mm2 > 9 ? '':'0')+mm2,"/",(dd > 9 ? '':'0')+dd].join("");
 		}
 	} // 시간 변경 끝
-    
-    // ----- comment ------//
-    $(function(){
+   
+   // ----- comment ------//
+   $(function(){
 			// 현재 상품의 상품번호 가져오기
 			let pid = ${vo.pid};
 			// 댓글 영역 가져오기
@@ -581,10 +696,18 @@
 						
 						showList(1);
 						
+					},
+					error:function(xhr,status,err){
+						alert("공백 없이 입력해 주세요");
 					}
 				})
-			})
+			}) // 답글달기 버튼 끝
+			
+			
+			// 코멘트 영역 페이징
+			let comment_page = $(".pagination");
 			
 		})
 	</script>
-<%@ include file="/WEB-INF/views/include/footer.jsp" %>
+</body>
+</html>

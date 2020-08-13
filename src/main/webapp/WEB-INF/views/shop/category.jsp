@@ -71,7 +71,7 @@
 								<span>￦</span>
 								<div id="upper-value"></div>
 							</div>
-							 	<a href="#" class="shop-price-btn genric-btn info radius">검색</a>
+							 	<a href="#" class="shop-price-btn genric-btn info radius">가격검색</a>
 						</div>
 					</div>
 				</div>
@@ -164,7 +164,7 @@
 						<a href="${idx}" class="pagination_button2 ${shopPageVO.cri.pageNum == idx?'active':'' }">${idx}</a>
 					</c:forEach>
 					<c:if test="${shopPageVO.next }">
-						<a href="${shopPageVO.endPage}+1" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+						<a href="${shopPageVO.endPage+1}" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
 					</c:if>
 						
 					</div>

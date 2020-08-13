@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.domain.PriceVO;
 import com.spring.domain.ShopCommentVO;
@@ -47,7 +48,7 @@ public class ShopServiceImpl implements ShopService {
 	public int insertComment(ShopCommentVO vo) {
 		return mapper.insertComment(vo);
 	}
-
+	
 	@Override
 	public int insertCommentReply(ShopCommentVO vo) {
 		return mapper.insertCommentReply(vo);
