@@ -4,8 +4,10 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.spring.domain.MemberVO;
 import com.spring.domain.AuthVO;
 import com.spring.domain.ChangeVO;
+import com.spring.domain.MemberVO;
 import com.spring.domain.LoginVO;
 
 public interface MemberMapper {
@@ -20,6 +22,10 @@ public interface MemberMapper {
 	public int check_email(String email);			
 	// 비밀번호 변경			
 	public int update_pw(Map<String, String> map);
+	// 임시비밀번호 변경
+	public int update_pw1(MemberVO member);
+	
+	public MemberVO login(String userid);
 			
 			
 }

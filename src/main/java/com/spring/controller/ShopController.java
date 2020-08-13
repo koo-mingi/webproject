@@ -67,5 +67,4 @@ public class ShopController {
 		log.info("결제 상세페이지");
 	}
 	
-	
 }

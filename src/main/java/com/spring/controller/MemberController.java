@@ -9,10 +9,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.AuthVO;
 import com.spring.domain.LoginVO;
@@ -88,6 +92,37 @@ public class MemberController {
 	public String find_pw_formGet() {
 		return "/member/find_pw_form";
 	}
+	// 비밀번호 변경
+	@PostMapping("/update_pw")
+	public String update_pw(MemberVO member) {
+		log.info("비밀번호 변경"+member);
+		
+		
+		boolean modify = service.update_pw1(member);
+		
+		try {
+			if(modify) {
+				return "redirect:/"; 
+				
+			}else {
+				return "/member/NewPassword";
+			}
+		} catch (Exception e) {
+			return "/member/NewPassword";
+		}
+	}
+	
+	@GetMapping("/know-how")
+	public String mypageGet() {
+		log.info("마이페이지");
+		return "/member/know-how";
+	}
+	@GetMapping("/NewPassword")
+	public String NewPassword() {
+		log.info("비밀번호 변경");
+		return "/member/NewPassword";
+	}
+	
 	
 }
 

@@ -146,5 +146,29 @@ public class MemberServiceImpl implements MemberService {
 			}
 			
 		}
+		@Override
+		public MemberVO update_mypage(MemberVO member) {
+			return mapper.login(member.getUserid());
+		}
+		
+	/*
+	 * // 비밀번호 변경
+	 * 
+	 * @Override public MemberVO update_pw1(MemberVO member, String old_pw,
+	 * HttpServletResponse response) throws Exception {
+	 * response.setContentType("text/html;charset=utf-8"); PrintWriter out =
+	 * response.getWriter();
+	 * if(!old_pw.equals(mapper.login(member.getUserid()).getPassword())) {
+	 * out.println("<script>"); out.println("alert('기존 비밀번호가 다릅니다.');");
+	 * out.println("history.go(-1);"); out.println("</script>"); out.close(); return
+	 * null; }else { mapper.update_pw1(member); return
+	 * mapper.login(member.getUserid()); } }
+	 */
+
+		@Override
+		public boolean update_pw1(MemberVO member) {
+			// TODO Auto-generated method stub
+			return mapper.update_pw1(member) > 0 ? true:false;
+		}
 
 }
