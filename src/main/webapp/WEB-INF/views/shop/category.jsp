@@ -8,7 +8,11 @@
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>상점 페이지</h1>
+				<c:if test="${cri.mainCategory =='' }"><h1>전체 카테고리</h1></c:if>
+				<c:if test="${cri.mainCategory =='1' }"><h1>식사대용 카테고리</h1></c:if>
+				<c:if test="${cri.mainCategory =='2' }"><h1>건강간식 카테고리</h1></c:if>
+				<c:if test="${cri.mainCategory =='3' }"><h1>보조식품 카테고리</h1></c:if>
+				<c:if test="${cri.mainCategory =='4' }"><h1>운동용품 카테고리</h1></c:if>
 					<nav class="d-flex align-items-center">
 						<a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
 						<a href="category">Shop</a>
@@ -24,11 +28,11 @@
 				<div class="sidebar-categories">
 					<div class="head"><b>카테고리</b></div>
 					<ul class="main-categories">
-						<li class="main-nav-list"><a href="#fruitsVegetable" ><b>전체 보기</b></a></li>
-						<li class="main-nav-list"><a href="#"><b>식사대용</b></a></li>
-						<li class="main-nav-list"><a href="#"><b>건강간식</b></a></li>
-						<li class="main-nav-list"><a href="#"><b>보조식품</b></a></li>
-						<li class="main-nav-list"><a href="#"><b>운동용품</b></a></li>
+						<li class="main-nav-list"><a href=""><b>전체 보기</b></a></li>
+						<li class="main-nav-list"><a href="1"><b>식사대용</b></a></li>
+						<li class="main-nav-list"><a href="2"><b>건강간식</b></a></li>
+						<li class="main-nav-list"><a href="3"><b>보조식품</b></a></li>
+						<li class="main-nav-list"><a href="4"><b>운동용품</b></a></li>
 					</ul>
 				</div>
 				<div class="sidebar-filter mt-50">
@@ -37,11 +41,9 @@
 						<div class="head">배송비</div>
 						<form action="#">
 							<ul>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="apple" name="brand"><label for="apple">Apple<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="asus" name="brand"><label for="asus">Asus<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="gionee" name="brand"><label for="gionee">Gionee<span>(19)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="micromax" name="brand"><label for="micromax">Micromax<span>(19)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="samsung" name="brand"><label for="samsung">Samsung<span>(19)</span></label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="apple" name="shipcost"><label for="apple">무료</label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="asus" name="shipcost"><label for="asus">2500원</label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="gionee" name="shipcost"><label for="gionee">5000원</label></li>
 							</ul>
 						</form>
 					</div>
@@ -49,13 +51,9 @@
 						<div class="head">보관방법</div>
 						<form action="#">
 							<ul>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="black" name="color"><label for="black">Black<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="balckleather" name="color"><label for="balckleather">Black
-										Leather<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="blackred" name="color"><label for="blackred">Black
-										with red<span>(19)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="gold" name="color"><label for="gold">Gold<span>(19)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="spacegrey" name="color"><label for="spacegrey">Spacegrey<span>(19)</span></label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="black" name="storage"><label for="black">냉장보관</label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="balckleather" name="storage"><label for="balckleather">상온보관</label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="blackred" name="storage"><label for="blackred">냉동보관</label></li>
 							</ul>
 						</form>
 					</div>
@@ -71,7 +69,7 @@
 								<span>￦</span>
 								<div id="upper-value"></div>
 							</div>
-							 	<a href="#" class="shop-price-btn genric-btn info radius">검색</a>
+							 	<a href="#" class="shop-price-btn genric-btn info radius">가격검색</a>
 						</div>
 					</div>
 				</div>
@@ -95,13 +93,13 @@
 					</div>
 					<div class="pagination">
 					<c:if test="${shopPageVO.prev }">
-						<a href="${shopPageVO.startPage-1 }" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+						<a href="${shopPageVO.startPage-1 }" class="prev-arrow1"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
 					</c:if>
 					<c:forEach var="idx" begin="${shopPageVO.startPage}" end="${shopPageVO.endPage}">
 						<a href="${idx}" class="pagination_button1 ${shopPageVO.cri.pageNum == idx?'active':'' }">${idx}</a>
 					</c:forEach>
 					<c:if test="${shopPageVO.next }">
-						<a href="${shopPageVO.endPage}+1" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+						<a href="${shopPageVO.endPage+1}" class="next-arrow1"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
 					</c:if>
 						
 					</div>
@@ -158,13 +156,13 @@
 					</div>
 					<div class="pagination">
 					<c:if test="${shopPageVO.prev }">
-						<a href="${shopPageVO.startPage-1 }" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+						<a href="${shopPageVO.startPage-1 }" class="prev-arrow2"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
 					</c:if>
 					<c:forEach var="idx" begin="${shopPageVO.startPage}" end="${shopPageVO.endPage}">
 						<a href="${idx}" class="pagination_button2 ${shopPageVO.cri.pageNum == idx?'active':'' }">${idx}</a>
 					</c:forEach>
 					<c:if test="${shopPageVO.next }">
-						<a href="${shopPageVO.endPage}+1" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+						<a href="${shopPageVO.endPage+1}" class="next-arrow2"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
 					</c:if>
 						
 					</div>
@@ -317,6 +315,7 @@
 		<input type="hidden" name="lower" value="${cri.lower }" />
 		<input type="hidden" name="upper" value="${cri.upper}" />
 		<input type="hidden" name="type" value="${cri.type}" />
+		<input type="hidden" name="mainCategory" value="${cri.mainCategory }" />
 	</form>
 	
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>

@@ -154,11 +154,14 @@
 									</p>
 								</div>
 							</div>
+							<div class="comment pagination">
+								
+							</div>
 						</div>
 						<div class="col-lg-6">
 							<div class="review_box">
-								<h4>Post a comment</h4>
-								<form class="row contact_form" action="" method="post" id="comment-form" novalidate="novalidate">
+								<h4>코멘트 및 답글 작성하기</h4>
+								<form class="row contact_form" action="" method="post" id="comment-form">
 									<div class="col-md-12">
 										<div class="form-group">
 											<input type="text" class="form-control" id="userid" name="userid" placeholder="Your Full name" readonly="readonly"
@@ -453,8 +456,113 @@
 		</div>
 	</section>
 	<!-- End related-product Area -->
-	<script>
 	
+  	<!-- Footer Section Begin -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <img src="/resources/img/footer-logo.png" alt="">
+                        <ul>
+                            <li><i class="fa fa-clock-o"></i> Mon - Fri: 6:30am - 07:45pm</li>
+                            <li><i class="fa fa-clock-o"></i> Sat - Sun: 8:30am - 05:45pm</li>
+                        </ul>
+                        <form action="#" class="subscribe-form">
+                            <input type="text" placeholder="Your Email">
+                            <button type="submit"><i class="fa fa-send"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h5>Inspiration</h5>
+                        <ul>
+                            <li><a href="#">Online Pilates</a></li>
+                            <li><a href="#">Yoga for Beginners</a></li>
+                            <li><a href="#">Online Pilates</a></li>
+                            <li><a href="#">Online Yoga</a></li>
+                            <li><a href="#">Conditioning</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h5>About Us</h5>
+                        <ul>
+                            <li><a href="#">Our Vision</a></li>
+                            <li><a href="#">Our Mission</a></li>
+                            <li><a href="#">Meet The Team</a></li>
+                            <li><a href="#">Introduce</a></li>
+                            <li><a href="#">Customer Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h5>Contact Us</h5>
+                        <ul class="footer-address">
+                            <li><i class="fa fa-phone"></i> (01) 436 8888</li>
+                            <li><i class="fa fa-envelope"></i> hello@zogin.com</li>
+                            <li><i class="fa fa-location-arrow"></i> 828 Granville Lights Suite 466</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__copyright">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <div class="footer__copyright__text">
+                            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+                        </div>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="footer__copyright__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer Section End -->
+	
+    <!-- Js Plugins -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+
+    
+    <!-- 메인 템플릿 -->
+    <script src="/resources/js/bootstrap.min.js"></script>
+    <script src="/resources/js/jquery.nice-select.min.js"></script>
+    <script src="/resources/js/jquery.barfiller.js"></script>
+    <script src="/resources/js/jquery.slicknav.js"></script>
+    <script src="/resources/js/owl.carousel.min.js"></script>
+    <script src="/resources/js/main.js"></script>
+
+    <!-- 상점 템플릿 -->
+	<script src="/resources/shop/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+	 crossorigin="anonymous"></script>
+	<script src="/resources/shop/js/vendor/bootstrap.min.js"></script>
+	<script src="/resources/shop/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/resources/shop/js/jquery.nice-select.min.js"></script>
+	<script src="/resources/shop/js/jquery.sticky.js"></script>
+	<script src="/resources/shop/js/nouislider.min.js"></script>
+	<script src="/resources/shop/js/jquery.magnific-popup.min.js"></script>
+	<script src="/resources/shop/js/owl.carousel.min.js"></script>
+	<!--gmaps Js-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+	<script src="/resources/shop/js/gmaps.min.js"></script>
+	<script src="/resources/shop/js/main.js"></script>
+	
+	<!-- 상점 스크립트 -->
+	<script>
 	 // ----- ms 단위로 나온 시간 변경 -----//
 	function displayTime(timeVal){
 		let today = new Date();
@@ -474,13 +582,15 @@
 			return [yy,"/",(mm2 > 9 ? '':'0')+mm2,"/",(dd > 9 ? '':'0')+dd].join("");
 		}
 	} // 시간 변경 끝
-    
-    // ----- comment ------//
-    $(function(){
+   
+   // ----- comment ------//
+   $(function(){
 			// 현재 상품의 상품번호 가져오기
 			let pid = ${vo.pid};
 			// 댓글 영역 가져오기
 			let replyUl = $(".comment_list");
+			// 댓글 페이지 나누기 담기
+			let pageNum = 1;
 			
 			// 첫 페이지의 댓글 보여주기
 			showList(1);
@@ -490,8 +600,10 @@
 				$.ajax({
 					url:'/shopcomment/'+pid+'/'+page,
 					type:'get',
-					success:function(list){
-						console.log(list);
+					success:function(data){
+						console.log(data);
+						let list = data.list;
+						let total = data.total;
 						
 						if(list == null || list.length === 0){
 							replyUl.html("");
@@ -518,6 +630,7 @@
 							str += '</div>';
 						}
 						replyUl.html(str);
+						showReplyPage(total);
 					}
 				})
 			} // 리스트 요청 끝
@@ -545,7 +658,7 @@
 						
 					},
 					error:function(xhr,status,err){
-						alert("코멘트 추가 실패");
+						alert("코멘트 추가 실패. 공백없이 작성해 주세요.");
 					}
 					
 				})
@@ -581,10 +694,68 @@
 						
 						showList(1);
 						
+					},
+					error:function(xhr,status,err){
+						alert("공백 없이 입력해 주세요");
 					}
 				})
-			})
+			}) // 답글달기 버튼 끝
 			
+			
+			// 코멘트 페이징 영역 가져오기
+			let comment_page = $(".pagination");
+			
+			// 코멘트 페이지 번호 만들기
+			function showReplyPage(total){
+				
+				//페이지 당 답글 수
+				let amount = 10;
+				//마지막 페이지 계산
+				let endPage = Math.ceil(pageNum/10.0)*5;
+				//시작 페이지 계산
+				let startPage = endPage - 4;
+				//이전버튼
+				let prev = startPage != 1;
+				//다음버튼
+				let next = false;
+				//실제 마지막 페이지 계산
+				let realEnd = Math.ceil(total/10.0);
+				
+				if(endPage * amount >= total){
+					endPage = realEnd
+				}
+				if(endPage * amount < total){
+					next = true;
+				}
+				
+				// 코멘트 페이지 영역 만들기
+				let str = "";
+				if(prev){
+					str += '<a href="'+(startPage - 1)+'" class="prev-arrow">';
+					str += '<i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>';
+				}
+				for(var i = startPage; i<= endPage;i++){
+					let active = pageNum == i ? 'active':'';
+					str += '<a href="'+i+'" class="pagination_button2 '+ active +'">'+i+'</a>';
+				}	
+				if(next){
+					str += '<a href="'+(endPage + 1)+'" class="next-arrow">';
+					str += '<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>';
+				}
+				
+				comment_page.html(str);
+
+			}// 코멘트 페이지 번호 만들기 끝
+			
+			// 코멘트 페이지 번호를 누르면 실행되는 스크립트
+			comment_page.on("click","a",function(e){
+				
+				e.preventDefault();
+				pageNum = $(this).attr("href");
+				showList(pageNum);
+				
+			}) // 코멘트 페이지 번호를 누르면 실행되는 스크립트 끝
 		})
 	</script>
-<%@ include file="/WEB-INF/views/include/footer.jsp" %>
+</body>
+</html>
