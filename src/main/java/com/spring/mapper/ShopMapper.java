@@ -19,4 +19,5 @@ public interface ShopMapper {
 	public int insertComment(ShopCommentVO vo);
 	public int insertCommentReply(ShopCommentVO vo);
 	public int updateComment(ShopCommentVO vo);
+	public int totalComment(int pid);
 }

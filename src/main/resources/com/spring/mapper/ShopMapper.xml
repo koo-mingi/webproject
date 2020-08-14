@@ -12,7 +12,11 @@
       <include refid="criteria"></include>
       <![CDATA[		
       			)
-      			where (saleprice between #{lower} and #{upper}) and pid > 0 and rownum <= (#{pageNum}*#{amount}))
+      			where (saleprice between #{lower} and #{upper}) and pid > 0 and rownum <= (#{pageNum}*#{amount})
+      ]]>
+      <include refid="mainCaterory"></include>
+      <![CDATA[	
+      			)
 		where rn > (#{pageNum}-1)*#{amount}
 	]]>
 	</select>
@@ -20,6 +24,7 @@
 	<!-- 상품 전체 개수 구하기 -->
 	<select id="total" resultType="int">
 		select count(*) from producttbl where pid>0 and (saleprice between #{lower} and #{upper})
+		<include refid="mainCaterory"></include>
 	</select>
 	
 	<!-- 동적 sql 작성 -->
@@ -34,6 +39,26 @@
 				</when>
 				<when test="type == 'P'.toString()">
 					saleprice desc
+				</when>
+			</choose>
+		</trim>
+	</sql>
+	
+	<!-- 메인 카테고리 sql 작성 -->
+	<sql id="mainCaterory">
+		<trim prefix=" and ">
+			<choose>
+				<when test="mainCategory == '1'.toString()">
+					category like '식사대용'
+				</when>
+				<when test="mainCategory == '2'.toString()">
+					category like '건강간식'
+				</when>
+				<when test="mainCategory == '3'.toString()">
+					category like '보조식품'
+				</when>
+				<when test="mainCategory == '4'.toString()">
+					category like '운동용품'
 				</when>
 			</choose>
 		</trim>
@@ -72,4 +97,9 @@
 	<update id="updateComment">
 		update commentTBL set re_seq=re_seq+1 where re_ref=#{re_ref} and re_seq>#{re_seq}
 	</update>
+	
+	<!-- 특정 상품의 전체 답글 개수 가져오기 -->
+	<select id="totalComment" resultType="int">
+		select count(*) from commentTBL where pid=#{pid} and cid>0
+	</select>
 </mapper>

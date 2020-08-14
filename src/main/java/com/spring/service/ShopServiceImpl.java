@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.domain.PriceVO;
+import com.spring.domain.ShopCommentPageVO;
 import com.spring.domain.ShopCommentVO;
 import com.spring.domain.ShopCriteria;
 import com.spring.domain.ShopProductVO;
@@ -37,11 +38,16 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public List<ShopCommentVO> selectComment(int pid,int pageNum) {
+	public ShopCommentPageVO selectComment(int pid,int pageNum) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("pid", pid);
 		map.put("pageNum", pageNum);
-		return mapper.selectComment(map);
+		
+		ShopCommentPageVO vo = new ShopCommentPageVO();
+		vo.setList(mapper.selectComment(map));
+		vo.setTotal(mapper.totalComment(pid));
+		
+		return vo;
 	}
 
 	@Override

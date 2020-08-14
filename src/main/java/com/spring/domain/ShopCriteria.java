@@ -10,6 +10,7 @@ public class ShopCriteria {
 	private float lower;  // 최소 가격
 	private float upper;  // 최대 가격
 	private String type; // 검색 조건
+	private String mainCategory; // 메인 카테고리
 	
 	public ShopCriteria() {
 		this.amount=12;
@@ -18,5 +19,6 @@ public class ShopCriteria {
 		this.lower=1000;
 		this.upper=100000;
 		this.type="";
+		this.mainCategory="";
 	}
 }

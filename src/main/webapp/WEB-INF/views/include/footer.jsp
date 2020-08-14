@@ -110,7 +110,8 @@
 	
     let shopAmount1 = $(".shop-amount1"); // 상점 페이지 내 개시물 개수 상단옵션
     let shopAmount2 = $(".shop-amount2"); // 상점 페이지 내 개시물 개수 하단옵션
-    let shopCategory = $(".shop-category"); // 상점 페이지 내 카테고리 옵션 버튼
+    let shopCategory = $(".shop-category"); // 상점 페이지 내 정렬 카테고리 옵션 버튼
+    let mainCategories = $(".main-categories");  // 상점 페이지 내 메인 카테고리 버튼
     
     //----- Page Amount --------//
     
@@ -134,7 +135,31 @@
 		shopActionForm.submit();
     })
     
-        $(".pagination_button2").click(function(e){ // 상단 페이지 버튼
+     $(".prev-arrow1").click(function(e){ // 상단 이전 페이지 버튼
+    	e.preventDefault();
+		shopActionForm.find("input[name='pageNum']").val($(this).attr("href"));
+		shopActionForm.submit();
+    })
+    
+    $(".next-arrow1").click(function(e){ // 상단 이후 페이지 버튼
+    	e.preventDefault();
+		shopActionForm.find("input[name='pageNum']").val($(this).attr("href"));
+		shopActionForm.submit();
+    })
+    	
+    $(".pagination_button2").click(function(e){ // 하단 페이지 버튼
+    	e.preventDefault();
+		shopActionForm.find("input[name='pageNum']").val($(this).attr("href"));
+		shopActionForm.submit();
+    })
+    
+    $(".prev-arrow2").click(function(e){ // 하단 이전 페이지 버튼
+    	e.preventDefault();
+		shopActionForm.find("input[name='pageNum']").val($(this).attr("href"));
+		shopActionForm.submit();
+    })
+    
+    $(".next-arrow2").click(function(e){ // 하단 이후 페이지 버튼
     	e.preventDefault();
 		shopActionForm.find("input[name='pageNum']").val($(this).attr("href"));
 		shopActionForm.submit();
@@ -144,6 +169,15 @@
     
     shopCategory.change(function(){
     	shopActionForm.find("input[name='type']").val($(this).val());
+    	shopActionForm.submit();
+    })
+    
+    //------ main-categories ------//
+    mainCategories.on("click","a",function(e){
+    	e.preventDefault();
+    	console.log($(this).attr("href"));
+    	shopActionForm.find("input[name='mainCategory']").val($(this).attr("href"));
+    	shopActionForm.find("input[name='pageNum']").val("1");
     	shopActionForm.submit();
     })
     

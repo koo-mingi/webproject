@@ -41,6 +41,7 @@ public class ShopController {
 		
 		log.info("가격 : "+cri.getLower()+", 최대 : "+cri.getUpper());
 		log.info("type : ",cri.getType());
+		log.info("category : ",cri.getMainCategory());
 		
 		model.addAttribute("shopPageVO", new ShopPageVO(cri, shopService.totalRows(cri)));
 		List<ShopProductVO> list = shopService.select(cri);

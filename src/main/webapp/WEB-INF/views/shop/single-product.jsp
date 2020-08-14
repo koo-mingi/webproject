@@ -155,21 +155,13 @@
 								</div>
 							</div>
 							<div class="comment pagination">
-								<c:if test="${shopPageVO.next }">
-									<a href="${shopPageVO.startPage-1 }" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-								</c:if>
-								<c:forEach var="idx" begin="1" end="5">
-									<a href="${idx}" class="pagination_button2 ${idx == 1 ? 'active':''}">${idx}</a>
-								</c:forEach>
-								<c:if test="${shopPageVO.next }">
-									<a href="${shopPageVO.endPage}+1" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-								</c:if>
+								
 							</div>
 						</div>
 						<div class="col-lg-6">
 							<div class="review_box">
-								<h4>Post a comment</h4>
-								<form class="row contact_form" action="" method="post" id="comment-form" novalidate="novalidate">
+								<h4>코멘트 및 답글 작성하기</h4>
+								<form class="row contact_form" action="" method="post" id="comment-form">
 									<div class="col-md-12">
 										<div class="form-group">
 											<input type="text" class="form-control" id="userid" name="userid" placeholder="Your Full name" readonly="readonly"
@@ -539,10 +531,11 @@
         </div>
     </section>
     <!-- Footer Section End -->
-
+	
     <!-- Js Plugins -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+
     
     <!-- 메인 템플릿 -->
     <script src="/resources/js/bootstrap.min.js"></script>
@@ -553,7 +546,7 @@
     <script src="/resources/js/main.js"></script>
 
     <!-- 상점 템플릿 -->
-    <script src="/resources/shop/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="/resources/shop/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 	 crossorigin="anonymous"></script>
 	<script src="/resources/shop/js/vendor/bootstrap.min.js"></script>
@@ -596,6 +589,8 @@
 			let pid = ${vo.pid};
 			// 댓글 영역 가져오기
 			let replyUl = $(".comment_list");
+			// 댓글 페이지 나누기 담기
+			let pageNum = 1;
 			
 			// 첫 페이지의 댓글 보여주기
 			showList(1);
@@ -605,8 +600,10 @@
 				$.ajax({
 					url:'/shopcomment/'+pid+'/'+page,
 					type:'get',
-					success:function(list){
-						console.log(list);
+					success:function(data){
+						console.log(data);
+						let list = data.list;
+						let total = data.total;
 						
 						if(list == null || list.length === 0){
 							replyUl.html("");
@@ -633,6 +630,7 @@
 							str += '</div>';
 						}
 						replyUl.html(str);
+						showReplyPage(total);
 					}
 				})
 			} // 리스트 요청 끝
@@ -660,7 +658,7 @@
 						
 					},
 					error:function(xhr,status,err){
-						alert("코멘트 추가 실패");
+						alert("코멘트 추가 실패. 공백없이 작성해 주세요.");
 					}
 					
 				})
@@ -704,9 +702,59 @@
 			}) // 답글달기 버튼 끝
 			
 			
-			// 코멘트 영역 페이징
+			// 코멘트 페이징 영역 가져오기
 			let comment_page = $(".pagination");
 			
+			// 코멘트 페이지 번호 만들기
+			function showReplyPage(total){
+				
+				//페이지 당 답글 수
+				let amount = 10;
+				//마지막 페이지 계산
+				let endPage = Math.ceil(pageNum/10.0)*5;
+				//시작 페이지 계산
+				let startPage = endPage - 4;
+				//이전버튼
+				let prev = startPage != 1;
+				//다음버튼
+				let next = false;
+				//실제 마지막 페이지 계산
+				let realEnd = Math.ceil(total/10.0);
+				
+				if(endPage * amount >= total){
+					endPage = realEnd
+				}
+				if(endPage * amount < total){
+					next = true;
+				}
+				
+				// 코멘트 페이지 영역 만들기
+				let str = "";
+				if(prev){
+					str += '<a href="'+(startPage - 1)+'" class="prev-arrow">';
+					str += '<i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>';
+				}
+				for(var i = startPage; i<= endPage;i++){
+					let active = pageNum == i ? 'active':'';
+					str += '<a href="'+i+'" class="pagination_button2 '+ active +'">'+i+'</a>';
+				}	
+				if(next){
+					str += '<a href="'+(endPage + 1)+'" class="next-arrow">';
+					str += '<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>';
+				}
+				
+				comment_page.html(str);
+
+			}// 코멘트 페이지 번호 만들기 끝
+			
+			// 코멘트 페이지 번호를 누르면 실행되는 스크립트
+			comment_page.on("click","a",function(e){
+				
+				e.preventDefault();
+				pageNum = $(this).attr("href");
+				showList(pageNum);
+				
+			}) // 코멘트 페이지 번호를 누르면 실행되는 스크립트 끝
 		})
 	</script>
 </body>
