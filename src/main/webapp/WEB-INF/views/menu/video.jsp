@@ -510,11 +510,72 @@
     <script src="/resources/js/owl.carousel.min.js"></script>
     <script src="/resources/js/main.js"></script>
 		
-	<!-- 운동 검색 스크립트 -->
 	<script>
 	$(function(){
-		$("#searchOp").click(function(){
-			let apiKey = "AIzaSyDKULjchbgQy69Uc62iDbcXGcg_CYnUHhU";
+		let apiKey = "AIzaSyDKULjchbgQy69Uc62iDbcXGcg_CYnUHhU";
+		function dataFunc(videoId){
+			
+			let url = "https://www.googleapis.com/youtube/v3/videos?key="+apiKey+"&part=contentDetails,statistics&id="+videoId;
+			console.log(url);
+			
+			$.ajax({
+				url : url,
+				type : "get",
+				success : function(data){
+					let duration = data.items[0].contentDetails.duration;
+					console.log(duration);
+				},
+				error : function(xhr, textStatus, error){
+					console.log(xhr.status);
+				}
+			
+			})
+			
+			// 동영상 재생시간
+			/* let duration = .contentDetails.duration;
+			return duration; */
+			
+			/* 
+			// 동영상 재생시간 HH:MM:SS 형태로 변환
+			var hourRegex = new RegExp("[0-9]{1,2}H", "gi");
+			var minRegex = new RegExp("[0-9]{1,2}M", "gi");
+			var secRegex = new RegExp("[0-9]{1,2}S", "gi");
+			
+			var hour = hourRegex.exec(duration);
+			var min = minRegex.exec(duration);
+			var sec = secRegex.exec(duration);
+			
+			if(hour!==null){
+			    hour = hour.toString().split("H")[0] + ":";
+			}else{
+			    hour = "";
+			}
+			if(min !==null){
+				min = min.toString().split("M")[0];
+			    if(min.length<2){
+			    	min = "0"+min;
+				}
+			}else{
+			    min = "00";
+			}
+			if(sec !==null){
+			    sec = sec.toString().split("S")[0];
+			    if(sec.length<2){
+				    sec = "0"+sec;
+				}
+			}else{
+			    sec = "00";
+			}
+			duration = hour+min+":"+sec;
+			
+			// 조회수
+			let viewCount = elt.statistics.viewCount;
+			
+			console.log(viewCount); */
+			
+			
+		} /* function end */
+		$("#searchOp").click(function(){			
 			let url = "https://www.googleapis.com/youtube/v3/search?key="+apiKey+"&part=snippet&type=video&maxResults=9&videoEmbeddable=true&q=";
 			// 사용자가 선택한 운동 가져오기
 			url+=$("#fitArea").val()+$("#fitStyle").val()+$("#fitYouTuber").val();
@@ -565,11 +626,7 @@
 						let publishDate = publishTime.split('T');
 						let date = publishDate[0];
 						$(childes2_li1).replaceWith("<li><span class='icon_calendar'></span>"+date+"</li>");
-						
-						// 동영상 길이
-						/* let duration = elt.contentDetails.duration;
-						console.log(duration); */
-						
+							
 						// h4 내의 a태그 value 값 바꾸기
  						let title = elt.snippet.title;
 						let linkUrl = "https://www.youtube.com/watch?v=";
@@ -585,23 +642,17 @@
 						// 링크연결 a 태그 값 변경
 						$(childes2_3).attr('href', linkUrl+videoId);
 						
-						
-						
-						
+						console.log(dataFunc(videoId));	
 						
 						
 					})
 				}
 			}) /* ajax end */
-			
-			function viewCountFun(){
-				let url = "";
-				
-			} /* function end */
-			
-		})
+		}) /* searchOp end */
+		
 	})
 	</script>
+	<!-- 운동 검색 스크립트 -->
 </body>
 </html>
 
