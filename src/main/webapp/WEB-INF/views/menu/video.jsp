@@ -209,7 +209,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="classes__item classes__item__page">
                         <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-1.jpg">
-                            <!-- <span>Beginer</span> -->
+                            <span>Beginer</span>
                         </div>
                         <div class="classes__item__text">
                             <ul>
@@ -225,7 +225,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="classes__item classes__item__page">
                         <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-2.jpg">
-                            <!-- <span>All levels</span> -->
+                            <span>All levels</span>
                         </div>
                         <div class="classes__item__text">
                             <ul>
@@ -241,7 +241,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="classes__item classes__item__page">
                         <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-3.jpg">
-                            <!-- <span>Beginer</span> -->
+                            <span>Beginer</span>
                         </div>
                         <div class="classes__item__text">
                             <ul>
@@ -257,7 +257,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="classes__item classes__item__page">
                         <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-4.jpg">
-                            <!-- <span>Beginer</span> -->
+                            <span>Beginer</span>
                         </div>
                         <div class="classes__item__text">
                             <ul>
@@ -273,7 +273,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="classes__item classes__item__page">
                         <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-5.jpg">
-                            <!-- <span>All levels</span> -->
+                            <span>All levels</span>
                         </div>
                         <div class="classes__item__text">
                             <ul>
@@ -289,7 +289,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="classes__item classes__item__page">
                         <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-6.jpg">
-                            <!-- <span>Beginer</span> -->
+                            <span>Beginer</span>
                         </div>
                         <div class="classes__item__text">
                             <ul>
@@ -305,7 +305,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="classes__item classes__item__page">
                         <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-7.jpg">
-                            <!-- <span>Beginer</span> -->
+                            <span>Beginer</span>
                         </div>
                         <div class="classes__item__text">
                             <ul>
@@ -321,7 +321,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="classes__item classes__item__page">
                         <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-8.jpg">
-                            <!-- <span>All levels</span> -->
+                            <span>All levels</span>
                         </div>
                         <div class="classes__item__text">
                             <ul>
@@ -337,7 +337,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="classes__item classes__item__page">
                         <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-9.jpg">
-                            <!-- <span>Beginer</span> -->
+                            <span>Beginer</span>
                         </div>
                         <div class="classes__item__text">
                             <ul>
@@ -513,67 +513,82 @@
 	<script>
 	$(function(){
 		let apiKey = "AIzaSyDKULjchbgQy69Uc62iDbcXGcg_CYnUHhU";
+		var dataList = new Array(2);
 		function dataFunc(videoId){
 			
 			let url = "https://www.googleapis.com/youtube/v3/videos?key="+apiKey+"&part=contentDetails,statistics&id="+videoId;
-			console.log(url);
+			/* console.log(url); */
 			
 			$.ajax({
 				url : url,
 				type : "get",
+				/* async: false, */
 				success : function(data){
+					// 동영상 재생시간 추출
 					let duration = data.items[0].contentDetails.duration;
-					console.log(duration);
+										
+					// 동영상 재생시간 HH:MM:SS 형태로 변환
+					var hourRegex = new RegExp("[0-9]{1,2}H", "gi");
+					var minRegex = new RegExp("[0-9]{1,2}M", "gi");
+					var secRegex = new RegExp("[0-9]{1,2}S", "gi");
+					
+					var hour = hourRegex.exec(duration);
+					var min = minRegex.exec(duration);
+					var sec = secRegex.exec(duration);
+					
+					if(hour!==null){
+					    hour = hour.toString().split("H")[0] + ":";
+					}else{
+					    hour = "";
+					}
+					if(min !==null){
+						min = min.toString().split("M")[0];
+					    if(min.length<2){
+					    	min = "0"+min;
+						}
+					}else{
+					    min = "00";
+					}
+					if(sec !==null){
+					    sec = sec.toString().split("S")[0];
+					    if(sec.length<2){
+						    sec = "0"+sec;
+						}
+					}else{
+					    sec = "00";
+					}
+					duration = hour+min+":"+sec;
+					/* console.log(duration); */
+					
+					// 조회수 추출
+					let viewCount = data.items[0].statistics.viewCount;
+					/* console.log(viewCount); */
+					
+					if(viewCount.length > 5){
+						var viewCnt = viewCount.slice(0,-4);
+						viewCnt = viewCnt+"만회";
+					}else if(viewCount.length == 5){
+						var viewCnt = viewCount.slice(0,-3);
+						var fc = viewCnt.slice(0,1);
+						var lc = viewCnt.slice(1,2);
+						viewCnt = fc+"."+lc+"만회";
+					}else if(viewCount < 5){
+						var viewCnt = viewCount.slice(0,-3);
+						viewCnt = "0."+viewCnt+"만회";
+					}
+					/* console.log(viewCnt); */
+					
+					// 재생시간, 조회수 리스트에 담아서 리턴
+					dataList = [duration, viewCnt];
+					console.log(dataList);
+					/* return dataList; */
 				},
 				error : function(xhr, textStatus, error){
 					console.log(xhr.status);
 				}
 			
 			})
-			
-			// 동영상 재생시간
-			/* let duration = .contentDetails.duration;
-			return duration; */
-			
-			/* 
-			// 동영상 재생시간 HH:MM:SS 형태로 변환
-			var hourRegex = new RegExp("[0-9]{1,2}H", "gi");
-			var minRegex = new RegExp("[0-9]{1,2}M", "gi");
-			var secRegex = new RegExp("[0-9]{1,2}S", "gi");
-			
-			var hour = hourRegex.exec(duration);
-			var min = minRegex.exec(duration);
-			var sec = secRegex.exec(duration);
-			
-			if(hour!==null){
-			    hour = hour.toString().split("H")[0] + ":";
-			}else{
-			    hour = "";
-			}
-			if(min !==null){
-				min = min.toString().split("M")[0];
-			    if(min.length<2){
-			    	min = "0"+min;
-				}
-			}else{
-			    min = "00";
-			}
-			if(sec !==null){
-			    sec = sec.toString().split("S")[0];
-			    if(sec.length<2){
-				    sec = "0"+sec;
-				}
-			}else{
-			    sec = "00";
-			}
-			duration = hour+min+":"+sec;
-			
-			// 조회수
-			let viewCount = elt.statistics.viewCount;
-			
-			console.log(viewCount); */
-			
-			
+			return dataList;
 		} /* function end */
 		$("#searchOp").click(function(){			
 			let url = "https://www.googleapis.com/youtube/v3/search?key="+apiKey+"&part=snippet&type=video&maxResults=9&videoEmbeddable=true&q=";
@@ -594,7 +609,7 @@
 				url : url,
 				type : "get",
 				success : function(data){
-					console.log(data);
+					/* console.log(data); */
  					
 					$.each(data.items, function(i, elt) {
 						
@@ -603,11 +618,11 @@
 						childes1 = div.children[0];			   
 						// 두번째 설명 div
 						childes2 = div.children[1];
-						console.log(childes2);
+						/* console.log(childes2); */
 					    // 동영상 게시일 (div > ul > li)
  						childes2_ul = childes2.children[0];
  						childes2_li1 = childes2_ul.children[0];
-						console.log(childes2_li1);
+						/* console.log(childes2_li1); */
 					    // 동영상 제목 div > h4
  						childes2_1 = childes2.children[1];
 					    // 유투브 채널명 div > h6
@@ -642,12 +657,22 @@
 						// 링크연결 a 태그 값 변경
 						$(childes2_3).attr('href', linkUrl+videoId);
 						
-						console.log(dataFunc(videoId));	
-						
+						/* dataFunc(videoId).; */
+						console.log(dataFunc(videoId));
+						/* console.log(dataFunc(videoId)); */
+						/* let duration = dataFunc(videoId).children[0]; */
+						/* let duration = dList[1]; */
+						/* let viewCnt = dList[1]; */
+						/* console.log(duration); */
+						/* console.log(viewCnt); */
 						
 					})
 				}
 			}) /* ajax end */
+			
+			
+			
+			
 		}) /* searchOp end */
 		
 	})
