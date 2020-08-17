@@ -112,6 +112,7 @@
     let shopAmount2 = $(".shop-amount2"); // 상점 페이지 내 개시물 개수 하단옵션
     let shopCategory = $(".shop-category"); // 상점 페이지 내 정렬 카테고리 옵션 버튼
     let mainCategories = $(".main-categories");  // 상점 페이지 내 메인 카테고리 버튼
+    let shipCost = $(".ship-cost");
     
     //----- Page Amount --------//
     
@@ -177,6 +178,22 @@
     	e.preventDefault();
     	console.log($(this).attr("href"));
     	shopActionForm.find("input[name='mainCategory']").val($(this).attr("href"));
+    	shopActionForm.find("input[name='pageNum']").val("1");
+    	shopActionForm.submit();
+    })
+    
+    //----- ship-cost ---- //
+    $("input[name='shipcost']").click(function(){
+    	console.log($(this).val());
+    	shopActionForm.find("input[name='shipCost']").val($(this).val());
+    	shopActionForm.find("input[name='pageNum']").val("1");
+    	shopActionForm.submit();
+    })
+
+    //----- storage ---- //
+    $("input[name='storage']").click(function(){
+    	console.log($(this).val());
+    	shopActionForm.find("input[name='storage']").val($(this).val());
     	shopActionForm.find("input[name='pageNum']").val("1");
     	shopActionForm.submit();
     })

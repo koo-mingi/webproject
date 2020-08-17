@@ -11,6 +11,8 @@ public class ShopCriteria {
 	private float upper;  // 최대 가격
 	private String type; // 검색 조건
 	private String mainCategory; // 메인 카테고리
+	private int shipCost; // 상품 필터의 배송비 필터
+	private String storage;
 	
 	public ShopCriteria() {
 		this.amount=12;
@@ -20,5 +22,7 @@ public class ShopCriteria {
 		this.upper=100000;
 		this.type="";
 		this.mainCategory="";
+		this.shipCost=2500;
+		this.storage="R";
 	}
 }

@@ -696,7 +696,8 @@
 						
 					},
 					error:function(xhr,status,err){
-						alert("공백 없이 입력해 주세요");
+						alert("코멘트 및 답글 작성하기에 공백 없이 입력해 주세요"); 
+						title.focus();
 					}
 				})
 			}) // 답글달기 버튼 끝

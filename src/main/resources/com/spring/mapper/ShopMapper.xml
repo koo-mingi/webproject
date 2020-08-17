@@ -15,6 +15,8 @@
       			where (saleprice between #{lower} and #{upper}) and pid > 0 and rownum <= (#{pageNum}*#{amount})
       ]]>
       <include refid="mainCaterory"></include>
+      <include refid="shipCost"></include>
+      <include refid="storage"></include>
       <![CDATA[	
       			)
 		where rn > (#{pageNum}-1)*#{amount}
@@ -25,6 +27,8 @@
 	<select id="total" resultType="int">
 		select count(*) from producttbl where pid>0 and (saleprice between #{lower} and #{upper})
 		<include refid="mainCaterory"></include>
+		<include refid="shipCost"></include>
+		<include refid="storage"></include>
 	</select>
 	
 	<!-- 동적 sql 작성 -->
@@ -63,6 +67,42 @@
 			</choose>
 		</trim>
 	</sql>
+	
+	<!-- 보관방법 카테고리 sql 작성 -->
+	<sql id="storage">
+		<trim prefix=" and ">
+			<choose>
+				<when test="storage == 'R'.toString()">
+					storage like '냉장보관'
+				</when>
+				<when test="storage == 'A'.toString()">
+					storage like '상온보관'
+				</when>
+				<when test="storage == 'I'.toString()">
+					storage like '냉동보관'
+				</when>
+			</choose>
+		</trim>
+	</sql>
+	
+	<!-- 배송비 카테고리 sql 작성 -->
+	<sql id="shipCost">
+		<trim prefix=" and ">
+			<choose>
+				<when test="shipCost == 0">
+					shipcost like 0
+				</when>
+				<when test="shipCost == 2500">
+					shipcost like 2500
+				</when>
+				<when test="shipCost == 5000">
+					shipcost like 5000
+				</when>
+			</choose>
+		</trim>
+	</sql>
+	
+	
 	
 	<!-- 상품 1개 정보 가져오기 -->
 	<select id="get" resultType="com.spring.domain.ShopProductVO">

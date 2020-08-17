@@ -40,10 +40,10 @@
 					<div class="common-filter">
 						<div class="head">배송비</div>
 						<form action="#">
-							<ul>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="apple" name="shipcost"><label for="apple">무료</label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="asus" name="shipcost"><label for="asus">2500원</label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="gionee" name="shipcost"><label for="gionee">5000원</label></li>
+							<ul class="ship-cost">
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="free" name="shipcost" value="0" <c:out value="${cri.shipCost == '0'?'checked':'' }"/>><label for="apple">무료</label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="2500" name="shipcost" value="2500" <c:out value="${cri.shipCost == '2500'?'checked':'' }"/>><label for="asus">2500원</label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="5000" name="shipcost" value="5000" <c:out value="${cri.shipCost == '5000'?'checked':'' }"/>><label for="gionee">5000원</label></li>
 							</ul>
 						</form>
 					</div>
@@ -51,9 +51,9 @@
 						<div class="head">보관방법</div>
 						<form action="#">
 							<ul>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="black" name="storage"><label for="black">냉장보관</label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="balckleather" name="storage"><label for="balckleather">상온보관</label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="blackred" name="storage"><label for="blackred">냉동보관</label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="black" name="storage" value="R" <c:out value="${cri.storage == 'R'?'checked':'' }"/>><label for="black">냉장보관</label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="balckleather" name="storage" value="A" <c:out value="${cri.storage == 'A'?'checked':'' }"/>><label for="balckleather">상온보관</label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="blackred" name="storage" value="I" <c:out value="${cri.storage == 'I'?'checked':'' }"/>><label for="blackred">냉동보관</label></li>
 							</ul>
 						</form>
 					</div>
@@ -128,14 +128,6 @@
 											<a href="" class="social-info">
 												<span class="lnr lnr-heart"></span>
 												<p class="hover-text">Wishlist</p>
-											</a>
-											<a href="" class="social-info">
-												<span class="lnr lnr-sync"></span>
-												<p class="hover-text">compare</p>
-											</a>
-											<a href="" class="social-info">
-												<span class="lnr lnr-move"></span>
-												<p class="hover-text">view more</p>
 											</a>
 										</div>
 									</div>
@@ -316,6 +308,8 @@
 		<input type="hidden" name="upper" value="${cri.upper}" />
 		<input type="hidden" name="type" value="${cri.type}" />
 		<input type="hidden" name="mainCategory" value="${cri.mainCategory }" />
+		<input type="hidden" name="shipCost" value="${cri.shipCost }" />
+		<input type="hidden" name="storage" value="${cri.storage }" />
 	</form>
 	
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
