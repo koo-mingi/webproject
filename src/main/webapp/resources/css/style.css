@@ -1471,15 +1471,16 @@ ol {
 }
 
 .classes__item__pic span {
-	font-size: 14px;
+	font-size: 19px;
 	font-weight: 700;
 	color: #ffffff;
 	display: inline-block;
+	text-align: center;
 	padding: 7px 16px 4px;
-	background: #5768AD;
+	background: #343a40;
 	position: absolute;
-	left: 0;
-	top: 10px;
+	right: 0;
+	bottom: 10px;
 }
 
 .classes__item__text {
@@ -1499,7 +1500,8 @@ ol {
 }
 
 .classes__item__text ul li:last-child {
-	margin-right: 0;
+	margin-right: 20px;
+	color: #000;
 }
 
 .classes__item__text ul li span {

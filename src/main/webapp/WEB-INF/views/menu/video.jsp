@@ -189,15 +189,14 @@
                                     <option value="말왕">말왕</option>
                                 </select>
                             </div>
-                            <!-- <div class="class__filter__select">
-                                <p>Teacher:</p>
-                                <select>
-                                    <option>All Teachers</option>
-                                    <option>Option 1</option>
-                                    <option>Option 2</option>
-                                    <option>Option 3</option>
+                            <div class="class__filter__select">
+                                <p>Order by:</p>
+                                <select id="orderBy">
+                                    <option value="date">최신순</option>
+                                    <option value="viewCount">조회순</option>
+                                    <option value="rating">평가순</option>
                                 </select>
-                            </div> -->
+                            </div>
                             <div class="class__filter__btn">
                                 <button id="searchOp"><i class="fa fa-search"></i></button>
                             </div>
@@ -522,7 +521,7 @@
 			$.ajax({
 				url : url,
 				type : "get",
-				/* async: false, */
+				async: false,
 				success : function(data){
 					// 동영상 재생시간 추출
 					let duration = data.items[0].contentDetails.duration;
@@ -580,7 +579,7 @@
 					
 					// 재생시간, 조회수 리스트에 담아서 리턴
 					dataList = [duration, viewCnt];
-					console.log(dataList);
+					/* console.log(dataList); */
 					/* return dataList; */
 				},
 				error : function(xhr, textStatus, error){
@@ -589,11 +588,13 @@
 			
 			})
 			return dataList;
-		} /* function end */
+		} /* function dataFunc(videoId) end */
+		
 		$("#searchOp").click(function(){			
 			let url = "https://www.googleapis.com/youtube/v3/search?key="+apiKey+"&part=snippet&type=video&maxResults=9&videoEmbeddable=true&q=";
 			// 사용자가 선택한 운동 가져오기
 			url+=$("#fitArea").val()+$("#fitStyle").val()+$("#fitYouTuber").val();
+			url+="&order="+$("#orderBy").val();
 			console.log(url);
 			
 			let list = $("div.row > div > div.classes__item.classes__item__page");		
@@ -615,13 +616,16 @@
 						
 						let div = list[i];				
 						// 첫번째 img div
-						childes1 = div.children[0];			   
+						childes1 = div.children[0];
+						// img div의 span 영역
+						durSpan = childes1.children[0];
 						// 두번째 설명 div
 						childes2 = div.children[1];
 						/* console.log(childes2); */
-					    // 동영상 게시일 (div > ul > li)
+					    // 동영상 게시일 + 조회수 (div > ul > li)
  						childes2_ul = childes2.children[0];
  						childes2_li1 = childes2_ul.children[0];
+ 						childes2_li2 = childes2_ul.children[1];
 						/* console.log(childes2_li1); */
 					    // 동영상 제목 div > h4
  						childes2_1 = childes2.children[1];
@@ -657,21 +661,23 @@
 						// 링크연결 a 태그 값 변경
 						$(childes2_3).attr('href', linkUrl+videoId);
 						
-						/* dataFunc(videoId).; */
-						console.log(dataFunc(videoId));
-						/* console.log(dataFunc(videoId)); */
-						/* let duration = dataFunc(videoId).children[0]; */
-						/* let duration = dList[1]; */
-						/* let viewCnt = dList[1]; */
-						/* console.log(duration); */
-						/* console.log(viewCnt); */
+						// 재생시간, 조회수 값 리턴받기
+						var dat = dataFunc(videoId);
+						/* console.log(dat); */
+						
+						// 재생시간
+						let durationD = dat[0];
+						console.log(durationD);
+						$(durSpan).replaceWith("<span>"+durationD+"</span>");
+						
+						// 조회수
+						let viewCntD = dat[1];
+						console.log(viewCntD);
+						$(childes2_li2).replaceWith("<li style='font-weight: bold; float: right; margin'>"+viewCntD+"</li>");
 						
 					})
 				}
 			}) /* ajax end */
-			
-			
-			
 			
 		}) /* searchOp end */
 		
