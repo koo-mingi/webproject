@@ -51,5 +51,6 @@ public class MenuController {
 	@GetMapping("/pricing")
 	public void pricingGet() { 
 		log.info("pricing 요청");
-	} 
+	}
+	
 }

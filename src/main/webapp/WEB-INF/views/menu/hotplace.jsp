@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
-
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        
     <!-- Breadcrumb Begin -->
     <section class="breadcrumb-option set-bg" data-setbg="/resources/img/breadcrumb.jpg">
         <div class="container">
@@ -19,60 +22,53 @@
         </div>
     </section>
     <!-- Breadcrumb End -->
-
-    <!-- Contact Section Begin -->
-    <section class="contact spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="contact__widget__item">
-                        <span class="icon_phone"></span>
-                        <h4>Phone</h4>
-                        <p>+01-3-8888-6868</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="contact__widget__item">
-                        <span class="icon_pin_alt"></span>
-                        <h4>Phone</h4>
-                        <p>+01-3-8888-6868</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="contact__widget__item">
-                        <span class="icon_clock_alt"></span>
-                        <h4>Phone</h4>
-                        <p>+01-3-8888-6868</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="contact__widget__item">
-                        <span class="icon_mail_alt"></span>
-                        <h4>Phone</h4>
-                        <p>+01-3-8888-6868</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Contact Section End -->
-
+	<!-- Classes Section Begin -->
+    
+                
+	<!-- Classes Section End -->
     <!-- Map Begin -->
-    <div class="map">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d49116.39176087041!2d-86.41867791216099!3d39.69977417971648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x886ca48c841038a1%3A0x70cfba96bf847f0!2sPlainfield%2C%20IN%2C%20USA!5e0!3m2!1sen!2sbd!4v1586106673811!5m2!1sen!2sbd"
-            height="500" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-        <div class="map-inside">
-            <i class="icon_pin"></i>
-            <div class="inside-widget">
-                <h5>New York</h5>
-                <ul>
-                    <li>Phone: +65 11.188.888</li>
-                    <li>Add: 60-49 Road 11378 New York</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=k3ay6zftzj"></script>
+
+	<div id="map" style="width:100%;height:400px;"></div>
+
+	<script>
+	var HOME_PATH = window.HOME_PATH || '.';
+
+	var cityhall = new naver.maps.LatLng(37.5666805, 126.9784147),
+	    map = new naver.maps.Map('map', {
+	        center: cityhall.destinationPoint(0, 500),
+	        zoom: 17
+	    }),
+	    marker = new naver.maps.Marker({
+	        map: map,
+	        position: cityhall
+	    });
+
+	var contentString = [
+	        '<div class="iw_inner">',
+	        '   <h3>서울특별시청</h3>',
+	        '   <p>서울특별시 중구 태평로1가 31 | 서울특별시 중구 세종대로 110 서울특별시청<br />',
+	        '       <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="서울시청" class="thumb" /><br />',
+	        '       02-120 | 공공,사회기관 &gt; 특별,광역시청<br />',
+	        '       <a href="http://www.seoul.go.kr" target="_blank">www.seoul.go.kr/</a>',
+	        '   </p>',
+	        '</div>'
+	    ].join('');
+
+	var infowindow = new naver.maps.InfoWindow({
+	    content: contentString
+	});
+
+	naver.maps.Event.addListener(marker, "click", function(e) {
+	    if (infowindow.getMap()) {
+	        infowindow.close();
+	    } else {
+	        infowindow.open(map, marker);
+	    }
+	});
+
+	infowindow.open(map, marker);
+	</script>
     <!-- Map End -->
 
     <!-- Leave Comment Begin -->
