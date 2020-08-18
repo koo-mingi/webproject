@@ -103,11 +103,12 @@
 	</sql>
 	
 	
-	
 	<!-- 상품 1개 정보 가져오기 -->
 	<select id="get" resultType="com.spring.domain.ShopProductVO">
 		select * from producttbl where pid=#{pid}
 	</select>
+	
+	<!-- 코멘트 dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd -->
 	
 	<!-- 상품의 코멘트 목록 가져오기 -->
 	<select id="selectComment" resultType="com.spring.domain.ShopCommentVO">
@@ -142,4 +143,24 @@
 	<select id="totalComment" resultType="int">
 		select count(*) from commentTBL where pid=#{pid} and cid>0
 	</select>
+	
+	<!-- 후기 dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd -->
+	<select id="insetReview" >
+		insert into reviewTBL(rid,pid,userid,title,content,grade)
+		values(review_seq.nextval,#{pid},#{userid},#{title},#{content},#{grade})
+	</select>
+	
+	<!-- 상품의 코멘트 목록 가져오기 -->
+	<select id="selectReview" resultType="com.spring.domain.ShopReviewVO">
+		<![CDATA[
+			select * 
+			from (select rownum rn, rid, pid, userid, title, content, grade, regdate
+				  from (select * from reviewTBL order by rid ) 
+				  where pid = #{pid} and rid > 0 and rownum <= #{pageNum} * 10)
+			where rn > (#{pageNum}-1) * 10
+			 
+		]]>
+	</select>
+	
+	
 </mapper>

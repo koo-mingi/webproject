@@ -13,6 +13,7 @@ import com.spring.domain.ShopCommentPageVO;
 import com.spring.domain.ShopCommentVO;
 import com.spring.domain.ShopCriteria;
 import com.spring.domain.ShopProductVO;
+import com.spring.domain.ShopReviewVO;
 import com.spring.mapper.ShopMapper;
 
 @Service
@@ -63,6 +64,21 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public int updateComment(ShopCommentVO vo) {
 		return mapper.updateComment(vo);
+	}
+
+	@Override
+	public int insetReview(ShopReviewVO vo) {
+		return mapper.insetReview(vo);
+	}
+
+	@Override
+	public List<ShopReviewVO> selectReview(int pid, int pageNum) {
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("pid", pid);
+		map.put("pageNum", pageNum);
+		
+		return mapper.selectReview(map);
 	}
 	
 }

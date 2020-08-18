@@ -236,79 +236,40 @@
 										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
 										commodo</p>
 								</div>
-								<div class="review_item">
-									<div class="media">
-										<div class="d-flex">
-											<img src="img/product/review-2.png" alt="">
-										</div>
-										<div class="media-body">
-											<h4>Blake Ruiz</h4>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-										</div>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-										commodo</p>
-								</div>
-								<div class="review_item">
-									<div class="media">
-										<div class="d-flex">
-											<img src="img/product/review-3.png" alt="">
-										</div>
-										<div class="media-body">
-											<h4>Blake Ruiz</h4>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-										</div>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-										commodo</p>
-								</div>
 							</div>
 						</div>
 						<div class="col-lg-6">
 							<div class="review_box">
-								<h4>Add a Review</h4>
-								<p>Your Rating:</p>
-								<ul class="list">
-									<li><a href="#"><i class="fa fa-star"></i></a></li>
-									<li><a href="#"><i class="fa fa-star"></i></a></li>
-									<li><a href="#"><i class="fa fa-star"></i></a></li>
-									<li><a href="#"><i class="fa fa-star"></i></a></li>
-									<li><a href="#"><i class="fa fa-star"></i></a></li>
+								<h4>후기 작성하기</h4>
+								<p>별점:</p>
+								<ul class="list grade-area">
+									<li><a href="1"><i class="fa fa-star"></i></a></li>
+									<li><a href="2"><i class="fa fa-star"></i></a></li>
+									<li><a href="3"><i class="fa fa-star"></i></a></li>
+									<li><a href="4"><i class="fa fa-star"></i></a></li>
+									<li><a href="5"><i class="fa fa-star"></i></a></li>
 								</ul>
-								<p>Outstanding</p>
-								<form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+								<p>클릭</p>
+								<form class="row contact_form" action="" method="post" id="review-form" novalidate="novalidate">
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" class="form-control" id="name" name="name" placeholder="Your Full name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Full name'">
+											<input type="text" class="form-control" id="userid" name="userid" placeholder="Your Full name" value="${auth.userid }" readonly="readonly" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Full name'">
 										</div>
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="email" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
+											<input type="text" class="form-control" id="title" name="title" placeholder="Title" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number'">
 										</div>
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" class="form-control" id="number" name="number" placeholder="Phone Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number'">
+											<textarea class="form-control" name="content" id="content" rows="1" placeholder="Review" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Review'"></textarea></textarea>
 										</div>
 									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<textarea class="form-control" name="message" id="message" rows="1" placeholder="Review" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Review'"></textarea></textarea>
-										</div>
-									</div>
+									<input type="hidden" name="pid" value="${vo.pid }" />
+									<input type="hidden" name="grade" value="5" />
 									<div class="col-md-12 text-right">
-										<button type="submit" value="submit" class="genric-btn info radius">Submit Now</button>
+										<button type="submit" value="submit" class="review-btn genric-btn info radius">Submit Now</button>
 									</div>
 								</form>
 							</div>
@@ -756,7 +717,107 @@
 				showList(pageNum);
 				
 			}) // 코멘트 페이지 번호를 누르면 실행되는 스크립트 끝
+		}) //-- comment 끝--//
+			
+	//---- review 작성 ----//
+	$(function(){
+		// 현재 상품의 상품번호 가져오기
+		let pid = ${vo.pid};
+		// 후기 작성 폼 가져오기
+		let reviewForm = $("#review-form");
+		let title = reviewForm.find("input[name='title']");
+		let content = reviewForm.find("input[name='content']");
+		let grade = reviewForm.find("input[name='grade']");
+		
+		// 후기 페이지
+		let pageNum = 1;
+		
+		// 후기 목록 영역가져오기
+		let reviewUl = $(".review_list");
+		
+		showReview(1);
+		
+		// 별점 눌렀을 때, 별점영역 다시 그리기
+		let gradeArea = $(".grade-area");
+		
+		gradeArea.on("click","a",function(e){
+			e.preventDefault();
+			let number = $(this).attr("href");
+			grade.val(number);
+			let str="";
+			for(var i = 1;i<=5;i++){
+				let star = i <= number ? 'fa-star':'fa-star-o';
+				str += '<li><a href="'+i+'"><i class="fa '+star+'"></i></a></li>';
+			}
+			gradeArea.html(str);
 		})
+		
+		// 후기 작성하기
+		$(".review-btn").click(function(e){
+			e.preventDefault();
+			
+			//폼에 값이 제대로 담기는지 확인하기
+			console.log(reviewForm.serialize());
+			
+			$.ajax({
+				url : '/shopreview/new',
+				type : 'post',
+				data : reviewForm.serialize(),
+				success:function(data){
+					alert("후기가 입력되었습니다.")
+					showReview(1);
+				},
+				error:function(xhr,status,err){
+					alert("후기 작성하기에 공백 없이 입력해 주세요"); 
+					title.focus();
+				}
+				
+			})//후기 작성 ajax 끝
+			
+		})// 후기 작성하기 끝
+		
+		// 후기 목록  띄우기
+		function showReview(page){
+			$.ajax({
+				url:'/shopreview/'+pid+'/'+page,
+				type:'get',
+				success:function(list){
+					console.log(list);
+					
+					if(list == null || list.length === 0){
+						replyUl.html("");
+						return;
+					}
+					
+					let str = "";
+					for(var i = 0,len = list.length||0;i<len;i++){
+						
+						str += '<div class="review_item">';
+						str += '<div class="media">';
+						str += '<div class="media-body">';
+						str += '<h4>'+list[i].userid+'</h4>';
+						str += '<h4> 제목 : '+list[i].title+'</h4>';
+						str += '<h5> 작성 시간 : '+ displayTime(list[i].regdate)+'</h5>';
+						
+						for(var j = 1;j<=5;j++){
+							let star = j <= list[i].grade ? 'fa-star':'fa-star-o';
+							str += '<i class="fa '+star+'"></i>';
+						}
+						str += '</div>';
+						str += '</div>';
+						str += '<p>'+list[i].content+'</p>';
+						str += '------------------------------------------------------------------------------------------------------------------';
+						str += '</div>';				
+					}
+					reviewUl.html(str);
+
+				}
+			})
+		} // 리스트 요청 끝
+		
+		
+	})
+		
 	</script>
 </body>
 </html>
