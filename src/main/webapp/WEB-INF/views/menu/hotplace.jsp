@@ -23,51 +23,114 @@
     </section>
     <!-- Breadcrumb End -->
 	<!-- Classes Section Begin -->
-    
-                
+	
+	<div class="gap-area">
+	</div>
+	<div class="container">
+     <div class="classes__filter">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form action="#">
+                            <div class="class__filter__select">
+                                <p>Exercise area:</p>
+                                <select id="fitArea">
+                                    <option>전체보기</option>
+                                    <option value="복부">복부</option>
+                                    <option value="하체">하체</option>
+                                    <option value="전신">전신</option>
+                                </select>
+                            </div>
+                            <div class="class__filter__select">
+                                <p>Style:</p>
+                                <select id="fitStyle">
+                                    <option value="운동">전체보기</option>
+                                    <option value="유산소운동">유산소운동</option>
+                                    <option value="근력운동">근력운동</option>
+                                </select>
+                            </div>
+                            <div class="class__filter__select">
+                                <p>YouTuber:</p>
+                                <select id="fitYouTuber">
+                                    <option>전체보기</option>
+                                    <option value="비타민신지니">비타민신지니</option>
+                                    <option value="심으뜸">심으뜸</option>
+                                    <option value="땅끄부부">땅끄부부</option>
+                                    <option value="말왕">말왕</option>
+                                </select>
+                            </div>
+                            <div class="class__filter__select">
+                                <p>Order by:</p>
+                                <select id="orderBy">
+                                    <option value="date">최신순</option>
+                                    <option value="viewCount">조회순</option>
+                                    <option value="rating">평가순</option>
+                                </select>
+                            </div>
+                            <div class="class__filter__btn">
+                                <button id="searchOp"><i class="fa fa-search"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>      
+          </div>
 	<!-- Classes Section End -->
     <!-- Map Begin -->
-	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=k3ay6zftzj"></script>
-
-	<div id="map" style="width:100%;height:400px;"></div>
-
+	<div id="map" style="width:100%;height:400px;top:5%;"></div>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=66b90fddbb5bd06380fafaf7e938c2b2&libraries=services,clusterer,drawing"></script>
 	<script>
-	var HOME_PATH = window.HOME_PATH || '.';
+	// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+	var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
-	var cityhall = new naver.maps.LatLng(37.5666805, 126.9784147),
-	    map = new naver.maps.Map('map', {
-	        center: cityhall.destinationPoint(0, 500),
-	        zoom: 17
-	    }),
-	    marker = new naver.maps.Marker({
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = {
+	        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };  
+
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+	// 장소 검색 객체를 생성합니다
+	var ps = new kakao.maps.services.Places(); 
+
+	// 키워드로 장소를 검색합니다
+	ps.keywordSearch('공릉동 헬스장', placesSearchCB); 
+
+	// 키워드 검색 완료 시 호출되는 콜백함수 입니다
+	function placesSearchCB (data, status, pagination) {
+	    if (status === kakao.maps.services.Status.OK) {
+
+	        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+	        // LatLngBounds 객체에 좌표를 추가합니다
+	        var bounds = new kakao.maps.LatLngBounds();
+
+	        for (var i=0; i<data.length; i++) {
+	            displayMarker(data[i]);    
+	            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+	        }       
+
+	        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+	        map.setBounds(bounds);
+	    } 
+	}
+
+	// 지도에 마커를 표시하는 함수입니다	
+	function displayMarker(place) {
+	    
+	    // 마커를 생성하고 지도에 표시합니다
+	    var marker = new kakao.maps.Marker({
 	        map: map,
-	        position: cityhall
+	        position: new kakao.maps.LatLng(place.y, place.x) 
 	    });
 
-	var contentString = [
-	        '<div class="iw_inner">',
-	        '   <h3>서울특별시청</h3>',
-	        '   <p>서울특별시 중구 태평로1가 31 | 서울특별시 중구 세종대로 110 서울특별시청<br />',
-	        '       <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="서울시청" class="thumb" /><br />',
-	        '       02-120 | 공공,사회기관 &gt; 특별,광역시청<br />',
-	        '       <a href="http://www.seoul.go.kr" target="_blank">www.seoul.go.kr/</a>',
-	        '   </p>',
-	        '</div>'
-	    ].join('');
-
-	var infowindow = new naver.maps.InfoWindow({
-	    content: contentString
-	});
-
-	naver.maps.Event.addListener(marker, "click", function(e) {
-	    if (infowindow.getMap()) {
-	        infowindow.close();
-	    } else {
+	    // 마커에 클릭이벤트를 등록합니다
+	    kakao.maps.event.addListener(marker, 'click', function() {
+	        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+	        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
 	        infowindow.open(map, marker);
-	    }
-	});
-
-	infowindow.open(map, marker);
+	    });
+	}
 	</script>
     <!-- Map End -->
 
