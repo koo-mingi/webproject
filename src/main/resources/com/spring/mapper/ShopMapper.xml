@@ -145,22 +145,44 @@
 	</select>
 	
 	<!-- 후기 dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd -->
-	<select id="insetReview" >
+	<insert id="insertReview"> 
 		insert into reviewTBL(rid,pid,userid,title,content,grade)
 		values(review_seq.nextval,#{pid},#{userid},#{title},#{content},#{grade})
-	</select>
+	</insert>
 	
-	<!-- 상품의 코멘트 목록 가져오기 -->
+	<!-- 상품의 후기 목록 가져오기 -->
 	<select id="selectReview" resultType="com.spring.domain.ShopReviewVO">
 		<![CDATA[
 			select * 
 			from (select rownum rn, rid, pid, userid, title, content, grade, regdate
-				  from (select * from reviewTBL order by rid ) 
+				  from (select * from reviewTBL order by rid desc) 
 				  where pid = #{pid} and rid > 0 and rownum <= #{pageNum} * 10)
 			where rn > (#{pageNum}-1) * 10
 			 
-		]]>
+		]]> 
+	</select>
+	<!-- 상품 후기 전체 수 가져오기 -->
+	<select id="totalReview" resultType="int">
+		select count(*) from reviewTBL where pid=#{pid}
 	</select>
 	
-	
+	<!-- 별점 가져오기 -->
+	<select id="grade5count" resultType="int">
+		select count(grade) from reviewTBL where grade=5 and pid=#{pid}
+	</select>
+	<select id="grade4count" resultType="int">
+		select count(grade) from reviewTBL where grade=4 and pid=#{pid}
+	</select>
+	<select id="grade3count" resultType="int">
+		select count(grade) from reviewTBL where grade=3 and pid=#{pid}
+	</select>
+	<select id="grade2count" resultType="int">
+		select count(grade) from reviewTBL where grade=2 and pid=#{pid}
+	</select>
+	<select id="grade1count" resultType="int">
+		select count(grade) from reviewTBL where grade=1 and pid=#{pid}
+	</select>
+	<select id="gradeAvg" resultType="double">
+		select round(avg(grade),1) from reviewTBL where pid = #{pid}
+	</select>
 </mapper>

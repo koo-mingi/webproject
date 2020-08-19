@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.domain.ShopReviewGradeVO;
+import com.spring.domain.ShopReviewPageVO;
 import com.spring.domain.ShopReviewVO;
 import com.spring.mapper.ShopMapper;
 import com.spring.service.ShopService;
@@ -26,6 +28,7 @@ public class ShopReviewController {
 	@Autowired
 	private ShopService service;
 	
+	// 후기 작성하기
 	@PostMapping("/new")
 	@ResponseBody
 	public ResponseEntity<String> insertReview(ShopReviewVO vo){
@@ -33,7 +36,7 @@ public class ShopReviewController {
 		
 		if( (!vo.getUserid().isEmpty() && !vo.getTitle().isEmpty()) && !vo.getContent().isEmpty() ) {
 			
-			if(service.insetReview(vo)>0) {
+			if(service.insertReview(vo)>0) {
 				return new ResponseEntity<String>("success",HttpStatus.OK);
 			}
 		}else {
@@ -43,12 +46,13 @@ public class ShopReviewController {
 		return new ResponseEntity<String>("fail",HttpStatus.BAD_REQUEST);
 	}
 	
+	// 후기 목록 가져오기
 	@GetMapping("/{pid}/{pageNum}")
 	@ResponseBody
-	public ResponseEntity<List<ShopReviewVO>> selecReview(@PathVariable int pid, @PathVariable int pageNum){
+	public ResponseEntity<ShopReviewPageVO> selecReview(@PathVariable int pid, @PathVariable int pageNum){
 		
 		log.info("pid : "+pid+" pageNum : "+pageNum);
 		
-		return new ResponseEntity<List<ShopReviewVO>>(service.selectReview(pid, pageNum),HttpStatus.OK);
+		return new ResponseEntity<ShopReviewPageVO>(service.selectReview(pid, pageNum),HttpStatus.OK);
 	}
 }

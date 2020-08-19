@@ -23,6 +23,13 @@ public interface ShopMapper {
 	public int updateComment(ShopCommentVO vo);
 	public int totalComment(int pid);
 	
-	public int insetReview(ShopReviewVO vo);
+	public int insertReview(ShopReviewVO vo);
 	public List<ShopReviewVO> selectReview(Map<String,Integer> map);
+	public int totalReview(int pid);
+	public int grade5count(int pid);
+	public int grade4count(int pid);
+	public int grade3count(int pid);
+	public int grade2count(int pid);
+	public int grade1count(int pid);
+	public Double gradeAvg(int pid);
 }
