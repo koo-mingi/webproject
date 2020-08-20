@@ -124,9 +124,18 @@
                         	 <ul>
                                 <li>Phone : 123-4567-7899</li>
                             </ul>
-                            <a href="/shop/cart" class="genric-btn cart radius">장바구니</a>
-                        	<a href="/member/login" class="genric-btn info radius">LOGIN</a>
-                            <a href="#" class="genric-btn info radius">JOIN US</a>	
+                            <c:if test="${empty auth}">
+	                            <a href="/shop/cart" class="genric-btn cart radius">장바구니</a>
+	                        	<a href="/member/login" class="genric-btn info radius">LOGIN</a>
+	                            <a href="/register/step1" class="genric-btn info radius">JOIN US</a>                           
+                            </c:if>
+                            <c:if test="${!empty auth}">
+                            	<a href="/shop/cart" class="genric-btn cart radius">장바구니</a>	                        	
+	                            <sec:authorize access="isAuthenticated()">
+		                        	<a href="/member/logout" id="logout" class="genric-btn info radius"> Logout</a>
+		                        </sec:authorize>
+	                            <a href="/member/know-how" class="genric-btn info radius">My page</a>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -144,7 +153,7 @@
                                 <li class="active"><a href="/menu/notice">공지사항</a></li>
                                 <li><a href="/menu/video">동영상</a></li>
                                 <li><a href="/menu/know-how">노하우</a></li>
-                                <li><a href="/menu/review">후기</a></li>
+                                <li><a href="/menu/community">커뮤니티</a></li>
                                 <li><a href="/menu/hotplace">장소추천</a></li>
                                 <!-- <li><a href="/menu/shop">SHOP</a> -->
                                 <li><a href="#">SHOP</a>
@@ -172,16 +181,16 @@
         </div>
     </header>
     <!-- Header Section End -->
-<section>
-<div class="gap-area">
-</div>
-<div class="container">
-   <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">공지사항/이벤트</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
+	<section>
+		<div class="gap-area">
+		</div>
+		<div class="container">
+   			<div class="row">
+	       		<div class="col-lg-12">
+	            	<h1 class="page-header">공지사항/이벤트</h1>
+	        	</div>
+            	<!-- /.col-lg-12 -->
+       		</div>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">

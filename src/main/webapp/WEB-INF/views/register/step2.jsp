@@ -119,7 +119,7 @@ pageEncoding="UTF-8"%>
                                 <li class="active"><a href="/menu/notice">공지사항</a></li>
                                 <li><a href="/menu/video">동영상</a></li>
                                 <li><a href="/menu/know-how">노하우</a></li>
-                                <li><a href="/menu/review">후기</a></li>
+                                <li><a href="/menu/community">커뮤니티</a></li>
                                 <li><a href="/menu/hotplace">장소추천</a></li>
                                 <!-- <li><a href="/menu/shop">SHOP</a> -->
                                 <li><a href="#">SHOP</a>

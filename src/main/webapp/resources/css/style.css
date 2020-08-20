@@ -31,6 +31,10 @@
 /* Template default CSS
 /*----------------------------------------*/
 
+body {
+  font-family: "Roboto", sans-serif;
+}
+
 .genric-btn {
   display: inline-block;
   outline: none;
@@ -79,7 +83,7 @@
 html,
 body {
 	height: 100%;
-	font-family: "DM Sans", sans-serif;
+	font-family: "Roboto", sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
