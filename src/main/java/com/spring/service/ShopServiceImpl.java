@@ -9,10 +9,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.domain.PriceVO;
+import com.spring.domain.ShopCartVO;
 import com.spring.domain.ShopCommentPageVO;
 import com.spring.domain.ShopCommentVO;
 import com.spring.domain.ShopCriteria;
 import com.spring.domain.ShopProductVO;
+import com.spring.domain.ShopReviewGradeVO;
+import com.spring.domain.ShopReviewPageVO;
 import com.spring.domain.ShopReviewVO;
 import com.spring.mapper.ShopMapper;
 
@@ -67,18 +70,44 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public int insetReview(ShopReviewVO vo) {
-		return mapper.insetReview(vo);
+	public int insertReview(ShopReviewVO vo) {
+		return mapper.insertReview(vo);
 	}
 
 	@Override
-	public List<ShopReviewVO> selectReview(int pid, int pageNum) {
+	public ShopReviewPageVO selectReview(int pid, int pageNum) {
 		
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("pid", pid);
 		map.put("pageNum", pageNum);
 		
-		return mapper.selectReview(map);
+		ShopReviewGradeVO gradeVO = new ShopReviewGradeVO();
+		gradeVO.setGrade1(mapper.grade1count(pid));
+		gradeVO.setGrade2(mapper.grade2count(pid));
+		gradeVO.setGrade3(mapper.grade3count(pid));
+		gradeVO.setGrade4(mapper.grade4count(pid));
+		gradeVO.setGrade5(mapper.grade5count(pid));
+		if(mapper.gradeAvg(pid)!=null) {
+			gradeVO.setGradeAvg(mapper.gradeAvg(pid));
+		}
+		gradeVO.setReviewCount(mapper.totalReview(pid));
+		
+		ShopReviewPageVO vo = new ShopReviewPageVO();
+		vo.setTotal(mapper.totalReview(pid));
+		vo.setList(mapper.selectReview(map));
+		vo.setGradeVO(gradeVO);
+		
+		return vo;
 	}
-	
+
+	@Override
+	public int insertCart(ShopCartVO vo) {
+		return mapper.insertCart(vo);
+	}
+
+	@Override
+	public List<ShopCartVO> selectCart(String userid) {
+		return mapper.selectCart(userid);
+	}
+
 }

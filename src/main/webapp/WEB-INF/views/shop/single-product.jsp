@@ -55,7 +55,7 @@
 							 class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
 						</div>
 						<div class="card_area d-flex align-items-center">
-							<a class="genric-btn info radius" href="#">장바구니</a>
+							<a class="genric-btn info radius cart-btn" href="${vo.pid }/${vo.saleprice}">장바구니</a>
 							<a class="genric-btn info radius" href="/shop/cart">구입하기</a>
 							<a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
 						</div>
@@ -154,7 +154,7 @@
 									</p>
 								</div>
 							</div>
-							<div class="comment pagination">
+							<div class="comment-page pagination">
 								
 							</div>
 						</div>
@@ -236,6 +236,9 @@
 										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
 										commodo</p>
 								</div>
+							</div>
+							<div class="review-page pagination">
+								
 							</div>
 						</div>
 						<div class="col-lg-6">
@@ -665,7 +668,7 @@
 			
 			
 			// 코멘트 페이징 영역 가져오기
-			let comment_page = $(".pagination");
+			let comment_page = $(".comment-page");
 			
 			// 코멘트 페이지 번호 만들기
 			function showReplyPage(total){
@@ -730,15 +733,23 @@
 		let grade = reviewForm.find("input[name='grade']");
 		
 		// 후기 페이지
-		let pageNum = 1;
+		let review_pageNum = 1;
+		// 별점 평균 영역 가져오기
+		let boxTotal = $(".box_total");
+		// 각 별점 별 개수 영역 가져오기
+		let ratingList = $(".rating_list");
 		
 		// 후기 목록 영역가져오기
 		let reviewUl = $(".review_list");
 		
+		// 화면 불러올 때  후기 1페이지 띄우기
 		showReview(1);
 		
 		// 별점 눌렀을 때, 별점영역 다시 그리기
 		let gradeArea = $(".grade-area");
+		
+		// 후기 페이지 영역 가져오기
+		let reviewPage = $(".review-page");
 		
 		gradeArea.on("click","a",function(e){
 			e.preventDefault();
@@ -781,11 +792,40 @@
 			$.ajax({
 				url:'/shopreview/'+pid+'/'+page,
 				type:'get',
-				success:function(list){
-					console.log(list);
+				success:function(data){
+					console.log("후기",data);
+					let list = data.list;
+					let total = data.total;
+					let gradeVO = data.gradeVO;
+					
+					// 평균별점 영역 다시 그리기
+					let strOverall = "";
+					strOverall += '<h5>Overall</h5>';
+					strOverall += '<h4>'+gradeVO.gradeAvg+'</h4>';
+					strOverall += '<h6>('+total+' Reviews)</h6>';
+					
+					boxTotal.html(strOverall);
+					
+					// 별점 별 개수 영역 다시 그리기
+					let strRating = "";
+					strRating += '<h3>Based on '+total+' Reviews</h3>';
+					strRating += '<ul class="list">';					
+					strRating += '<li><a href="#">5 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>';					
+					strRating += '<i class="fa fa-star"></i><i class="fa fa-star"></i>( '+gradeVO.grade5+' )</a></li>';								
+					strRating += '<li><a href="#">4 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>';
+					strRating += '<i class="fa fa-star"></i><i class="fa fa-star-o"></i>( '+gradeVO.grade4+' )</a></li>';
+					strRating += '<li><a href="#">3 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>';
+					strRating += '<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>( '+gradeVO.grade3+' )</a></li>';
+					strRating += '<li><a href="#">2 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>';
+					strRating += '<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>( '+gradeVO.grade2+' )</a></li>';
+					strRating += '<li><a href="#">1 Star <i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>';
+					strRating += '<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>( '+gradeVO.grade1+' )</a></li>';
+					strRating += '</ul>';				
+					
+					ratingList.html(strRating);
 					
 					if(list == null || list.length === 0){
-						replyUl.html("");
+						reviewUl.html("");
 						return;
 					}
 					
@@ -810,12 +850,86 @@
 						str += '</div>';				
 					}
 					reviewUl.html(str);
-
+					showReviewPage(total);
 				}
 			})
-		} // 리스트 요청 끝
+		} // 후기 리스트 요청 끝
 		
+		// 후기 페이지 번호 만들기
+		function showReviewPage(total){
+			
+			//페이지 당 답글 수
+			let r_amount = 10;
+			//마지막 페이지 계산
+			let r_endPage = Math.ceil(review_pageNum/10.0)*5;
+			//시작 페이지 계산
+			let r_startPage = r_endPage - 4;
+			//이전버튼
+			let r_prev = r_startPage != 1;
+			//다음버튼
+			let r_next = false;
+			//실제 마지막 페이지 계산
+			let r_realEnd = Math.ceil(total/10.0);
+			
+			if(r_endPage * r_amount >= total){
+				r_endPage = r_realEnd
+			}
+			if(r_endPage * r_amount < total){
+				r_next = true;
+			}
+			
+			// 후기 페이지 영역 만들기
+			let str = "";
+			if(r_prev){
+				str += '<a href="'+(r_startPage - 1)+'" class="prev-arrow">';
+				str += '<i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>';
+			}
+			for(var i = r_startPage; i<= r_endPage;i++){
+				let active = review_pageNum == i ? 'active':'';
+				str += '<a href="'+i+'" class="pagination_button2 '+ active +'">'+i+'</a>';
+			}	
+			if(r_next){
+				str += '<a href="'+(r_endPage + 1)+'" class="next-arrow">';
+				str += '<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>';
+			}
+			
+			reviewPage.html(str);
+
+		}// 후기 페이지 번호 만들기 끝
 		
+		// 후기 페이지 번호를 누르면 실행되는 스크립트
+		reviewPage.on("click","a",function(e){
+			
+			e.preventDefault();
+			review_pageNum = $(this).attr("href");
+			showReviewPage(review_pageNum);
+			
+		}) // 후기 페이지 번호를 누르면 실행되는 스크립트 끝
+	}) // 후기 끝
+	
+	//-------------- 장바구니 ----------------//
+	// 수량 조절기
+	let qty = $(".qty");
+	
+	// 장바구니 버튼
+	let cart_btn = $(".card_area .cart-btn");
+	
+	cart_btn.click(function(e){
+		e.preventDefault();
+		console.log($(this).attr("href"));
+		console.log(qty.val());
+		let str = $(this).attr("href");
+		
+		$.ajax({
+			url:'/shopcart/'+str+'/'+qty.val(),
+			type:'post',
+			success:function(data){
+    			alert("장바구니에 추가되었습니다.")
+    		},
+    		error:function(xhr,status,err){
+    			
+    		}
+		})
 	})
 		
 	</script>
