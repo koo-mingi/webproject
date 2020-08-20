@@ -25,6 +25,7 @@
                     <table class="table">
                         <thead>
                             <tr>
+                            	<th><input type="checkbox" class="allCheck" id="allCheck" checked /></th>
                                 <th scope="col">Product</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Quantity</th>
@@ -32,97 +33,47 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <c:forEach var="vo" items="${cartList }" varStatus="status">
                             <tr>
+                            	<td>
+                            		<input type="checkbox" class="chkbox" value="" data-cartId="${vo.cartid}"  data-index="${status.index }"/>
+                            	</td>
                                 <td>
                                     <div class="media">
                                         <div class="d-flex">
-                                            <img src="img/cart.jpg" alt="">
+                                            <img src="/resources/shop/img/cart.jpg" alt="">
                                         </div>
                                         <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
+                                            <p>${vo.pname }</p>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>$360.00</h5>
+                                    <h5 class="productPrice">${vo.price }</h5>
                                 </td>
                                 <td>
                                     <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
+                                        <input type="text" name="qty" id="sst${status.index}" maxlength="12" value="${vo.amount }" title="Quantity:"
                                             class="input-text qty">
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                                        <button class="increase items-count" data-index="${status.index }" data-price="${vo.price }" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                                        <button class="reduced items-count" data-index="${status.index }" data-price="${vo.price }" type="button"><i class="lnr lnr-chevron-down"></i></button>
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>$720.00</h5>
+                                    <h5 class="productTotal">${vo.price*vo.amount }</h5>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="img/cart.jpg" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$360.00</h5>
-                                </td>
-                                <td>
-                                    <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                            class="input-text qty">
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$720.00</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="img/cart.jpg" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$360.00</h5>
-                                </td>
-                                <td>
-                                    <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                            class="input-text qty">
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$720.00</h5>
-                                </td>
-                            </tr>
+                            </c:forEach>
                             <tr class="bottom_button">
                                 <td>
-                                    <a class="gray_btn" href="#">새로고침</a>
+                                
+                                </td>
+                                <td>
+									 <a class="gray_btn" href="#">선택된 상품 삭제</a>
                                 </td>
                                 <td>
 
-                                </td>
+                                <td>
                                 <td>
 
                                 <td>
@@ -134,6 +85,9 @@
                                 </td>
                             </tr>
                             <tr>
+                            	<td>
+
+                                <td>
                                 <td>
 
                                 </td>
@@ -148,6 +102,9 @@
                                 </td>
                             </tr>
                             <tr class="shipping_area">
+                            	<td>
+
+                                <td>
                                 <td>
 
                                 </td>
@@ -182,6 +139,9 @@
                                 </td>
                             </tr>
                             <tr class="out_button_area">
+                            	<td>
+
+                                <td>
                                 <td>
                                 </td>
                                 <td>
@@ -202,4 +162,151 @@
         </div>
     </section>
     <!--================End Cart Area =================-->
-<%@ include file="/WEB-INF/views/include/footer.jsp" %>
+    
+  <!-- Footer Section Begin -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <img src="/resources/img/footer-logo.png" alt="">
+                        <ul>
+                            <li><i class="fa fa-clock-o"></i> Mon - Fri: 6:30am - 07:45pm</li>
+                            <li><i class="fa fa-clock-o"></i> Sat - Sun: 8:30am - 05:45pm</li>
+                        </ul>
+                        <form action="#" class="subscribe-form">
+                            <input type="text" placeholder="Your Email">
+                            <button type="submit"><i class="fa fa-send"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h5>Inspiration</h5>
+                        <ul>
+                            <li><a href="#">Online Pilates</a></li>
+                            <li><a href="#">Yoga for Beginners</a></li>
+                            <li><a href="#">Online Pilates</a></li>
+                            <li><a href="#">Online Yoga</a></li>
+                            <li><a href="#">Conditioning</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h5>About Us</h5>
+                        <ul>
+                            <li><a href="#">Our Vision</a></li>
+                            <li><a href="#">Our Mission</a></li>
+                            <li><a href="#">Meet The Team</a></li>
+                            <li><a href="#">Introduce</a></li>
+                            <li><a href="#">Customer Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h5>Contact Us</h5>
+                        <ul class="footer-address">
+                            <li><i class="fa fa-phone"></i> (01) 436 8888</li>
+                            <li><i class="fa fa-envelope"></i> hello@zogin.com</li>
+                            <li><i class="fa fa-location-arrow"></i> 828 Granville Lights Suite 466</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__copyright">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <div class="footer__copyright__text">
+                            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+                        </div>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="footer__copyright__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+    
+    <!-- 메인 템플릿 -->
+    <script src="/resources/js/bootstrap.min.js"></script>
+    <script src="/resources/js/jquery.nice-select.min.js"></script>
+    <script src="/resources/js/jquery.barfiller.js"></script>
+    <script src="/resources/js/jquery.slicknav.js"></script>
+    <script src="/resources/js/owl.carousel.min.js"></script>
+    <script src="/resources/js/main.js"></script>
+
+    <!-- 상점 템플릿 -->
+    <!-- <script src="/resources/shop/js/vendor/jquery-2.2.4.min.js"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+	 crossorigin="anonymous"></script>
+	<script src="/resources/shop/js/vendor/bootstrap.min.js"></script>
+	<script src="/resources/shop/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/resources/shop/js/jquery.nice-select.min.js"></script>
+	<script src="/resources/shop/js/jquery.sticky.js"></script>
+	<script src="/resources/shop/js/nouislider.min.js"></script>
+	<script src="/resources/shop/js/jquery.magnific-popup.min.js"></script>
+	<script src="/resources/shop/js/owl.carousel.min.js"></script>
+	<!--gmaps Js-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+	<script src="/resources/shop/js/gmaps.min.js"></script>
+	<script src="/resources/shop/js/main.js"></script>
+	
+	<script>
+		$(".increase").click(function(){
+			let idx = $(this).data("index");
+			let qty = $(".qty");
+			let amount = qty[idx].value;
+			let price = $(this).data("price");
+			let total = $(".productTotal");
+			
+			amount++;
+			qty[idx].value = amount;
+	
+			let result = parseInt(price*amount);
+			console.log(result);
+			total[idx].innerText=result;
+
+		})
+	
+		$(".reduced").click(function(){
+			let idx = $(this).data("index");
+			let qty = $(".qty");
+			let amount = qty[idx].value;
+			let price = $(this).data("price");
+			let total = $(".productTotal");
+			
+			if(amount >0){
+				amount--;
+			}
+
+			qty[idx].value = amount;
+			
+			let result = parseInt(price*amount);
+			
+			total[idx].innerText=result;
+		})
+		
+		$(".chkbox").click(function(){
+			let idx = $(this).data("index");
+			let qty = $(".qty");
+			console.log(qty[idx].value);
+		})
+	
+	</script>
+</body>
+</html>

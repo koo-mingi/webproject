@@ -3,6 +3,7 @@ package com.spring.service;
 import java.util.List;
 
 import com.spring.domain.PriceVO;
+import com.spring.domain.ShopCartVO;
 import com.spring.domain.ShopCommentPageVO;
 import com.spring.domain.ShopCommentVO;
 import com.spring.domain.ShopCriteria;
@@ -22,4 +23,7 @@ public interface ShopService {
 	
 	public int insertReview(ShopReviewVO vo);
 	public ShopReviewPageVO selectReview(int pid,int pageNum);
+	
+	public int insertCart(ShopCartVO vo);
+	public List<ShopCartVO> selectCart(String userid);
 }

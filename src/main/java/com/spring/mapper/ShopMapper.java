@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 import com.spring.domain.PriceVO;
+import com.spring.domain.ShopCartVO;
 import com.spring.domain.ShopCommentVO;
 import com.spring.domain.ShopCriteria;
 import com.spring.domain.ShopProductVO;
@@ -32,4 +33,7 @@ public interface ShopMapper {
 	public int grade2count(int pid);
 	public int grade1count(int pid);
 	public Double gradeAvg(int pid);
+	
+	public int insertCart(ShopCartVO vo);
+	public List<ShopCartVO> selectCart(String userid);
 }

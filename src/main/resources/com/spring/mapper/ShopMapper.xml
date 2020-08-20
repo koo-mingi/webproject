@@ -185,4 +185,17 @@
 	<select id="gradeAvg" resultType="double">
 		select round(avg(grade),1) from reviewTBL where pid = #{pid}
 	</select>
+	
+	<!-- 장바구니 dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd -->
+	<!-- 장바구니 삽입 -->
+	<insert id="insertCart">
+		insert into cartTBL(cartid,userid,pid,amount,price) values(cart_seq.nextval,#{userid},#{pid},#{amount},#{price})
+	</insert>
+	<select id="selectCart" resultType="com.spring.domain.ShopCartVO">
+		select c.cartid,userid,p.pname,c.amount,c.price 
+		from cartTBL c inner join productTBL p on c.pid = p.pid 
+		where userid=#{userid}
+	</select>
+	
+	
 </mapper>

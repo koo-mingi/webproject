@@ -198,6 +198,29 @@
     	shopActionForm.submit();
     })
     
+    
+    //----- cart 추가 ----//
+    
+    
+    $(".prd-bottom .cart-add").click(function(e){
+    	
+    	e.preventDefault();
+    	let str = $(this).attr("href");
+    	console.log(str);
+    	
+    	$.ajax({
+    		url:'/shopcart/'+str+'/1',
+    		type:'post',
+    		success:function(data){
+    			alert("장바구니에 추가되었습니다.")
+    		},
+    		error:function(xhr,status,err){
+    			
+    		}
+    	})
+    	
+    })
+    
 	</script>
 </body>
 </html>
