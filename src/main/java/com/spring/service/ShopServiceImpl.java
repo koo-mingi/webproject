@@ -110,4 +110,9 @@ public class ShopServiceImpl implements ShopService {
 		return mapper.selectCart(userid);
 	}
 
+	@Override
+	public int deleteCart(int cartid) {
+		return mapper.deleteCart(cartid);
+	}
+
 }

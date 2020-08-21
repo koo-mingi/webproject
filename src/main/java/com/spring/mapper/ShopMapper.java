@@ -36,4 +36,5 @@ public interface ShopMapper {
 	
 	public int insertCart(ShopCartVO vo);
 	public List<ShopCartVO> selectCart(String userid);
+	public int deleteCart(int cartid);
 }

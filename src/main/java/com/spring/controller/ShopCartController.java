@@ -1,5 +1,7 @@
 package com.spring.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.domain.AuthVO;
@@ -43,5 +46,13 @@ public class ShopCartController {
 		}
 		
 		return new ResponseEntity<String>("success",HttpStatus.OK);
+	}
+	
+	@PostMapping("/delete")
+	public String deleteCart(@RequestParam(value="chk[]") List<Integer> chArr) {
+		
+		log.info("삭제 리스트 chArr : "+chArr);
+		
+		return "redirect:/shop/cart";
 	}
 }

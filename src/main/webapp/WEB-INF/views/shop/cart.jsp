@@ -36,7 +36,7 @@
                         <c:forEach var="vo" items="${cartList }" varStatus="status">
                             <tr>
                             	<td>
-                            		<input type="checkbox" class="chkbox" value="" data-cartId="${vo.cartid}"  data-index="${status.index }"/>
+                            		<input type="checkbox" class="chkbox" value="${vo.price*vo.amount }" data-cartid="${vo.cartid}"  data-index="${status.index }"/>
                             	</td>
                                 <td>
                                     <div class="media">
@@ -49,7 +49,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h5 class="productPrice">${vo.price }</h5>
+                                    <h5 class="productPrice">${vo.price }원</h5>
                                 </td>
                                 <td>
                                     <div class="product_count">
@@ -60,7 +60,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h5 class="productTotal">${vo.price*vo.amount }</h5>
+                                    <h5 class="productTotal">${vo.price*vo.amount }원</h5>
                                 </td>
                             </tr>
                             </c:forEach>
@@ -69,7 +69,7 @@
                                 
                                 </td>
                                 <td>
-									 <a class="gray_btn" href="#">선택된 상품 삭제</a>
+									 <a class="gray_btn orderDelete-btn" href="#">선택된 상품 삭제</a>
                                 </td>
                                 <td>
 
@@ -92,13 +92,13 @@
 
                                 </td>
                                 <td>
-
+									<h5>상품 합계</h5>
                                 </td>
                                 <td>
-                                    <h5>Subtotal</h5>
+                                    <h5 class="total_sum">0 원</h5>
                                 </td>
                                 <td>
-                                    <h5>$2160.00</h5>
+                                    
                                 </td>
                             </tr>
                             <tr class="shipping_area">
@@ -237,6 +237,12 @@
         </div>
     </section>
     <!-- Footer Section End -->
+	
+	<!-- orderForm -->
+	<form action="#" method="post" class="orderForm" id="orderForm">
+		<input type="hidden" name="totalPrice" value="" />
+		<input type="hidden" name="chk[]" id="chk" value="" />
+	</form>
 
     <!-- Js Plugins -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -267,45 +273,129 @@
 	<script src="/resources/shop/js/main.js"></script>
 	
 	<script>
-		$(".increase").click(function(){
-			let idx = $(this).data("index");
-			let qty = $(".qty");
-			let amount = qty[idx].value;
-			let price = $(this).data("price");
-			let total = $(".productTotal");
-			
-			amount++;
-			qty[idx].value = amount;
-	
-			let result = parseInt(price*amount);
-			console.log(result);
-			total[idx].innerText=result;
-
-		})
-	
-		$(".reduced").click(function(){
-			let idx = $(this).data("index");
-			let qty = $(".qty");
-			let amount = qty[idx].value;
-			let price = $(this).data("price");
-			let total = $(".productTotal");
-			
-			if(amount >0){
-				amount--;
-			}
-
-			qty[idx].value = amount;
-			
-			let result = parseInt(price*amount);
-			
-			total[idx].innerText=result;
-		})
+	$(function(){
+		// 수량과 관련된 input 태그
+		let qty = $(".qty");
+		// 각 상품별 총 금액이 있는 태그
+		let total = $(".productTotal");
+		// 각 체크박스 영역 가져오기
+		let chkbox = $(".chkbox");
+		// 주문 폼 가져오기
+		let orderForm = $(".orderForm");
 		
-		$(".chkbox").click(function(){
-			let idx = $(this).data("index");
-			let qty = $(".qty");
-			console.log(qty[idx].value);
-		})
+			// 선택된 상품의 합계 금액 구하기
+			function cartSum(){
+				let str = "";
+				let sum = 0;
+				let count = $(".chkbox").length;
+				
+				for(var i=0;i<count;i++){
+					if(chkbox[i].checked == true){
+						sum += parseInt(chkbox[i].value);
+					}
+				}
+				$(".total_sum").html(sum+'원');
+				orderForm.find("input[name='totalPrice']").val(sum);
+				console.log("폼 합계",orderForm.find("input[name='totalPrice']").val());
+			}
+		
+			// 수량 증가 버튼 클릭
+			$(".increase").click(function(){
+				let idx = $(this).data("index");
+				let amount = qty[idx].value;
+				let price = $(this).data("price");
+				
+				amount++;
+				qty[idx].value = amount;
+		
+				let result = parseInt(price*amount);
+				chkbox[idx].value = result;
+				total[idx].innerText=result+'원';
+				cartSum();
+			})
+			
+			// 수량 감소 버튼 클릭
+			$(".reduced").click(function(){
+				let idx = $(this).data("index");
+				let amount = qty[idx].value;
+				let price = $(this).data("price");
+				
+				if(amount >0){
+					amount--;
+				}
+
+				qty[idx].value = amount;
+				
+				let result = parseInt(price*amount);
+				chkbox[idx].value = result;
+				total[idx].innerText=result+'원';
+				cartSum();
+			})
+			
+			// 상품의 체크박스 버튼 클릭
+			$(".chkbox").click(function(){
+				let idx = $(this).data("index");
+				let totalprice = $(this).val();
+				let cartid = $(this).data("cartid"); // data의 cartid는 소문자로 써야 됨. data-cartId => 인식 안됨
+				console.log('수량',qty[idx].value);
+				console.log('각 합계',totalprice);
+				console.log('cartid',cartid);
+				cartSum();
+			})
+			
+			
+			// 전체선택 체크박스 : 체크 시 나머지 체크박스 true
+			$(".allCheck").click(function(){
+				let chk = $(".allCheck").prop("checked");
+				if(chk){
+					chkbox.prop("checked",true);
+				}else{
+					chkbox.prop("checked",false);
+				}
+				cartSum();
+			})
+			
+			// 페이지 들어오자마자 모두 체크 박스	
+			let tt = "${cartList}";
+			console.log(tt);
+			if(tt == "[]" || tt == ""){
+				$(".allCheck").prop("checked",false);
+			}else{
+				$(".allCheck").prop("checked",true);
+				chkbox.prop("checked",true);
+				cartSum();
+			}
+			
+			// 선택된 상품 삭제하기
+			$(".orderDelete-btn").click(function(e){
+				
+				e.preventDefault();
+				
+				var checkArr = new Array();
+				$("input[class='chkbox']:checked").each(function(){
+					checkArr.push($(this).data("cartid"));
+				})
+				console.log(checkArr);
+				
+				$("#chk").val(checkArr);
+				
+				if($("#chk").val() == []){
+					alert("삭제할 상품이 없습니다.");
+					return false;
+				}
+				
+				if(confirm("선택된 상품을 삭제하시겠습니까?")){
+					alert("삭제되었습니다.");
+					orderForm.attr("action",'/shopcart/delete');
+					orderForm.submit();
+				}
+				
+				
+				
+			})// 상품 삭제하기 끝
+			
+	})
+	
 	
 	</script>
 </body>
