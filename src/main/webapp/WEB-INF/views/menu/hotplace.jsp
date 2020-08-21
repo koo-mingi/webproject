@@ -23,47 +23,72 @@
     </section>
     <!-- Breadcrumb End -->
 	<!-- Classes Section Begin -->
-	
-	<div class="gap-area">
-	</div>
+	<div></div>
 	<div class="container">
-     <div class="classes__filter">
+            <div class="classes__filter">
                 <div class="row">
                     <div class="col-lg-12">
                         <form action="#">
                             <div class="class__filter__select">
-                                <p>Exercise area:</p>
+                                <p>광역시/도:</p>
                                 <select id="fitArea">
                                     <option>전체보기</option>
-                                    <option value="복부">복부</option>
-                                    <option value="하체">하체</option>
-                                    <option value="전신">전신</option>
+                                    <option value="서울특별시">서울특별시</option>
+                                    <option value="부산광역시">부산광역시</option>
+                                    <option value="">대구광역시</option>
+                                    <option value="">인천광역시</option>
+                                    <option value="">광주광역시</option>
+                                    <option value="">대전광역시</option>
+                                    <option value="">울산광역시</option>
+                                    <option value="">세종특별자치시</option>
+                                    <option value="">경기도</option>
+                                    <option value="">강원도</option>
+                                    <option value="">충청북도</option>
+                                    <option value="">충청남도</option>
+                                    <option value="">전라북도</option>
+                                    <option value="">전라남도</option>
+                                    <option value="">경상북도</option>
+                                    <option value="">경상남도</option>
+                                    <option value="">제주특별자치도</option>
                                 </select>
                             </div>
                             <div class="class__filter__select">
-                                <p>Style:</p>
+                                <p>시/군/구:</p>
                                 <select id="fitStyle">
-                                    <option value="운동">전체보기</option>
-                                    <option value="유산소운동">유산소운동</option>
-                                    <option value="근력운동">근력운동</option>
+                                    <option value={}>전체보기</option>
+                                    <option value="">종로구</option>
+                                    <option value="">중구</option>
+                                    <option value="">용산구</option>
+                                    <option value="">성동구</option>
+                                    <option value="">광진구</option>
+                                    <option value="">동대문구</option>
+                                    <option value="">중랑구</option>
+                                    <option value="">성북구</option>
+                                    <option value="">강북구</option>
+                                    <option value="">도봉구</option>
+                                    <option value="">노원구</option>
+                                    <option value="">은평구</option>
+                                    <option value="">서대문구</option>
+                                    <option value="">마포구</option>
+                                    <option value="">양천구</option>
+                                    <option value="">강서구</option>
+                                    <option value="">구로구</option>
+                                    <option value="">금천구</option>
+                                    <option value="">영등포구</option>
+                                    <option value="">동작구</option>
+                                    <option value="">관악구</option>
+                                    <option value="">서초구</option>
+                                    <option value="">강남구</option>
+                                    <option value="">송파구</option>
+                                    <option value="">강동구</option>                                    
                                 </select>
-                            </div>
+                            </div>                            
                             <div class="class__filter__select">
-                                <p>YouTuber:</p>
-                                <select id="fitYouTuber">
-                                    <option>전체보기</option>
-                                    <option value="비타민신지니">비타민신지니</option>
-                                    <option value="심으뜸">심으뜸</option>
-                                    <option value="땅끄부부">땅끄부부</option>
-                                    <option value="말왕">말왕</option>
-                                </select>
-                            </div>
-                            <div class="class__filter__select">
-                                <p>Order by:</p>
+                                <p>운동시설:</p>
                                 <select id="orderBy">
-                                    <option value="date">최신순</option>
-                                    <option value="viewCount">조회순</option>
-                                    <option value="rating">평가순</option>
+                                    <option value="">헬스장</option>
+                                    <option value="">산책로</option>
+                                    <option value="">공원</option>
                                 </select>
                             </div>
                             <div class="class__filter__btn">
@@ -72,13 +97,17 @@
                         </form>
                     </div>
                 </div>
-            </div>      
+            </div>
           </div>
 	<!-- Classes Section End -->
     <!-- Map Begin -->
 	<div id="map" style="width:100%;height:400px;top:5%;"></div>
+		<div class="search" style="position:relative; z-index:1000; top:-320px; left:20px;">
+			<input id="address" type="text" placeholder="검색할 주소" value="">
+			<input id="submit" type="button" value="검색">
+		</div>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=66b90fddbb5bd06380fafaf7e938c2b2&libraries=services,clusterer,drawing"></script>
-	<script>
+	<script>	
 	// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 	var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
@@ -93,10 +122,17 @@
 
 	// 장소 검색 객체를 생성합니다
 	var ps = new kakao.maps.services.Places(); 
+		
+	$(".search").find("input[id='submit']").click(function(e){
+		e.preventDefault();
+		console.log('검색');
+		let searchAddress = $(".search").find("input[id='address']").val();
+		
+		// 키워드로 장소를 검색합니다
+		ps.keywordSearch(searchAddress, placesSearchCB); 
 
-	// 키워드로 장소를 검색합니다
-	ps.keywordSearch('공릉동 헬스장', placesSearchCB); 
-
+	})
+	
 	// 키워드 검색 완료 시 호출되는 콜백함수 입니다
 	function placesSearchCB (data, status, pagination) {
 	    if (status === kakao.maps.services.Status.OK) {
@@ -161,5 +197,23 @@
         </div>
     </div>
     <!-- Leave Comment End -->
-
+<!-- 도시 선택에 따른 구 설정 -->
+<script>
+$(function(){
+	$("#fitArea").on("change",function(){
+		console.log("도시 클릭");
+		city = $(this).val();
+		
+		$.ajax({
+			url : "hotplace",
+			type: 'post',
+			data : {city:city},
+			success:function(data){
+				console.log(data);
+			}
+		})		
+	})
+})
+</script>
+<!--  -->
     <%@ include file="/WEB-INF/views/include/footer.jsp" %>

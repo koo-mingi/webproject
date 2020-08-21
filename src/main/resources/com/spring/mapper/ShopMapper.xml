@@ -196,6 +196,9 @@
 		from cartTBL c inner join productTBL p on c.pid = p.pid 
 		where userid=#{userid}
 	</select>
+	<delete id="deleteCart">
+		delete from cartTBL where cartid = #{cartid}
+	</delete>
 	
 	
 </mapper>

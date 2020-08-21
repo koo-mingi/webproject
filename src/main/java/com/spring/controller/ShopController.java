@@ -60,10 +60,12 @@ public class ShopController {
 		
 		log.info("장바구니 페이지");
 		AuthVO auth = (AuthVO) session.getAttribute("auth");
-		String userid = auth.getUserid();
-		
-		List<ShopCartVO> list = shopService.selectCart(userid);
-		model.addAttribute("cartList", list);
+		if(auth !=null) {
+			String userid = auth.getUserid();
+			List<ShopCartVO> list = shopService.selectCart(userid);
+			model.addAttribute("cartList", list);
+		}
+
 	}
 	
 	@GetMapping("/single-product")
