@@ -14,6 +14,9 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
+	<!-- font awesome icons-->
+	<script src="https://kit.fontawesome.com/928d317b8c.js" crossorigin="anonymous"></script>
+
     <!-- Css Styles -->
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/font-awesome.min.css" type="text/css">
@@ -34,6 +37,7 @@
 	<link rel="stylesheet" href="/resources/shop/css/ion.rangeSlider.css" />
 	<link rel="stylesheet" href="/resources/shop/css/ion.rangeSlider.skinFlat.css" />
 	<link rel="stylesheet" href="/resources/shop/css/main.css">
+	
 </head>
 
 <body>

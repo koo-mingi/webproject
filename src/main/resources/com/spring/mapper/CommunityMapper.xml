@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.mapper.CommunityMapper">
 
-<!-- 글 목록 보기 -->
+	<!-- 글 목록 보기 -->
 	<select id="list" resultType="com.spring.domain.CommunityVO">
 		<!-- select * from commuBoard order by bno desc -->
 		<!-- html에서 <>는 태그를 여닫는 의미로 쓰이기 때문에 부등호로 쓸 경우 에러남 <![CDATA[ ]]>로 방지하기 -->
 		<![CDATA[		 
 		select * 
-		from (select /*+INDEX_DESC(commuBoard pk_commuBoard)*/ rownum rn, bno, category, title, writer, readcount, replycnt, regdate
+		from (select /*+INDEX_DESC(commuBoard pk_commuBoard)*/ rownum rn, bno, category, title, writer,, readcount, replycnt, regdate
 		      from commuBoard
 		      where
    		]]>      

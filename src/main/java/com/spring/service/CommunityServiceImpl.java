@@ -28,6 +28,9 @@ public class CommunityServiceImpl implements CommunityService {
 
 	@Override
 	public boolean insertCommu(CommunityVO vo) {
+		if(vo.getCategory().equals("none")) {
+			
+		}
 		return mapper.create(vo)==1? true:false;
 	}
 

@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/style.css" type="text/css">
       
+   	<link rel="stylesheet" href="/resources/shop/css/main.css">
+	<link rel="stylesheet" href="/resources/board/bootstrap/css/bootstrap.css">
 </head>
 <body>
 
@@ -153,7 +155,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__text">
-                        <h2 style="-webkit-text-stroke: 1px #000; font-weight: bold;">Fitness Video</h2>
+                        <h2 style="-webkit-text-stroke: 0.5px #000; font-weight: bold;">Fitness Video</h2>
                         <div class="breadcrumb__widget">
                             <a href="/">Home</a>
                             <span style="color: #000;">Fitness Video</span>

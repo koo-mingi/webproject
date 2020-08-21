@@ -135,12 +135,13 @@
 	                                </div>
 	                                <div class="blog__item__text">
 	                                    <ul>
-	                                        <li><i class="fa fa-calendar-o"></i><fmt:formatDate pattern="M dd,yyyy" value="${vo.regdate}" /></li>
+	                                        <li><i class="fa fa-calendar-o"></i><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.regdate}" /></li>
 	                                        <li style="text-align: right;"><i class="fa fa-comment-o"></i>${vo.replycnt}</li>
+	                                        <li><i class="fas fa-eye"></i>${vo.readcount}</li>
 	                                    </ul>
-	                                    <h5><a href="<c:out value='${vo.bno}'/>" id="move">${vo.title}</a></h5>
+	                                    <h5><a href="<c:out value='${vo.bno}'/>" class="move">[${vo.category}]  ${vo.title}</a></h5>
 	                                    <p>${vo.content}</p>
-	                                    <a href="<c:out value='${vo.bno}'/>" id="move" class="blog_read_more">READ MORE <span class="arrow_right"></span></a>
+	                                    <a href="<c:out value='${vo.bno}'/>" class="blog_read_more move">READ MORE <span class="arrow_right"></span></a>
 	                                </div>
 	                            </div>
 	                        </div>
@@ -264,18 +265,69 @@
         </div>
     </section>
     <!-- Blog Section End -->
+  	<%-- 페이지 번호를 누르면 동작하는 폼 --%>
+	<form action="community" id="actionForm">
+		<input type="hidden" name="bno" value="" />
+		<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum}" />
+		<input type="hidden" name="amount" value="${pageVO.cri.amount}" />
+		<input type="hidden" name="type" value="${cri.type}" /> <!-- value="${pageVO.cri.type}" 도 가능 -->
+		<input type="hidden" name="keyword" value="${pageVO.cri.keyword}" />
+	</form> 
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 $(function(){
-	// 타이틀 클릭 시 페이지 나누기 정보가 있는 폼 보내기
-	$("#move").click(function(e){
-		// 36번 줄에 
-		// <a href="read?bno=${vo.bno}"$pageNum=${cri.pageNum}&amount=${cri.amount}">${vo.title}</a> 에러 조심
-		// 이렇게 작성하는 부분 대체
+	
+	// 사용자가 페이지 번호를 누르면 동작하는 스크립트
+	let actionForm = $("#actionForm");
+	$(".paginate_button a").click(function(e){
+		// a 태그의 동작 막기
 		e.preventDefault();
-		actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"' />");
+		// 전송해야할 폼 가져온 후 pageNum의 값과 amount 값을 변경한 후
+		actionForm.find("input[name='pageNum']").val($(this).attr("href")); // this : $(".paginate_button a")
+		// 폼 전송하기
+		actionForm.submit();
+	})
+	
+	$(".form-control").change(function(){
+		// 전송해야 할 폼 가져온 후 amount 값을 변경한 후
+		actionForm.find("input[name='amount']").val($(this).val()); // this : $(".form-control")
+		// 폼 전송하기
+		actionForm.submit();
+	})
+	
+	// 타이틀 클릭 시 페이지 나누기 정보가 있는 폼 보내기
+	$(".move").click(function(e){
+		e.preventDefault();
+		actionForm.find("input[name='bno']").val($(this).attr("href"));
+		console.log(actionForm.find("input[name='bno']").val());
+/* 		actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"' />"); */
 		actionForm.attr('action','communityRead');
 		actionForm.submit();
+	})
+	
+	// 검색 버튼 클릭 시 동작하는 스크립트
+	$(".btn-default").click(function(){
+		
+		let searchForm = $("#searchForm");
+
+		// type과 keyword가 비어있는지 확인하고
+		// 비어있으면 메세지 띄워준 후 return
+		let type = $("select[name='type']").val();
+		let keyword = $("input[name='keyword']").val();
+	
+		if(type===''){
+			alert("검색 기준을 입력해주세요");
+			return false;
+		}else if(keyword===''){
+			alert("검색어를 입력해주세요");
+			return false;
+		}
+		// 모두 입력이 된 경우 폼 전송
+		searchForm.find("input[name='pageNum']").val("1");
+		searchForm.find("input[name='amount']").val("10");
+
+		searchForm.submit();
 	})
 })
 </script>

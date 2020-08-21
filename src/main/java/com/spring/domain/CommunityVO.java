@@ -16,4 +16,5 @@ public class CommunityVO {
 	private int replycnt;
 	private Date regdate;
 	
+	
 }

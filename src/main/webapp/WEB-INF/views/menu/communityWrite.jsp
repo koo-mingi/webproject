@@ -175,11 +175,11 @@ a:visited {
 <h2 style="text-align: center;">Write</h2><br><br>
 
 <div style="width: 50%; margin: auto;">
-	<form method="post" action="/menu/communityWrite" role="form">
+	<form method="post" action="/menu/communityWrite" role="form" id="cate">
 		<div class="class__filter__select" style="display: flex;">
 			<!-- <p style="color:black; font-size: 20px; font-weight: bold; margin-right: 15px;"></p> -->
-           	<select name="category" style="position:absolute; z-index:1;">
-               	<option>카테고리선택</option>
+           	<select id="category" style="position:absolute; z-index:1;">
+               	<option selected disabled hidden>카테고리선택</option>
                 <option value="후기">후기</option>
                 <option value="일지">일지</option>
                 <option value="레시피">레시피</option>
@@ -204,7 +204,7 @@ a:visited {
 		</div>
 		<br>
 		<button class="btn btn-secondary" type="button" value="돌아가기" onclick="location.href='community'">돌아가기</button>
-		<button class="btn btn-warning" type="submit" value="글 작성" style="float: right;">글작성</button>
+		<button class="btn btn-warning" id="btnSave" type="submit" value="글 작성" style="float: right;">글작성</button>
 <!-- 		<input class="btn btn-xs pull-right btn-warning" id="subBtn" type="button" value="돌아가기" style="float: left;" onclick="goWrite(this.form)"/>
 		<input class="btn btn-xs pull-right btn-warning" id="subBtn" type="button" value="글 작성" style="float: right;" onclick="goWrite(this.form)"/> -->
 		</form>
@@ -279,8 +279,15 @@ a:visited {
          e.preventDefault();
        })
   
-    $(document).on('click', '#btnSave', function(e){
-		 $("#form").submit();
+    $("#btnSave").on('click',function(e){
+    	// 카테고리 미선택 시 알림창
+     	e.preventDefault();
+    	let val = $('#category').val();
+    	console.log(val);
+    	if(val===null){
+    		alert("카테고리를 입력해주세요");
+    	}
+		$("#form").submit();
 	});
 
 	</script>
