@@ -5,6 +5,8 @@
 
 <!-- Upcoming Classes Section Begin -->
     <section class="upcoming-classes top-classes spad">
+    	<div class="gap-area">
+		</div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -16,6 +18,8 @@
                 </div>
             </div>            
         </div>
+        <div class="gap-area">
+		</div>
     </section>
     <!-- Upcoming Classes Section End -->
 

@@ -121,7 +121,7 @@
 										</div>
 											<a><i class="fa fa-star"> ${vo.gradeavg}</i></a>
 										<div class="prd-bottom">
-											<a href="" class="social-info">
+											<a href="${vo.pid }/${vo.saleprice}" class="social-info cart-add">
 												<span class="ti-bag"></span>
 												<p class="hover-text">add to bag</p>
 											</a>
@@ -311,5 +311,4 @@
 		<input type="hidden" name="shipCost" value="${cri.shipCost }" />
 		<input type="hidden" name="storage" value="${cri.storage }" />
 	</form>
-	
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>

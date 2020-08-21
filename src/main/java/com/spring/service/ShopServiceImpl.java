@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.domain.PriceVO;
+import com.spring.domain.ShopCartVO;
 import com.spring.domain.ShopCommentPageVO;
 import com.spring.domain.ShopCommentVO;
 import com.spring.domain.ShopCriteria;
@@ -97,6 +98,21 @@ public class ShopServiceImpl implements ShopService {
 		vo.setGradeVO(gradeVO);
 		
 		return vo;
+	}
+
+	@Override
+	public int insertCart(ShopCartVO vo) {
+		return mapper.insertCart(vo);
+	}
+
+	@Override
+	public List<ShopCartVO> selectCart(String userid) {
+		return mapper.selectCart(userid);
+	}
+
+	@Override
+	public int deleteCart(int cartid) {
+		return mapper.deleteCart(cartid);
 	}
 
 }

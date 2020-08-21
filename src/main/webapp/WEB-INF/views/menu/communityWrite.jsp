@@ -50,7 +50,7 @@ a:visited {
    text-decoration: none;
 }
 .gap-area{
-	height : 50px;	
+	height : 30px;	
 }
 </style>
 
@@ -174,13 +174,25 @@ a:visited {
 </div>
 <h2 style="text-align: center;">Write</h2><br><br>
 
-<div style="width: 60%; margin: auto;">
-	<form method="post" action="/menu/noticeWrite" role="form">
+<div style="width: 50%; margin: auto;">
+	<form method="post" action="/menu/communityWrite" role="form">
+		<div class="class__filter__select" style="display: flex;">
+			<!-- <p style="color:black; font-size: 20px; font-weight: bold; margin-right: 15px;"></p> -->
+           	<select name="category" style="position:absolute; z-index:1;">
+               	<option>카테고리선택</option>
+                <option value="후기">후기</option>
+                <option value="일지">일지</option>
+                <option value="레시피">레시피</option>
+                <option value="고민&질문">고민&질문</option>
+			</select>
+        </div>
+        <div class="gap-area">
+		</div>
 		<div class="mb-3">
-			<label for="title" style="font-size: 18px;">제목</label>
+			<label for="title" style="font-size: 18px; display: inline;">제목</label>
 			<input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요"/>
 		</div>
-		<br>
+ 		<br>
 		<div class="mb-3">
 			<label for="reg_id" style="font-size: 18px;">작성자</label>
 			<input type="text" class="form-control" name="writer" placeholder="작성자"/>
@@ -191,7 +203,7 @@ a:visited {
 			<textarea id="summernote" name="content"></textarea>
 		</div>
 		<br>
-		<button class="btn btn-secondary" type="button" value="돌아가기" onclick="location.href='notice'">돌아가기</button>
+		<button class="btn btn-secondary" type="button" value="돌아가기" onclick="location.href='community'">돌아가기</button>
 		<button class="btn btn-warning" type="submit" value="글 작성" style="float: right;">글작성</button>
 <!-- 		<input class="btn btn-xs pull-right btn-warning" id="subBtn" type="button" value="돌아가기" style="float: left;" onclick="goWrite(this.form)"/>
 		<input class="btn btn-xs pull-right btn-warning" id="subBtn" type="button" value="글 작성" style="float: right;" onclick="goWrite(this.form)"/> -->
@@ -270,7 +282,7 @@ a:visited {
     $(document).on('click', '#btnSave', function(e){
 		 $("#form").submit();
 	});
-		
+
 	</script>
     <!-- Footer Section Begin -->
     <section class="footer">

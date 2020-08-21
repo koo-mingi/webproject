@@ -3,6 +3,8 @@ package com.spring.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.domain.AuthVO;
 import com.spring.domain.PriceVO;
+import com.spring.domain.ShopCartVO;
 import com.spring.domain.ShopCriteria;
 import com.spring.domain.ShopPageVO;
 import com.spring.domain.ShopProductVO;
@@ -52,8 +56,16 @@ public class ShopController {
 	}
 	
 	@GetMapping("/cart")
-	public void cart() {
+	public void cart(HttpSession session,Model model) {
+		
 		log.info("장바구니 페이지");
+		AuthVO auth = (AuthVO) session.getAttribute("auth");
+		if(auth !=null) {
+			String userid = auth.getUserid();
+			List<ShopCartVO> list = shopService.selectCart(userid);
+			model.addAttribute("cartList", list);
+		}
+
 	}
 	
 	@GetMapping("/single-product")

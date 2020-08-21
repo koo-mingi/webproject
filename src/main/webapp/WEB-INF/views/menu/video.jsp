@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- <%@ include file="/WEB-INF/views/include/header.jsp" %> --%>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -88,9 +89,18 @@
                         	 <ul>
                                 <li>Phone : 123-4567-7899</li>
                             </ul>
-                            <a href="/shop/cart" class="genric-btn cart radius">장바구니</a>
-                        	<a href="/member/login" class="genric-btn info radius">LOGIN</a>
-                            <a href="#" class="genric-btn info radius">JOIN US</a>	
+                            <c:if test="${empty auth}">
+	                            <a href="/shop/cart" class="genric-btn cart radius">장바구니</a>
+	                        	<a href="/member/login" class="genric-btn info radius">LOGIN</a>
+	                            <a href="/register/step1" class="genric-btn info radius">JOIN US</a>                           
+                            </c:if>
+                            <c:if test="${!empty auth}">
+                            	 <a href="/shop/cart" class="genric-btn cart radius">장바구니</a>	                        	
+	                            <sec:authorize access="isAuthenticated()">
+		                        	<a href="/member/logout" id="logout" class="genric-btn info radius"> Logout</a>
+		                        </sec:authorize>
+	                            <a href="/member/know-how" class="genric-btn info radius">My page</a>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -108,7 +118,7 @@
                                 <li class="active"><a href="/menu/notice">공지사항</a></li>
                                 <li><a href="/menu/video">동영상</a></li>
                                 <li><a href="/menu/know-how">노하우</a></li>
-                                <li><a href="/menu/review">후기</a></li>
+                                <li><a href="/menu/community">커뮤니티</a></li>
                                 <li><a href="/menu/hotplace">장소추천</a></li>
                                 <!-- <li><a href="/menu/shop">SHOP</a> -->
                                 <li><a href="#">SHOP</a>
@@ -146,7 +156,7 @@
                         <h2 style="-webkit-text-stroke: 1px #000; font-weight: bold;">Fitness Video</h2>
                         <div class="breadcrumb__widget">
                             <a href="/">Home</a>
-                            <span>Fitness Video</span>
+                            <span style="color: #000;">Fitness Video</span>
                         </div>
                     </div>
                 </div>
@@ -204,7 +214,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="searchReDiv">
                 <div class="col-lg-4 col-md-6">
                     <div class="classes__item classes__item__page">
                         <div class="classes__item__pic set-bg" data-setbg="/resources/img/classes/classes-1.jpg">
@@ -350,14 +360,14 @@
                     </div>
                 </div>
                 <div class="col-lg-12">
-                    <div class="classes__pagination">
+                    <!-- <div class="classes__pagination">
                         <a href="#">1</a>
                         <a href="#">2</a>
                         <a href="#">3</a>
                         <a href="#">4</a>
                         <a href="#">5</a>
                         <a href="#"><span class="arrow_carrot-right"></span></a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -365,7 +375,7 @@
     <!-- Classes Section End -->
 
     <!-- Upcoming Classes Section Begin -->
-    <section class="upcoming-classes top-classes spad">
+    <!-- <section class="upcoming-classes top-classes spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -418,7 +428,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Upcoming Classes Section End -->
 
 
@@ -511,7 +521,8 @@
 		
 	<script>
 	$(function(){
-		let apiKey = "AIzaSyDKULjchbgQy69Uc62iDbcXGcg_CYnUHhU";
+		$("#searchReDiv").hide();
+		let apiKey = "AIzaSyA3Xu-As6IfKY2-q4qPLVx8XZLvPjY1Vvc";
 		var dataList = new Array(2);
 		function dataFunc(videoId){
 			
@@ -557,11 +568,9 @@
 					    sec = "00";
 					}
 					duration = hour+min+":"+sec;
-					/* console.log(duration); */
 					
 					// 조회수 추출
 					let viewCount = data.items[0].statistics.viewCount;
-					/* console.log(viewCount); */
 					
 					if(viewCount.length > 5){
 						var viewCnt = viewCount.slice(0,-4);
@@ -571,16 +580,17 @@
 						var fc = viewCnt.slice(0,1);
 						var lc = viewCnt.slice(1,2);
 						viewCnt = fc+"."+lc+"만회";
-					}else if(viewCount < 5){
+					}else if(viewCount == 4){
 						var viewCnt = viewCount.slice(0,-3);
 						viewCnt = "0."+viewCnt+"만회";
+					}else {
+						var viewCnt = viewCount;
+						viewCnt = viewCnt+"회";
 					}
 					/* console.log(viewCnt); */
 					
 					// 재생시간, 조회수 리스트에 담아서 리턴
 					dataList = [duration, viewCnt];
-					/* console.log(dataList); */
-					/* return dataList; */
 				},
 				error : function(xhr, textStatus, error){
 					console.log(xhr.status);
@@ -590,7 +600,8 @@
 			return dataList;
 		} /* function dataFunc(videoId) end */
 		
-		$("#searchOp").click(function(){			
+		$("#searchOp").click(function(){
+			$("#searchReDiv").show();
 			let url = "https://www.googleapis.com/youtube/v3/search?key="+apiKey+"&part=snippet&type=video&maxResults=9&videoEmbeddable=true&q=";
 			// 사용자가 선택한 운동 가져오기
 			url+=$("#fitArea").val()+$("#fitStyle").val()+$("#fitYouTuber").val();
@@ -621,12 +632,10 @@
 						durSpan = childes1.children[0];
 						// 두번째 설명 div
 						childes2 = div.children[1];
-						/* console.log(childes2); */
 					    // 동영상 게시일 + 조회수 (div > ul > li)
  						childes2_ul = childes2.children[0];
  						childes2_li1 = childes2_ul.children[0];
  						childes2_li2 = childes2_ul.children[1];
-						/* console.log(childes2_li1); */
 					    // 동영상 제목 div > h4
  						childes2_1 = childes2.children[1];
 					    // 유투브 채널명 div > h6
@@ -663,16 +672,13 @@
 						
 						// 재생시간, 조회수 값 리턴받기
 						var dat = dataFunc(videoId);
-						/* console.log(dat); */
 						
 						// 재생시간
 						let durationD = dat[0];
-						console.log(durationD);
 						$(durSpan).replaceWith("<span>"+durationD+"</span>");
 						
 						// 조회수
 						let viewCntD = dat[1];
-						console.log(viewCntD);
 						$(childes2_li2).replaceWith("<li style='font-weight: bold; float: right; margin'>"+viewCntD+"</li>");
 						
 					})

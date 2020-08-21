@@ -55,7 +55,7 @@
 							 class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
 						</div>
 						<div class="card_area d-flex align-items-center">
-							<a class="genric-btn info radius" href="#">장바구니</a>
+							<a class="genric-btn info radius cart-btn" href="${vo.pid }/${vo.saleprice}">장바구니</a>
 							<a class="genric-btn info radius" href="/shop/cart">구입하기</a>
 							<a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
 						</div>
@@ -905,6 +905,31 @@
 			showReviewPage(review_pageNum);
 			
 		}) // 후기 페이지 번호를 누르면 실행되는 스크립트 끝
+	}) // 후기 끝
+	
+	//-------------- 장바구니 ----------------//
+	// 수량 조절기
+	let qty = $(".qty");
+	
+	// 장바구니 버튼
+	let cart_btn = $(".card_area .cart-btn");
+	
+	cart_btn.click(function(e){
+		e.preventDefault();
+		console.log($(this).attr("href"));
+		console.log(qty.val());
+		let str = $(this).attr("href");
+		
+		$.ajax({
+			url:'/shopcart/'+str+'/'+qty.val(),
+			type:'post',
+			success:function(data){
+    			alert("장바구니에 추가되었습니다.")
+    		},
+    		error:function(xhr,status,err){
+    			
+    		}
+		})
 	})
 		
 	</script>
