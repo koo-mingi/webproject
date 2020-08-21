@@ -75,11 +75,7 @@
         </div>
     </section>
     <!-- Footer Section End -->
-
-    <!-- Js Plugins -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
-    
+  
     <!-- 메인 템플릿 -->
     <script src="/resources/js/bootstrap.min.js"></script>
     <script src="/resources/js/jquery.nice-select.min.js"></script>

@@ -3,6 +3,8 @@ package com.spring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.spring.domain.Criteria;
 import com.spring.domain.NoticeVO;
 import com.spring.domain.PageVO;
+import com.spring.domain.cityVO;
 import com.spring.service.NoticeBoardService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -41,6 +44,16 @@ public class MenuController {
 	@GetMapping("/hotplace")
 	public void hotplaceGet() {
 		log.info("hotplace 요청");
+	}
+	
+	@PostMapping("/hotplace")
+	public ResponseEntity<cityVO> hotplace_post(String city) {
+		log.info("도시 "+city);
+		//서비스
+		
+		
+		//
+		return new ResponseEntity<cityVO>(HttpStatus.OK);
 	}
 	
 	@GetMapping("/shop")
