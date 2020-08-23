@@ -36,7 +36,7 @@
                         <c:forEach var="vo" items="${cartList }" varStatus="status">
                             <tr>
                             	<td>
-                            		<input type="checkbox" class="chkbox" value="${vo.price*vo.amount }" data-cartid="${vo.cartid}"  data-index="${status.index }"/>
+                            		<input type="checkbox" class="chkbox" value="${vo.price*vo.amount }" data-cartid="${vo.cartid}"  data-index="${status.index }" data-shipcost="${vo.shipcost }"/>
                             	</td>
                                 <td>
                                     <div class="media">
@@ -73,9 +73,10 @@
                                 </td>
                                 <td>
 
+                                </td>
                                 <td>
-                                <td>
-
+                                
+								</td>
                                 <td>
                                     <div class="cupon_text d-flex align-items-center">
                                         <input type="text" placeholder="Coupon Code">
@@ -87,7 +88,7 @@
                             <tr>
                             	<td>
 
-                                <td>
+                                </td>
                                 <td>
 
                                 </td>
@@ -104,44 +105,41 @@
                             <tr class="shipping_area">
                             	<td>
 
+                                </td>
                                 <td>
+
+                                </td>
                                 <td>
+									<h5>배송비</h5>
+                                </td>
+                                <td>
+                                    <h5 class="shipping_cost">0 원</h5>
+                                </td>
+                                <td>
+                                  	
+                                </td>
+                            </tr>
+                            <tr class="order_price_area">
+                            	<td>
 
                                 </td>
                                 <td>
 
                                 </td>
                                 <td>
-                                    <h5>Shipping</h5>
+									<h5>총 금액</h5>
                                 </td>
                                 <td>
-                                    <div class="shipping_box">
-                                        <ul class="list">
-                                            <li><a href="#">Flat Rate: $5.00</a></li>
-                                            <li><a href="#">Free Shipping</a></li>
-                                            <li><a href="#">Flat Rate: $10.00</a></li>
-                                            <li class="active"><a href="#">Local Delivery: $2.00</a></li>
-                                        </ul>
-                                        <h6>Calculate Shipping <i class="fa fa-caret-down" aria-hidden="true"></i></h6>
-                                        <select class="shipping_select">
-                                            <option value="1">Bangladesh</option>
-                                            <option value="2">India</option>
-                                            <option value="4">Pakistan</option>
-                                        </select>
-                                        <select class="shipping_select">
-                                            <option value="1">Select a State</option>
-                                            <option value="2">Select a State</option>
-                                            <option value="4">Select a State</option>
-                                        </select>
-                                        <input type="text" placeholder="Postcode/Zipcode">
-                                        <a class="gray_btn" href="#">상세 적용</a>
-                                    </div>
+                                    <h5 class="total_order">0 원</h5>
+                                </td>
+                                <td>
+                                  	
                                 </td>
                             </tr>
                             <tr class="out_button_area">
                             	<td>
 
-                                <td>
+                                </td>
                                 <td>
                                 </td>
                                 <td>
@@ -241,6 +239,8 @@
 	<!-- orderForm -->
 	<form action="#" method="post" class="orderForm" id="orderForm">
 		<input type="hidden" name="totalPrice" value="" />
+		<input type="hidden" name="shipCost" value="" />
+		<input type="hidden" name="totalOrder" value="" />
 		<input type="hidden" name="chk[]" id="chk" value="" />
 	</form>
 
@@ -283,20 +283,39 @@
 		// 주문 폼 가져오기
 		let orderForm = $(".orderForm");
 		
-			// 선택된 상품의 합계 금액 구하기
+			// 선택된 상품의 합계 금액 및 배송비 구하기
 			function cartSum(){
 				let str = "";
-				let sum = 0;
+				let sum = 0;  // 상품 합계
 				let count = $(".chkbox").length;
-				
+				let maxShipCost = 0; // 최대 배송비
+				let totalOrder = 0;  // 상품 합계 + 배송비
 				for(var i=0;i<count;i++){
 					if(chkbox[i].checked == true){
 						sum += parseInt(chkbox[i].value);
+						let shipCost = parseInt(chkbox[i].dataset.shipcost); // 해당 상품의 배송비
+						
+						if(maxShipCost < shipCost){ // 최대 배송비를 구하기
+							maxShipCost = shipCost;
+						}	
 					}
 				}
+				if(sum > 20000){ // 상품 합계가 2만원이 넘으면 배송비 0원
+					maxShipCost = 0;
+				}
+				
+				totalOrder = sum + maxShipCost;
+				
 				$(".total_sum").html(sum+'원');
 				orderForm.find("input[name='totalPrice']").val(sum);
-				console.log("폼 합계",orderForm.find("input[name='totalPrice']").val());
+				$(".shipping_cost").html(maxShipCost+'원');
+				orderForm.find("input[name='shipCost']").val(maxShipCost);
+				$(".total_order").html(totalOrder+'원');
+				orderForm.find("input[name='totalOrder']").val(totalOrder);
+				// Order 폼에 제대로 값이 담겼는지 확인
+				console.log("상품 합계",orderForm.find("input[name='totalPrice']").val());
+				console.log("배송비",orderForm.find("input[name='shipCost']").val());
+				console.log("주문 합계",orderForm.find("input[name='totalOrder']").val());
 			}
 		
 			// 수량 증가 버튼 클릭
@@ -336,7 +355,7 @@
 			$(".chkbox").click(function(){
 				let idx = $(this).data("index");
 				let totalprice = $(this).val();
-				let cartid = $(this).data("cartid"); // data의 cartid는 소문자로 써야 됨. data-cartId => 인식 안됨
+				let cartid = $(this).data("cartid"); // data의 cartid는 소문자로 써야 됨. data-cartId => 인식 안됨 => data-cart-id로 작성시, 스크립트에서는 카멜케이스로 변경되어 cartId가 됨.
 				console.log('수량',qty[idx].value);
 				console.log('각 합계',totalprice);
 				console.log('cartid',cartid);

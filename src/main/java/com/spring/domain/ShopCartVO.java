@@ -10,6 +10,7 @@ public class ShopCartVO {
 	private int pid;
 	private int amount;
 	private int price;
+	private int shipcost;
 	
 	public ShopCartVO() {
 		this.cartid = 0;
@@ -18,6 +19,7 @@ public class ShopCartVO {
 		this.pid = 0;
 		this.amount = 1;
 		this.price = 0;
+		this.shipcost = 0;
 	}
 	
 	

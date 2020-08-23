@@ -211,7 +211,7 @@
     			alert("장바구니에 추가되었습니다.")
     		},
     		error:function(xhr,status,err){
-    			
+    			alert("로그인 해주세요.")
     		}
     	})
     	

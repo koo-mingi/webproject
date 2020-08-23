@@ -29,6 +29,8 @@ public class ShopCartController {
 	@Autowired
 	private ShopService service;
 	
+	
+	// 장바구니에 상품 추가
 	@PostMapping("/{pid}/{price}/{amount}")
 	@ResponseBody
 	public ResponseEntity<String> insertCart(HttpSession session,@PathVariable int pid, @PathVariable int price,
@@ -43,15 +45,25 @@ public class ShopCartController {
 			vo.setPrice(price);
 			vo.setAmount(amount);
 			service.insertCart(vo);
+			return new ResponseEntity<String>("success",HttpStatus.OK);
 		}
 		
-		return new ResponseEntity<String>("success",HttpStatus.OK);
+		return new ResponseEntity<String>("fail",HttpStatus.BAD_REQUEST);
 	}
 	
+	// 장바구니 상품 삭제
 	@PostMapping("/delete")
 	public String deleteCart(@RequestParam(value="chk[]") List<Integer> chArr) {
-		
+			
 		log.info("삭제 리스트 chArr : "+chArr);
+		
+		for(int cartid:chArr) {
+			if(service.deleteCart(cartid)>0) {
+				log.info(cartid + "번 삭제 성공");
+			}else {
+				log.info(cartid + "번 삭제 실패");
+			}
+		}
 		
 		return "redirect:/shop/cart";
 	}

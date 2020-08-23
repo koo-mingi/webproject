@@ -192,7 +192,7 @@
 		insert into cartTBL(cartid,userid,pid,amount,price) values(cart_seq.nextval,#{userid},#{pid},#{amount},#{price})
 	</insert>
 	<select id="selectCart" resultType="com.spring.domain.ShopCartVO">
-		select c.cartid,userid,p.pname,c.amount,c.price 
+		select c.cartid,userid,p.pname,c.amount,c.price,p.shipcost 
 		from cartTBL c inner join productTBL p on c.pid = p.pid 
 		where userid=#{userid}
 	</select>
