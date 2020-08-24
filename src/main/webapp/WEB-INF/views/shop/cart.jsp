@@ -149,7 +149,7 @@
                                 <td>
                                     <div class="checkout_btn_inner d-flex align-items-center">
                                         <a class="gray_btn" href="#">쇼핑 계속하기</a>
-                                        <a class="gray_btn" href="/shop/checkout">주문하기</a>
+                                        <a class="gray_btn order-btn" href="/shopcart/checkout">주문하기</a>
                                     </div>
                                 </td>
                             </tr>
@@ -238,7 +238,6 @@
 	
 	<!-- orderForm -->
 	<form action="#" method="post" class="orderForm" id="orderForm">
-		<input type="hidden" name="totalPrice" value="" />
 		<input type="hidden" name="shipCost" value="" />
 		<input type="hidden" name="totalOrder" value="" />
 		<input type="hidden" name="chk[]" id="chk" value="" />
@@ -307,13 +306,11 @@
 				totalOrder = sum + maxShipCost;
 				
 				$(".total_sum").html(sum+'원');
-				orderForm.find("input[name='totalPrice']").val(sum);
 				$(".shipping_cost").html(maxShipCost+'원');
 				orderForm.find("input[name='shipCost']").val(maxShipCost);
 				$(".total_order").html(totalOrder+'원');
 				orderForm.find("input[name='totalOrder']").val(totalOrder);
 				// Order 폼에 제대로 값이 담겼는지 확인
-				console.log("상품 합계",orderForm.find("input[name='totalPrice']").val());
 				console.log("배송비",orderForm.find("input[name='shipCost']").val());
 				console.log("주문 합계",orderForm.find("input[name='totalOrder']").val());
 			}
@@ -410,8 +407,33 @@
 				}
 				
 				
-				
 			})// 상품 삭제하기 끝
+			
+			// 상품 주문하기
+			$(".order-btn").click(function(e){
+				e.preventDefault();
+				
+				var checkArr = new Array();
+				$("input[class='chkbox']:checked").each(function(){
+					checkArr.push($(this).data("cartid"));
+				})
+				console.log(checkArr);
+				
+				$("#chk").val(checkArr);
+				
+				if($("#chk").val() == []){
+					alert("주문할 상품이 없습니다.");
+					return false;
+				}
+				
+				if(confirm("선택된 상품을 주문하시겠습니까?")){
+					alert("주문페이지로 이동합니다.");
+					orderForm.attr("action",'/shopcart/checkout');
+					orderForm.submit();
+				}
+				
+			})
+			
 			
 	})
 	

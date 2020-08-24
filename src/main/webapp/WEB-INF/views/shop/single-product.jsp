@@ -56,7 +56,7 @@
 						</div>
 						<div class="card_area d-flex align-items-center">
 							<a class="genric-btn info radius cart-btn" href="${vo.pid }/${vo.saleprice}">장바구니</a>
-							<a class="genric-btn info radius" href="/shop/cart">구입하기</a>
+							<a class="genric-btn info radius buy-btn" href="${vo.pid }/${vo.saleprice}">구입하기</a>
 							<a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
 						</div>
 					</div>
@@ -925,6 +925,26 @@
 			type:'post',
 			success:function(data){
     			alert("장바구니에 추가되었습니다.")
+    		},
+    		error:function(xhr,status,err){
+    			alert("로그인 해주세요.")
+    		}
+		})
+	})
+	
+	// ------------ 구입버튼 -------------//
+	let byt_btn = $(".buy-btn");
+	
+	byt_btn.click(function(e){
+		e.preventDefault();
+		let str = $(this).attr("href");
+		
+		$.ajax({
+			url:'/shopcart/'+str+'/'+qty.val(),
+			type:'post',
+			success:function(data){
+    			alert("장바구니에 추가되었습니다.")
+    			location.href='/shop/checkout';
     		},
     		error:function(xhr,status,err){
     			alert("로그인 해주세요.")

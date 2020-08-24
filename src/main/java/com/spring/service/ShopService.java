@@ -27,4 +27,6 @@ public interface ShopService {
 	public int insertCart(ShopCartVO vo);
 	public List<ShopCartVO> selectCart(String userid);
 	public int deleteCart(int cartid);
+	public List<ShopCartVO> getNewestCart(String userid);
+	public ShopCartVO getCart(int cartid);
 }

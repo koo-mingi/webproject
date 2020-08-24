@@ -1,6 +1,7 @@
 package com.spring.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -20,8 +21,10 @@ import com.spring.domain.AuthVO;
 import com.spring.domain.PriceVO;
 import com.spring.domain.ShopCartVO;
 import com.spring.domain.ShopCriteria;
+import com.spring.domain.ShopOrderVO;
 import com.spring.domain.ShopPageVO;
 import com.spring.domain.ShopProductVO;
+import com.spring.domain.ShopReviewVO;
 import com.spring.service.ShopServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
@@ -78,8 +81,31 @@ public class ShopController {
 	}
 	
 	@GetMapping("/checkout")
-	public void checkoutGet(){
+	public void checkoutGet(HttpSession session,Model model){
 		log.info("결제 상세페이지");
+		AuthVO auth = (AuthVO) session.getAttribute("auth");
+		if(auth !=null) {
+			String userid = auth.getUserid();
+			List<ShopCartVO> list = shopService.getNewestCart(userid);
+
+			int price = list.get(0).getPrice();
+			int amount = list.get(0).getAmount();
+			int shipcost = list.get(0).getShipcost();
+			List<Integer> chArr = new ArrayList<Integer>();
+			chArr.add(list.get(0).getCartid());
+					
+			ShopOrderVO order = new ShopOrderVO();
+			
+			if(price * amount >20000) {
+				order.setTotalprice(price* amount);
+			}else {
+				order.setTotalprice(price* amount + shipcost);
+				order.setOrdershipcost(list.get(0).getShipcost());
+			}
+			model.addAttribute("chArr",chArr);
+			model.addAttribute("cartList", list);
+			model.addAttribute("order", order);
+		}
 	}
 	
 }

@@ -1,5 +1,6 @@
 package com.spring.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.domain.AuthVO;
 import com.spring.domain.ShopCartVO;
+import com.spring.domain.ShopOrderVO;
 import com.spring.mapper.ShopMapper;
 import com.spring.service.ShopService;
 
@@ -67,4 +71,35 @@ public class ShopCartController {
 		
 		return "redirect:/shop/cart";
 	}
+	
+	// 장바구니 상품 주문
+	@PostMapping("/checkout")
+	public String orderCart(@RequestParam(value="chk[]") List<Integer> chArr, 
+							int shipCost, int totalOrder,Model model) {
+		
+		log.info("주문 리스트 : "+chArr);
+		List<ShopCartVO> list = new ArrayList<ShopCartVO>();
+		
+		for(int cartid:chArr) {
+			ShopCartVO vo = service.getCart(cartid);
+			list.add(vo);
+		}
+		
+		ShopOrderVO order = new ShopOrderVO();
+		order.setOrdershipcost(shipCost);
+		order.setTotalprice(totalOrder);
+		
+		model.addAttribute("chArr", chArr);
+		model.addAttribute("cartList", list);
+		model.addAttribute("order", order);
+		
+		return "/shop/checkout";
+	}
+	
+	@GetMapping("/checkout")
+	public String handleCheckout() {
+		
+		return "redirect:/";
+	}
+	
 }
