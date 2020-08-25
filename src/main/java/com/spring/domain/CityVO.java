@@ -1,5 +1,5 @@
 package com.spring.domain;
 
-public class cityVO {
+public class CityVO {
 	private String sigungu;
 }

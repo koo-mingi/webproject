@@ -34,7 +34,7 @@
                                 <select id="fitArea">
                                     <option>전체보기</option>
                                     <option value="서울특별시">서울특별시</option>
-                                    <option value="부산광역시">부산광역시</option>
+                                    <option value="">부산광역시</option>
                                     <option value="">대구광역시</option>
                                     <option value="">인천광역시</option>
                                     <option value="">광주광역시</option>
@@ -54,41 +54,17 @@
                             </div>
                             <div class="class__filter__select">
                                 <p>시/군/구:</p>
-                                <select id="fitStyle">
-                                    <option value={}>전체보기</option>
-                                    <option value="">종로구</option>
-                                    <option value="">중구</option>
-                                    <option value="">용산구</option>
-                                    <option value="">성동구</option>
-                                    <option value="">광진구</option>
-                                    <option value="">동대문구</option>
-                                    <option value="">중랑구</option>
-                                    <option value="">성북구</option>
-                                    <option value="">강북구</option>
-                                    <option value="">도봉구</option>
-                                    <option value="">노원구</option>
-                                    <option value="">은평구</option>
-                                    <option value="">서대문구</option>
-                                    <option value="">마포구</option>
-                                    <option value="">양천구</option>
-                                    <option value="">강서구</option>
-                                    <option value="">구로구</option>
-                                    <option value="">금천구</option>
-                                    <option value="">영등포구</option>
-                                    <option value="">동작구</option>
-                                    <option value="">관악구</option>
-                                    <option value="">서초구</option>
-                                    <option value="">강남구</option>
-                                    <option value="">송파구</option>
-                                    <option value="">강동구</option>                                    
+                                <select id="sigungu">
+                                    <option value="">전체보기</option> 
+                                                                                          
                                 </select>
                             </div>                            
                             <div class="class__filter__select">
                                 <p>운동시설:</p>
-                                <select id="orderBy">
-                                    <option value="">헬스장</option>
-                                    <option value="">산책로</option>
-                                    <option value="">공원</option>
+                                <select id="Exercise">
+                                    <option value="헬스장">헬스장</option>
+                                    <option value="산책로">산책로</option>
+                                    <option value="공원">공원</option>
                                 </select>
                             </div>
                             <div class="class__filter__btn">
@@ -122,7 +98,27 @@
 
 	// 장소 검색 객체를 생성합니다
 	var ps = new kakao.maps.services.Places(); 
+	
+	/* $(".class__filter__select").find("input[id='searchOp']").click(function(e){ */
+	$("#searchOp").click(function(e){
+		e.preventDefault();
+		console.log('검색중');	
 		
+		 //선택 값져오기
+		let city =  $(".list:first > .option.selected").text();
+		let gu =  $(".list:eq(1) > .option.selected").text()
+		let ex =  $(".list:last > .option.selected").text();
+		
+		
+		
+		/* /* let searchAddress = $(".class__filter__select").find("input[id='sigungu']").val(gu); */
+		let searchAddress = gu;
+		
+		console.log(searchAddress);
+		console.log(ex);
+		ps.keywordSearch(searchAddress, placesSearchCB);
+	})
+	
 	$(".search").find("input[id='submit']").click(function(e){
 		e.preventDefault();
 		console.log('검색');
@@ -204,12 +200,18 @@ $(function(){
 		console.log("도시 클릭");
 		city = $(this).val();
 		
+		let sigungu = $(".list");	
+		
 		$.ajax({
 			url : "hotplace",
 			type: 'post',
 			data : {city:city},
 			success:function(data){
-				console.log(data);
+				let output="";
+				$(data).each(function(i, element){
+					sigungu.append("<li data-value='"+element.sigungu+"' class='option '>"+element.sigungu+"</option>");										
+				})
+				console.log(sigungu);
 			}
 		})		
 	})
