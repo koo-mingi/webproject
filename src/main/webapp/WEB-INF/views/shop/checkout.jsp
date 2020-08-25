@@ -18,63 +18,70 @@
     <!-- End Banner Area -->
 
     <!--================Checkout Area =================-->
+    <section class="cart_area">
+        <div class="container">
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="vo" items="${cartList }" varStatus="status">
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img src="/resources/shop/img/cart.jpg" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <p>${vo.pname }</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5 class="productPrice">${vo.price }원</h5>
+                                </td>
+                                <td>
+                                    <div class="product_count">
+                                        <input type="text" name="qty" id="sst${status.index}" maxlength="12" value="${vo.amount }" title="Quantity:"
+                                            class="input-text qty" readonly="readonly">
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5 class="productTotal">${vo.price*vo.amount }원</h5>
+                                </td>
+                            </tr>
+                            </c:forEach>
+                         </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="checkout_area section_gap">
         <div class="container">
-            <div class="returning_customer">
-                <div class="check_title">
-                    <h2>Returning Customer? <a href="#">Click here to login</a></h2>
-                </div>
-                <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new
-                    customer, please proceed to the Billing & Shipping section.</p>
-                <form class="row contact_form" action="#" method="post" novalidate="novalidate">
-                    <div class="col-md-6 form-group p_star">
-                        <input type="text" class="form-control" id="name" name="name">
-                        <span class="placeholder" data-placeholder="Username or Email"></span>
-                    </div>
-                    <div class="col-md-6 form-group p_star">
-                        <input type="password" class="form-control" id="password" name="password">
-                        <span class="placeholder" data-placeholder="Password"></span>
-                    </div>
-                    <div class="col-md-12 form-group">
-                        <button type="submit" value="submit" class="primary-btn">login</button>
-                        <div class="creat_account">
-                            <input type="checkbox" id="f-option" name="selector">
-                            <label for="f-option">Remember me</label>
-                        </div>
-                        <a class="lost_pass" href="#">Lost your password?</a>
-                    </div>
-                </form>
-            </div>
-            <div class="cupon_area">
-                <div class="check_title">
-                    <h2>Have a coupon? <a href="#">Click here to enter your code</a></h2>
-                </div>
-                <input type="text" placeholder="Enter coupon code">
-                <a class="tp_btn" href="#">Apply Coupon</a>
-            </div>
             <div class="billing_details">
                 <div class="row">
                     <div class="col-lg-8">
-                        <h3>Billing Details</h3>
+                        <h3>배송지 설정</h3>
                         <form class="row contact_form" action="#" method="post" novalidate="novalidate">
                             <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="first" name="name">
-                                <span class="placeholder" data-placeholder="First name"></span>
-                            </div>
-                            <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="last" name="name">
-                                <span class="placeholder" data-placeholder="Last name"></span>
-                            </div>
-                            <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" id="company" name="company" placeholder="Company name">
+                                <input type="text" class="form-control" id="name" name="name">
+                                <span class="placeholder" data-placeholder="이름"></span>
                             </div>
                             <div class="col-md-6 form-group p_star">
                                 <input type="text" class="form-control" id="number" name="number">
-                                <span class="placeholder" data-placeholder="Phone number"></span>
+                                <span class="placeholder" data-placeholder="휴대전화"></span>
                             </div>
                             <div class="col-md-6 form-group p_star">
                                 <input type="text" class="form-control" id="email" name="compemailany">
-                                <span class="placeholder" data-placeholder="Email Address"></span>
+                                <span class="placeholder" data-placeholder="Email 주소"></span>
                             </div>
                             <div class="col-md-12 form-group p_star">
                                 <select class="country_select">
@@ -103,15 +110,6 @@
                                 </select>
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP">
-                            </div>
-                            <div class="col-md-12 form-group">
-                                <div class="creat_account">
-                                    <input type="checkbox" id="f-option2" name="selector">
-                                    <label for="f-option2">Create an account?</label>
-                                </div>
-                            </div>
-                            <div class="col-md-12 form-group">
                                 <div class="creat_account">
                                     <h3>Shipping Details</h3>
                                     <input type="checkbox" id="f-option3" name="selector">
@@ -123,17 +121,11 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="order_box">
-                            <h2>Your Order</h2>
-                            <ul class="list">
-                                <li><a href="#">Product <span>Total</span></a></li>
-                                <li><a href="#">Fresh Blackberry <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
-                                <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
-                                <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
-                            </ul>
+                            <h2>주문 내역</h2>
                             <ul class="list list_2">
-                                <li><a href="#">Subtotal <span>$2160.00</span></a></li>
-                                <li><a href="#">Shipping <span>Flat rate: $50.00</span></a></li>
-                                <li><a href="#">Total <span>$2210.00</span></a></li>
+                                <li><a href="#">상품 합계 <span>${order.totalprice-order.ordershipcost} 원</span></a></li>
+                                <li><a href="#">배송비 <span>${order.ordershipcost } 원</span></a></li>
+                                <li><a href="#">주문 금액 <span>${order.totalprice } 원</span></a></li>
                             </ul>
                             <div class="payment_item">
                                 <div class="radion_btn">
@@ -166,6 +158,14 @@
             </div>
         </div>
     </section>
+    
+    <!-- orderForm -->
+	<form action="#" method="post" class="orderForm" id="orderForm">
+		<input type="hidden" name=totalprice value="${order.totalprice }" />
+		<input type="hidden" name="ordershipcost" value="${order.ordershipcost }" />
+		<input type="hidden" name="chArr" id="chk" value="${chArr }" />
+	</form>
+	
     <!--================End Checkout Area =================-->
 
     <%@ include file="/WEB-INF/views/include/footer.jsp" %>

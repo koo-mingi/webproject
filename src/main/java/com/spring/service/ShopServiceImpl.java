@@ -115,4 +115,14 @@ public class ShopServiceImpl implements ShopService {
 		return mapper.deleteCart(cartid);
 	}
 
+	@Override
+	public List<ShopCartVO> getNewestCart(String userid) {
+		return mapper.getNewestCart(userid);
+	}
+
+	@Override
+	public ShopCartVO getCart(int cartid) {
+		return mapper.getCart(cartid);
+	}
+
 }

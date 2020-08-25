@@ -18,7 +18,7 @@ import com.spring.domain.Criteria;
 import com.spring.domain.NoticeVO;
 import com.spring.domain.PageVO;
 
-import com.spring.domain.cityVO;
+import com.spring.domain.CityVO;
 
 import com.spring.service.CommunityService;
 
@@ -90,22 +90,8 @@ public class MenuController {
 		model.addAttribute("vo", vo);
 		log.info(""+cri.getPageNum());
 		log.info(""+cri.getAmount());
-	}
+	}	
 	
-	@GetMapping("/hotplace")
-	public void hotplaceGet() {
-		log.info("hotplace 요청");
-	}
-	
-	@PostMapping("/hotplace")
-	public ResponseEntity<cityVO> hotplace_post(String city) {
-		log.info("도시 "+city);
-		//서비스
-		
-		
-		//
-		return new ResponseEntity<cityVO>(HttpStatus.OK);
-	}
 	
 	@GetMapping("/shop")
 	public void shopGet() {
