@@ -20,6 +20,7 @@ public interface CommunityService {
 	// 커뮤니티 글 삭제
 	public boolean deleteCommu(int bno);
 	
+	// 커뮤니티 댓글
 	public CommuReplyPageVO selectReply(int bno,int pageNum);
 	public int insertReply(CommuReplyVO vo);
 	public int insertReReply(CommuReplyVO vo);

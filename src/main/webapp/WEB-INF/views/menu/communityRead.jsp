@@ -315,7 +315,7 @@ a > span {
 						<div class="reply_form">
 							<textarea class="commentarea" placeholder="댓글을 입력해주세요">
 							</textarea>
-							<button type="button" class="btn btn-warning" style="font-size: 16px;">입력</button>
+							<button type="button" class="btn btn-warning replyIn" style="font-size: 16px;">입력</button>
 						</div>
 						<div class="secret" style="height: 20px; margin-top: 5px;">
 							<input type="checkbox"/>
@@ -417,9 +417,9 @@ $(function(){
 				
 				let str = "";
 				for(var i = 0,len = list.length||0;i<len;i++){
-					
+					console.log(list[i].re_seq);
 					let reply = list[i].re_seq > 0 ? 'reply':'';
-					let replyButton = list[i].re_seq == 0 ? '<a class="reply_btn" data-seq="'+list[i].re_seq+'" data-ref="'+list[i].re_ref+'" data-lev="'+list[i].re_lev+'" href="#">Reply</a>':'';
+					let replyBtn = list[i].re_seq == 0 ? '<a class="replyIn" data-seq="'+list[i].re_seq+'" data-ref="'+list[i].re_ref+'" data-lev="'+list[i].re_lev+'" href="#">Reply</a>':'';
 					
 					str += '<div class="review_item '+reply+'" >';
 					str += '<div class="media">';
