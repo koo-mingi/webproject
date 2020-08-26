@@ -574,6 +574,7 @@
 					// 조회수 추출
 					let viewCount = data.items[0].statistics.viewCount;
 					
+					// 자릿수별 원하는 형태로 변환
 					if(viewCount.length > 5){
 						var viewCnt = viewCount.slice(0,-4);
 						viewCnt = viewCnt+"만회";

@@ -18,8 +18,6 @@ import com.spring.domain.Criteria;
 import com.spring.domain.NoticeVO;
 import com.spring.domain.PageVO;
 
-import com.spring.domain.CityVO;
-
 import com.spring.service.CommunityService;
 
 import com.spring.service.NoticeBoardService;

@@ -341,10 +341,10 @@ a > span {
 									</div>
 								<div class="replyDiv" style="width: 100%; margin-bottom: 10px;">
 									<div class="replyHead">
-										<strong style="font-size: 17px;"></strong>
+										<strong style="font-size: 17px;">댓글러</strong>
 										<small style="float: right; font-size: 15px; color:#333;">2020.08.25  08:00</small>
 									</div>
-									<p class="replyArea" style="margin-top: 15px;"></p>
+									<p class="replyArea" style="margin-top: 15px;">내용내용내용</p>
 									<a style="cursor:pointer;" class="btn-re">답글</a>
 								</div>
 							</div>
@@ -412,7 +412,7 @@ $(function(){
 
 				// 댓글이 없으면 댓글 표시X
 				if(list == null || list.length === 0){
-					replyDiv.html("");
+					/* replyDiv.html(""); */
 					return;
 				}
 				// 댓글이 있으면 여기로 옴
