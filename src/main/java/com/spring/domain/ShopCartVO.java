@@ -11,6 +11,9 @@ public class ShopCartVO {
 	private int amount;
 	private int price;
 	private int shipcost;
+	private String name;
+	private String phone;
+	private String email;
 	
 	public ShopCartVO() {
 		this.cartid = 0;

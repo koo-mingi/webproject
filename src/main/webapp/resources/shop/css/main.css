@@ -4522,7 +4522,7 @@ label {
   z-index: 1; }
 
 .p_star .placeholder::before {
-  content: attr(data-placeholder);
+ /*  content: attr(data-placeholder); */
   color: #777; }
 
 .p_star .placeholder::after {
@@ -4572,7 +4572,7 @@ label {
   margin-bottom: 20px; }
   .billing_details .contact_form .form-group input {
     border-radius: 3px;
-    color: #777777; }
+    /* color: #fff; */ }
     .billing_details .contact_form .form-group input.placeholder {
       color: #777777; }
     .billing_details .contact_form .form-group input:-moz-placeholder {
@@ -5653,7 +5653,7 @@ label {
   .contact_form .form-group .form-control {
     font-size: 13px;
     line-height: 26px;
-    color: #999;
+/*     color: #999; */
     border: 1px solid #eeeeee;
     font-family: "Roboto", sans-serif;
     border-radius: 0px;

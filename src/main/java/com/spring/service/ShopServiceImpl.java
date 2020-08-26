@@ -13,10 +13,13 @@ import com.spring.domain.ShopCartVO;
 import com.spring.domain.ShopCommentPageVO;
 import com.spring.domain.ShopCommentVO;
 import com.spring.domain.ShopCriteria;
+import com.spring.domain.ShopOrderDetailVO;
+import com.spring.domain.ShopOrderVO;
 import com.spring.domain.ShopProductVO;
 import com.spring.domain.ShopReviewGradeVO;
 import com.spring.domain.ShopReviewPageVO;
 import com.spring.domain.ShopReviewVO;
+import com.spring.domain.ShopShipVO;
 import com.spring.mapper.ShopMapper;
 
 @Service
@@ -123,6 +126,61 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public ShopCartVO getCart(int cartid) {
 		return mapper.getCart(cartid);
+	}
+
+	@Override
+	public int insertShip(ShopShipVO vo) {
+		return mapper.insertShip(vo);
+	}
+
+	@Override
+	public List<ShopShipVO> selectShip(String userid) {
+		return mapper.selectShip(userid);
+	}
+
+	@Override
+	public ShopShipVO getShip(int shipid) {
+		return mapper.getShip(shipid);
+	}
+
+	@Override
+	public int insertNewestShip(ShopShipVO vo) {
+		return mapper.insertNewestShip(vo);
+	}
+
+	@Override
+	public int updateNewestShip(ShopShipVO vo) {
+		return mapper.updateNewestShip(vo);
+	}
+
+	@Override
+	public int countShip(String userid) {
+		return mapper.countShip(userid);
+	}
+
+	@Override
+	public ShopShipVO getNewestShip(String userid) {
+		return mapper.getNewestShip(userid);
+	}
+
+	@Override
+	public int insertOrder(ShopOrderVO order) {
+		return mapper.insertOrder(order);
+	}
+
+	@Override
+	public ShopOrderVO getNewestOrder(String userid) {
+		return mapper.getNewestOrder(userid);
+	}
+
+	@Override
+	public int insertOrderDetail(ShopOrderDetailVO vo) {
+		return mapper.insertOrderDetail(vo);
+	}
+
+	@Override
+	public List<ShopOrderDetailVO> selectOrderDetail(int orderid) {
+		return mapper.selectOrderDetail(orderid);
 	}
 
 }

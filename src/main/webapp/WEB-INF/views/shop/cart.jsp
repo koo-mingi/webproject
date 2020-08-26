@@ -359,6 +359,22 @@
 				cartSum();
 			})
 			
+			// 상품의 체크박스가 하나라도 풀리면 전체선택 체크박스 풀기
+			$(".chkbox").click(function(){
+				let count=0;
+				$(".chkbox").each(function(){
+					if($(this).prop("checked")==false){
+						count++;
+					}
+				})
+				
+				if(count>0){
+					$(".allCheck").prop("checked", false);
+				}else{
+					$(".allCheck").prop("checked", true);
+				}
+     		 });
+			
 			
 			// 전체선택 체크박스 : 체크 시 나머지 체크박스 true
 			$(".allCheck").click(function(){
@@ -420,7 +436,7 @@
 				console.log(checkArr);
 				
 				$("#chk").val(checkArr);
-				
+
 				if($("#chk").val() == []){
 					alert("주문할 상품이 없습니다.");
 					return false;
