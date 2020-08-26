@@ -339,12 +339,12 @@ a > span {
 									<!-- <i class="far fa-smile fa-10x" style="font-size: 18px;"></i> -->
 									<img src="https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Pig-512.png" alt="" />
 									</div>
-								<div style="width: 100%; margin-bottom: 10px;">
+								<div class="replyDiv" style="width: 100%; margin-bottom: 10px;">
 									<div class="replyHead">
-										<strong style="font-size: 17px;">댓글러</strong>
+										<strong style="font-size: 17px;"></strong>
 										<small style="float: right; font-size: 15px; color:#333;">2020.08.25  08:00</small>
 									</div>
-									<p class="replyArea" style="margin-top: 15px;">내용내용내용</p>
+									<p class="replyArea" style="margin-top: 15px;"></p>
 									<a style="cursor:pointer;" class="btn-re">답글</a>
 								</div>
 							</div>
@@ -393,7 +393,7 @@ $(function(){
 	// 현재 게시글 번호 가져오기
 	let bno = ${vo.bno};
 	// 댓글 영역 가져오기
-	let replyArea = $(".replyArea");
+	let replyDiv = $(".replyDiv");
 	// 댓글 페이지 나누기 담기
 	let pageNum = 1;
 	
@@ -407,19 +407,21 @@ $(function(){
 			type:'get',
 			success:function(data){
 				console.log(data);
-				let list = data.list;
-				let total = data.total;
-				
+				let list = data.listRep;
+				let total = data.totalRep;
+
+				// 댓글이 없으면 댓글 표시X
 				if(list == null || list.length === 0){
-					replyArea.html("");
+					replyDiv.html("");
 					return;
 				}
-				
+				// 댓글이 있으면 여기로 옴
+				// 댓글 리스트 뿌리기..?
 				let str = "";
 				for(var i = 0,len = list.length||0;i<len;i++){
-					console.log(list[i].re_seq);
 					let reply = list[i].re_seq > 0 ? 'reply':'';
-					let replyBtn = list[i].re_seq == 0 ? '<a class="replyIn" data-seq="'+list[i].re_seq+'" data-ref="'+list[i].re_ref+'" data-lev="'+list[i].re_lev+'" href="#">Reply</a>':'';
+					// (상점은)대댓글인 또 답글 못달도록
+					/* let replyBtn = list[i].re_seq == 0 ? '<a class="replyIn" data-seq="'+list[i].re_seq+'" data-ref="'+list[i].re_ref+'" data-lev="'+list[i].re_lev+'" href="#">답글</a>':''; */
 					
 					str += '<div class="review_item '+reply+'" >';
 					str += '<div class="media">';
