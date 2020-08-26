@@ -2,7 +2,6 @@ package com.spring.service;
 
 import java.util.List;
 
-import com.spring.domain.PriceVO;
 import com.spring.domain.ShopCartVO;
 import com.spring.domain.ShopCommentPageVO;
 import com.spring.domain.ShopCommentVO;

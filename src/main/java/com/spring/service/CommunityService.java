@@ -2,6 +2,8 @@ package com.spring.service;
 
 import java.util.List;
 
+import com.spring.domain.CommuReplyPageVO;
+import com.spring.domain.CommuReplyVO;
 import com.spring.domain.CommunityVO;
 import com.spring.domain.Criteria;
 
@@ -17,4 +19,10 @@ public interface CommunityService {
 	public boolean modifyCommu(CommunityVO vo);
 	// 커뮤니티 글 삭제
 	public boolean deleteCommu(int bno);
+	
+	// 커뮤니티 댓글
+	public CommuReplyPageVO selectReply(int bno,int pageNum);
+	public int insertReply(CommuReplyVO vo);
+	public int insertReReply(CommuReplyVO vo);
+	public int updateReply(CommuReplyVO vo);
 }

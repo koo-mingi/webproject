@@ -8,7 +8,7 @@
 		<!-- html에서 <>는 태그를 여닫는 의미로 쓰이기 때문에 부등호로 쓸 경우 에러남 <![CDATA[ ]]>로 방지하기 -->
 		<![CDATA[		 
 		select * 
-		from (select /*+INDEX_DESC(commuBoard pk_commuBoard)*/ rownum rn, bno, category, title, writer,, readcount, replycnt, regdate
+		from (select /*+INDEX_DESC(commuBoard pk_commuBoard)*/ rownum rn, bno, category, title, writer, readcount, replycnt, regdate
 		      from commuBoard
 		      where
    		]]>      
@@ -48,7 +48,7 @@
 		delete from commuBoard where bno=#{bno}
 	</delete>
 	
-	<!-- 공지사항 조회수 올리기 -->
+	<!-- 커뮤니티 게시글 조회수 올리기 -->
 	<update id="hitUpdate">
 		update commuBoard set readcount=readcount+1 where bno=#{bno}
 	</update>
@@ -73,5 +73,38 @@
 			</foreach>
 		</trim>
 	</sql>
+	
+	<!-- 커뮤니티 댓글 목록 가져오기 -->
+	<select id="selectReply" resultType="com.spring.domain.CommuReplyVO">
+		<![CDATA[
+			select * 
+			from (select rownum rn, rno, bno, reply, replyer, replydate, re_seq, re_lev
+				  from (select * from commu_reply order by rno desc, re_seq asc) 
+				  where bno = #{bno} and rno > 0 and rownum <= #{pageNum} * 10)
+			where rn > (#{pageNum}-1) * 10
+			 
+		]]>
+	</select>
+	
+	<!-- 커뮤니티 댓글 추가하기 --> 
+	<insert id="insertReply">
+		insert into commu_reply(rno, bno, reply, replyer) values(commu_reply_seq.nextval, #{bno}, #{reply}, #{replyer})
+	</insert>
+	
+	<!-- 커뮤니티 댓글 답글 달기 -->
+ 	<insert id="insertReReply">
+		insert into commu_reply(rno, bno, reply, replyer, re_seq, re_lev)
+		 values(commu_reply_seq.nextval, #{bno}, #{reply}, #{replyer}, #{re_seq}, #{re_lev})
+	</insert>
+	
+	<!-- 커뮤니티 댓글 답글달기 전에 값 변경하기 -->
+ 	<update id="updateReply">
+		update commu_reply set re_seq=re_seq+1 where re_seq>#{re_seq}
+	</update>
+	
+	<!-- 특정 글의 전체 댓글 개수 가져오기 -->
+ 	<select id="totalReply" resultType="int">
+		select count(*) from commu_reply where bno=#{bno} and rno>0
+	</select>
 	
 </mapper>
