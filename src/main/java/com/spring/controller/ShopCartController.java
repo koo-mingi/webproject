@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.domain.AuthVO;
+import com.spring.domain.MemberVO;
 import com.spring.domain.ShopCartVO;
 import com.spring.domain.ShopOrderVO;
 import com.spring.mapper.ShopMapper;
@@ -85,10 +86,17 @@ public class ShopCartController {
 			list.add(vo);
 		}
 		
+		MemberVO member = new MemberVO();
+		member.setName(list.get(0).getName());
+		member.setEmail(list.get(0).getEmail());
+		member.setPhone(list.get(0).getPhone());
+		
 		ShopOrderVO order = new ShopOrderVO();
 		order.setOrdershipcost(shipCost);
 		order.setTotalprice(totalOrder);
 		
+		
+		model.addAttribute("member", member);
 		model.addAttribute("chArr", chArr);
 		model.addAttribute("cartList", list);
 		model.addAttribute("order", order);
