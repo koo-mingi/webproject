@@ -40,8 +40,8 @@
                             	</td>
                                 <td>
                                     <div class="media">
-                                        <div class="d-flex">
-                                            <img src="/resources/shop/img/cart.jpg" alt="">
+                                        <div class="d-flex col-lg-3 col-md-3">
+                                            <img src="/resources/shop/img/shop-product/${vo.imgid}.jpg" alt="">
                                         </div>
                                         <div class="media-body">
                                             <p>${vo.pname }</p>

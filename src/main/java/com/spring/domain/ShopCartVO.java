@@ -14,6 +14,7 @@ public class ShopCartVO {
 	private String name;
 	private String phone;
 	private String email;
+	private String imgid;
 	
 	public ShopCartVO() {
 		this.cartid = 0;

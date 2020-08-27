@@ -19,5 +19,5 @@ public class ShopProductVO {
 	private int shipcost;
 	private String storage;
 	private Date expdate;
-	private int imgid;
+	private String imgid;
 }
