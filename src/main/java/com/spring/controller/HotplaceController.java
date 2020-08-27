@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.domain.HotplaceVO;
-import com.spring.domain.CityVO;
+
 import com.spring.service.HotplaceService;
 
 import lombok.extern.slf4j.Slf4j;
