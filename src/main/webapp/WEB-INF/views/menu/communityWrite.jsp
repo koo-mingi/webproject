@@ -287,7 +287,7 @@ a:visited {
     	if(val===null){
     		alert("카테고리를 입력해주세요");
     	}
-		$("#form").submit();
+		$("#cate").submit();
 	});
 
 	</script>
