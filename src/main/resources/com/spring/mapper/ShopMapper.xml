@@ -272,4 +272,14 @@
 	<select id="selectOrderDetail" resultType="com.spring.domain.ShopOrderDetailVO">
 		select od.order_detail_id,orderid,p.pid,p.pname,ordercount,orderprice from orderDetailTBL od inner join productTBL p on od.pid = p.pid where orderid = #{orderid}
 	</select>
+	<!-- 특정 사용자의 최신 주문과 관련된 정보 다 가져오기 -->
+	<select id="selectOrder" >
+		select * 
+		from orderTBL o
+		    inner join orderDetailTBL od on o.orderid=od.orderid
+		    inner join shippingTBL sp on o.shipid=sp.shipid
+		    inner join member m on m.userid=o.userid
+		    inner join productTBL p on od.pid=p.pid
+		where o.orderid in (select max(orderid) from orderTBL where userid=#{userid})
+	</select>
 </mapper>

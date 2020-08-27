@@ -34,8 +34,8 @@
                                 <select id="fitArea">
                                     <option>전체보기</option>
                                     <option value="서울특별시">서울특별시</option>
-                                    <option value="">부산광역시</option>
-                                    <option value="">대구광역시</option>
+                                    <option value="부산광역시">부산광역시</option>
+                                    <option value="대구광역시">대구광역시</option>
                                     <option value="">인천광역시</option>
                                     <option value="">광주광역시</option>
                                     <option value="">대전광역시</option>
@@ -54,9 +54,8 @@
                             </div>
                             <div class="class__filter__select">
                                 <p>시/군/구:</p>
-                                <select id="sigungu">
-                                    <option value="">전체보기</option> 
-                                                                                          
+                                <select id="sigungu" class="sigungu">
+                                    <option value="">전체보기</option>                                                    
                                 </select>
                             </div>                            
                             <div class="class__filter__select">
@@ -200,18 +199,19 @@ $(function(){
 		console.log("도시 클릭");
 		city = $(this).val();
 		
-		let sigungu = $(".list");	
+		let sigungu = $(".sigungu ul");	
 		
 		$.ajax({
 			url : "hotplace",
-			type: 'post',
+			type: 'post', 
 			data : {city:city},
 			success:function(data){
-				let output="";
+				let output="<li data-value='전체보기' class='option '>전체보기</option>";
 				$(data).each(function(i, element){
-					sigungu.append("<li data-value='"+element.sigungu+"' class='option '>"+element.sigungu+"</option>");										
+					output += "<li data-value='"+element.sigungu+"' class='option '>"+element.sigungu+"</option>";									
 				})
-				console.log(sigungu);
+				console.log(output);
+				sigungu.html(output);
 			}
 		})		
 	})

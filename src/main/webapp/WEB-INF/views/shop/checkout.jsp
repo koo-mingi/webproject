@@ -285,6 +285,7 @@
 						alert("배송지가 추가되었습니다.");
 						shiptitle.html('');
 						addDisplay();
+						showAddrList();
 					},
 					error:function(xhr,status,err){
 						if(xhr.responseText=="NewestShip"){
