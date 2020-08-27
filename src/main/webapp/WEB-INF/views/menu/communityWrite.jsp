@@ -152,11 +152,11 @@ a:visited {
                                 <!-- <li><a href="/menu/shop">SHOP</a> -->
                                 <li><a href="#">SHOP</a>
                                     <ul class="dropdown">
-                                        <li><a href="/shop/category">쇼핑 물품</a></li>
-                                        <li><a href="/shop/cart">장바구니</a></li>
-                                        <li><a href="/shop/checkout">결제</a></li>
-                                        <li><a href="/shop/confirmation">확인</a></li>
-                                        <li><a href="/shop/single-product">상품 상세</a></li>
+                                        <li><a href="/shop/category">쇼핑 전체 물품</a></li>
+                                        <li><a href="/shop/category?mainCategory=1">식사 대용</a></li>
+                                        <li><a href="/shop/category?mainCategory=2">건강 간식</a></li>
+                                        <li><a href="/shop/category?mainCategory=3">보조 식품</a></li>
+                                        <li><a href="/shop/category?mainCategory=4">운동 용품</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -188,7 +188,7 @@ a:visited {
 	<form method="post" action="/menu/communityWrite" role="form" id="cate">
 		<div class="class__filter__select" style="display: flex;">
 			<!-- <p style="color:black; font-size: 20px; font-weight: bold; margin-right: 15px;"></p> -->
-           	<select id="category" style="position:absolute; z-index:1;">
+           	<select id="category" class="category" name="category" style="position:absolute; z-index:1;">
                	<option selected disabled hidden>카테고리선택</option>
                 <option value="후기">후기</option>
                 <option value="일지">일지</option>
@@ -205,7 +205,7 @@ a:visited {
  		<br>
 		<div class="mb-3">
 			<label for="reg_id" style="font-size: 18px;">작성자</label>
-			<input type="text" class="form-control" name="writer" placeholder="작성자"/>
+			<input type="text" class="form-control" name="writer" placeholder="작성자" readonly="readonly" value="${auth.userid}"/>
 		</div>
 		<br>
 		<div class="mb-3">
@@ -292,7 +292,7 @@ a:visited {
     $("#btnSave").on('click',function(e){
     	// 카테고리 미선택 시 알림창
      	e.preventDefault();
-    	let val = $('#category').val();
+    	let val = $(".category").val();
     	console.log(val);
     	if(val===null){
     		alert("카테고리를 입력해주세요");

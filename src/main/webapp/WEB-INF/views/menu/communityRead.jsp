@@ -383,7 +383,7 @@ function remove_click() {
 	let form = $("#myForm");
 	
 	$(".btn-danger").click(function(){
-		form.attr('action','remove');
+		form.attr('action','removeCommu');
 		form.attr('method','post');
 		form.submit();
 	})
