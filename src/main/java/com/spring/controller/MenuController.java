@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,14 +56,14 @@ public class MenuController {
 	}
 	
 	// 커뮤니티 글쓰기 form
-//	@PreAuthorize("isAuthenticated()") // 인증된 사용자인 경우 true
+	@PreAuthorize("isAuthenticated()") // 인증된 사용자인 경우 true
 	@GetMapping("/communityWrite")
 	public void communityWriteGet() {
 		log.info("community write form 요청");
 	}
 	
 	// 커뮤니티 글 작성하기
-//	@PreAuthorize("isAuthenticated()")
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/communityWrite")
 	public String communityWritePost(CommunityVO vo, RedirectAttributes rttr) {
 		log.info("커뮤니티 글 작성 요청"+vo);

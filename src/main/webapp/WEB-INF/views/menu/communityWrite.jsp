@@ -5,6 +5,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- fmt라이브러리 : 등록일 생성 -->
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags"  prefix="sec"%>
 
 <!DOCTYPE html>
 <html>
@@ -117,9 +118,18 @@ a:visited {
                         	 <ul>
                                 <li>Phone : 123-4567-7899</li>
                             </ul>
-                            <a href="/shop/cart" class="genric-btn cart radius">장바구니</a>
-                        	<a href="/member/login" class="genric-btn info radius">LOGIN</a>
-                            <a href="#" class="genric-btn info radius">JOIN US</a>	
+                            <c:if test="${empty auth}">
+	                            <a href="/shop/cart" class="genric-btn cart radius">장바구니</a>
+	                        	<a href="/member/login" class="genric-btn info radius">LOGIN</a>
+	                            <a href="/register/step1" class="genric-btn info radius">JOIN US</a>                           
+                            </c:if>
+                            <c:if test="${!empty auth}">
+                            	<a href="/shop/cart" class="genric-btn cart radius">장바구니</a>	                        	
+	                            <sec:authorize access="isAuthenticated()">
+		                        	<a href="/member/logout" id="logout" class="genric-btn info radius"> Logout</a>
+		                        </sec:authorize>
+	                            <a href="/member/know-how" class="genric-btn info radius">My page</a>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -278,7 +288,7 @@ a:visited {
          }
          e.preventDefault();
        })
-  
+  	
     $("#btnSave").on('click',function(e){
     	// 카테고리 미선택 시 알림창
      	e.preventDefault();
