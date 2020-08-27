@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,14 +56,14 @@ public class MenuController {
 	}
 	
 	// 커뮤니티 글쓰기 form
-//	@PreAuthorize("isAuthenticated()") // 인증된 사용자인 경우 true
+	@PreAuthorize("isAuthenticated()") // 인증된 사용자인 경우 true
 	@GetMapping("/communityWrite")
 	public void communityWriteGet() {
 		log.info("community write form 요청");
 	}
 	
 	// 커뮤니티 글 작성하기
-//	@PreAuthorize("isAuthenticated()")
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/communityWrite")
 	public String communityWritePost(CommunityVO vo, RedirectAttributes rttr) {
 		log.info("커뮤니티 글 작성 요청"+vo);
@@ -89,7 +90,56 @@ public class MenuController {
 		model.addAttribute("vo", vo);
 		log.info(""+cri.getPageNum());
 		log.info(""+cri.getAmount());
-	}	
+	}
+
+	// 커뮤니티 수정화면 Get
+	@GetMapping("/communityModify")
+	public void modifyGet(int bno, @ModelAttribute("cri") Criteria cri, Model model) {
+		log.info(bno+"번째 공지사항 Read 요청"+cri);
+
+		CommunityVO vo = service.readCommu(bno);
+		model.addAttribute("vo", vo);
+	}
+	
+	// 공지사항 수정하기 Post
+	@PostMapping("/communityModify")
+	public String modifyPost(CommunityVO vo, Criteria cri, RedirectAttributes rttr) {
+		log.info("공지사항 수정 요청"+vo);
+		
+		if(service.modifyCommu(vo)) {
+			rttr.addAttribute("bno", vo.getBno());
+			rttr.addAttribute("pageNum", cri.getPageNum());
+			rttr.addAttribute("amount", cri.getAmount());
+			rttr.addAttribute("type", cri.getType());
+			rttr.addAttribute("keyword", cri.getKeyword());
+			return "redirect:communityRead";
+		}
+		rttr.addAttribute("bno", vo.getBno());
+		return "redirect:communityModify";
+	}
+	
+	// 커뮤니티 삭제
+	@PreAuthorize("principal.username == #writer")
+	@PostMapping("/removeCommu")
+	public String delete(int bno, String writer, Criteria cri, RedirectAttributes rttr) {
+		log.info("삭제 요청"+bno);
+		
+		// 현재 글번호에 해당한는 첨부파일 목록을 서버에서 삭제하기 위해서
+		// bno에 해당하는 첨부파일 리스트 가져오기
+//		List<AttachFileVO> attachList=service.attachList(bno);
+		
+		if(service.deleteCommu(bno)) {
+			rttr.addAttribute("pageNum", cri.getPageNum());
+			rttr.addAttribute("amount", cri.getAmount());
+			rttr.addAttribute("type", cri.getType());
+			rttr.addAttribute("keyword", cri.getKeyword());
+			rttr.addFlashAttribute("result", "success");
+			return "redirect:community";
+		}else {
+			rttr.addAttribute("bno", bno);
+			return "redirect:communityRead";
+		}
+	}
 	
 	
 	@GetMapping("/shop")

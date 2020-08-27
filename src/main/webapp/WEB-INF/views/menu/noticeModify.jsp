@@ -117,9 +117,18 @@ a:visited {
                         	 <ul>
                                 <li>Phone : 123-4567-7899</li>
                             </ul>
-                            <a href="/shop/cart" class="genric-btn cart radius">장바구니</a>
-                        	<a href="/member/login" class="genric-btn info radius">LOGIN</a>
-                            <a href="#" class="genric-btn info radius">JOIN US</a>	
+                            <c:if test="${empty auth}">
+	                            <a href="/shop/cart" class="genric-btn cart radius">장바구니</a>
+	                        	<a href="/member/login" class="genric-btn info radius">LOGIN</a>
+	                            <a href="/register/step1" class="genric-btn info radius">JOIN US</a>                           
+                            </c:if>
+                            <c:if test="${!empty auth}">
+                            	<a href="/shop/cart" class="genric-btn cart radius">장바구니</a>	                        	
+	                            <sec:authorize access="isAuthenticated()">
+		                        	<a href="/member/logout" id="logout" class="genric-btn info radius"> Logout</a>
+		                        </sec:authorize>
+	                            <a href="/member/know-how" class="genric-btn info radius">My page</a>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -142,11 +151,11 @@ a:visited {
                                 <!-- <li><a href="/menu/shop">SHOP</a> -->
                                 <li><a href="#">SHOP</a>
                                     <ul class="dropdown">
-                                        <li><a href="/shop/category">쇼핑 물품</a></li>
-                                        <li><a href="/shop/cart">장바구니</a></li>
-                                        <li><a href="/shop/checkout">결제</a></li>
-                                        <li><a href="/shop/confirmation">확인</a></li>
-                                        <li><a href="/shop/single-product">상품 상세</a></li>
+                                        <li><a href="/shop/category">쇼핑 전체 물품</a></li>
+                                        <li><a href="/shop/category?mainCategory=1">식사 대용</a></li>
+                                        <li><a href="/shop/category?mainCategory=2">건강 간식</a></li>
+                                        <li><a href="/shop/category?mainCategory=3">보조 식품</a></li>
+                                        <li><a href="/shop/category?mainCategory=4">운동 용품</a></li>
                                     </ul>
                                 </li>
                             </ul>

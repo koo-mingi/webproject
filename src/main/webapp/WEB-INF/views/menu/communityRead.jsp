@@ -181,9 +181,18 @@ a > span {
                         	 <ul>
                                 <li>Phone : 123-4567-7899</li>
                             </ul>
-                            <a href="/shop/cart" class="genric-btn cart radius">장바구니</a>
-                        	<a href="/member/login" class="genric-btn info radius">LOGIN</a>
-                            <a href="#" class="genric-btn info radius">JOIN US</a>	
+                            <c:if test="${empty auth}">
+	                            <a href="/shop/cart" class="genric-btn cart radius">장바구니</a>
+	                        	<a href="/member/login" class="genric-btn info radius">LOGIN</a>
+	                            <a href="/register/step1" class="genric-btn info radius">JOIN US</a>                           
+                            </c:if>
+                            <c:if test="${!empty auth}">
+                            	<a href="/shop/cart" class="genric-btn cart radius">장바구니</a>	                        	
+	                            <sec:authorize access="isAuthenticated()">
+		                        	<a href="/member/logout" id="logout" class="genric-btn info radius"> Logout</a>
+		                        </sec:authorize>
+	                            <a href="/member/know-how" class="genric-btn info radius">My page</a>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -313,8 +322,7 @@ a > span {
 				<div class="comment-write">
 					<form action="" method="post">
 						<div class="reply_form">
-							<textarea class="commentarea" placeholder="댓글을 입력해주세요">
-							</textarea>
+							<textarea class="commentarea" placeholder="댓글을 입력해주세요"></textarea>
 							<button type="button" class="btn btn-warning replyIn" style="font-size: 16px;">입력</button>
 						</div>
 						<div class="secret" style="height: 20px; margin-top: 5px;">
@@ -375,7 +383,7 @@ function remove_click() {
 	let form = $("#myForm");
 	
 	$(".btn-danger").click(function(){
-		form.attr('action','remove');
+		form.attr('action','removeCommu');
 		form.attr('method','post');
 		form.submit();
 	})
