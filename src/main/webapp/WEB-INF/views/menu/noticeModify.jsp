@@ -191,7 +191,7 @@ a:visited {
 		</div>
 		<br>
 		<button class="btn btn-secondary" type="button" value="돌아가기" onclick="location.href='noticeRead?bno=${vo.bno}'">돌아가기</button>
-		<button class="btn btn-warning" type="submit" value="글 작성" style="float: right;">글작성</button>
+		<button class="btn btn-warning" type="submit" value="글 작성" style="float: right;">수정하기</button>
 		<input type="hidden" name="bno" value="${vo.bno}" />   
 <!-- 		<input class="btn btn-xs pull-right btn-warning" id="subBtn" type="button" value="돌아가기" style="float: left;" onclick="goWrite(this.form)"/>
 		<input class="btn btn-xs pull-right btn-warning" id="subBtn" type="button" value="글 작성" style="float: right;" onclick="goWrite(this.form)"/> -->

@@ -172,7 +172,7 @@ a:visited {
 <body>
 <div class="gap-area">
 </div>
-<h2 style="text-align: center;">Write</h2><br><br>
+<h2 style="text-align: center;">Community</h2><br><br>
 
 <div style="width: 50%; margin: auto;">
 	<form method="post" action="/menu/communityWrite" role="form" id="cate">

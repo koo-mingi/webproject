@@ -2,7 +2,10 @@ package com.spring.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.domain.AuthVO;
 import com.spring.domain.Criteria;
 import com.spring.domain.NoticeVO;
 import com.spring.domain.PageVO;
@@ -38,9 +42,10 @@ public class NoticeController {
 	}
 	
 	// 공지사항 글쓰기
-//	@PreAuthorize("isAuthenticated()") // 인증된 사용자인 경우 true
+	@PreAuthorize("isAuthenticated()") // 인증된 사용자인 경우 true
 	@GetMapping("/noticeWrite")
-	public void noticeWriteGet() {
+	public void noticeWriteGet(HttpSession session) {
+		AuthVO auth = (AuthVO) session.getAttribute("auth");
 		log.info("write form 요청");
 	}
 	
@@ -50,7 +55,7 @@ public class NoticeController {
 	}
 	
 	// 공지사항 글 작성하기
-//	@PreAuthorize("isAuthenticated()")
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/noticeWrite")
 	public String noticeWritePost(NoticeVO vo, RedirectAttributes rttr) {
 		log.info("공지사항 글 작성 요청"+vo);
@@ -106,7 +111,7 @@ public class NoticeController {
 	}
 	
 	// 공지사항 삭제하기
-//	@PreAuthorize("principal.username == #writer")
+	@PreAuthorize("principal.username == #writer")
 	@PostMapping("/remove")
 	public String delete(int bno, String writer, Criteria cri, RedirectAttributes rttr) {
 		log.info("삭제 요청"+bno);

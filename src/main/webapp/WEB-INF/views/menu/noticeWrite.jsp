@@ -172,7 +172,7 @@ a:visited {
 <body>
 <div class="gap-area">
 </div>
-<h2 style="text-align: center;">Write</h2><br><br>
+<h2 style="text-align: center;">Notice / Event</h2><br><br>
 
 <div style="width: 60%; margin: auto;">
 	<form method="post" action="/menu/noticeWrite" role="form">
@@ -183,7 +183,7 @@ a:visited {
 		<br>
 		<div class="mb-3">
 			<label for="reg_id" style="font-size: 18px;">작성자</label>
-			<input type="text" class="form-control" name="writer" placeholder="작성자"/>
+			<input type="text" class="form-control" name="writer" placeholder="작성자" readonly="readonly" value="${auth.userid}"/>
 		</div>
 		<br>
 		<div class="mb-3">
@@ -205,7 +205,6 @@ a:visited {
 	<script>
 	$(document).ready(function() {
 		
-		//여기 아래 부분
 		$('#summernote').summernote({
 			  height: 300,                 // 에디터 높이
 			  minHeight: null,             // 최소 높이
@@ -249,9 +248,9 @@ a:visited {
                contentType : false,
                processData : false,
                success : function(data) {
-               	console.log("data"+data);
-                   //항상 업로드된 파일의 url이 있어야 한다.
-               	//url = encodeURIComponent(data.uploadPath+"_"+data.uuid+"_"+data.fileName);
+               console.log("data"+data);
+               //항상 업로드된 파일의 url이 있어야 한다.
+               //url = encodeURIComponent(data.uploadPath+"_"+data.uuid+"_"+data.fileName);
                    url = data.uploadPath+"\\"+data.uuid+"_"+data.fileName;
                    console.log(url);
                    

@@ -10,6 +10,8 @@ public class MemberVO {
 	private String password;
 	private String new_password;
 	private String email;
+	private String name;
+	private String phone;
 	
 	
 	
