@@ -101,7 +101,7 @@ public class MenuController {
 		model.addAttribute("vo", vo);
 	}
 	
-	// 공지사항 수정하기 Post
+	// 커뮤니티 수정하기 Post
 	@PostMapping("/communityModify")
 	public String modifyPost(CommunityVO vo, Criteria cri, RedirectAttributes rttr) {
 		log.info("공지사항 수정 요청"+vo);
